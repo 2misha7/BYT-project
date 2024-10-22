@@ -8,4 +8,6 @@ public class WorkStation(StationCategory category, decimal price, int coworkingS
     public StationCategory Category { get; set; } = category;
     public decimal Price { get; set; } = price;
     public int CoworkingSpaceId { get; set; } = coworkingSpaceId;
+    public IDictionary<DateTime, int> ScheduleOfReservations = new Dictionary<DateTime, int>();
+
 }
