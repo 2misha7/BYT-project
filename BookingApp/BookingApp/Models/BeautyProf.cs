@@ -17,6 +17,7 @@ public class BeautyProfessional(
     IAccountType accountType)
     : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
 {
+    public int IdBeautyProfessional;
     public string Experience { get; set; } = experience;
     public List<string> Specializations { get; set; } = specializations;
     public IAccountType AccountType { get; set; } = accountType;
