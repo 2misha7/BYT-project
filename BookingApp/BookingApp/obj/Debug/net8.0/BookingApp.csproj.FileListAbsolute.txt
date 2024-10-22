@@ -1,0 +1,15 @@
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\BookingApp.exe
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\BookingApp.deps.json
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\BookingApp.runtimeconfig.json
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\BookingApp.dll
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\BookingApp.pdb
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.AssemblyInfoInputs.cache
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.AssemblyInfo.cs
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.csproj.CoreCompileInputs.cache
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.sourcelink.json
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.dll
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\refint\BookingApp.dll
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.pdb
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.genruntimeconfig.cache
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\ref\BookingApp.dll
