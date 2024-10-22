@@ -4,6 +4,7 @@ namespace BookingApp.Models;
 
 public class Payment(string? couponCode, decimal finalAmount, decimal amountPaid)
 {
+    public int IdPayment;
     public string? CouponCode { get; set; } = couponCode;
     public decimal FinalAmount { get; set; } = finalAmount;
     public decimal AmountPaid { get; set; } = amountPaid;

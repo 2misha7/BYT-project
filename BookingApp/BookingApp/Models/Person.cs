@@ -15,6 +15,7 @@ public abstract class Person
         WalletBalance = 0;
     }
 
+    public int IdPerson;
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
