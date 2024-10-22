@@ -1,6 +1,8 @@
-﻿namespace BookingApp.Repositories;
+﻿using BookingApp.Models;
 
-public class PaymentsRepository() : AbstractRepository(_filePath)
+namespace BookingApp.Repositories;
+
+public class PaymentsRepository() : AbstractRepository<Payment>(_filePath)
 {
     private static readonly string _filePath = "payments.json"; 
 }

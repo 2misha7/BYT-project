@@ -1,7 +1,8 @@
 ﻿namespace BookingApp.Models;
 
-public class PortfolioPage
+public class PortfolioPage : IEntity
 {
-    public int IdPortfolioPage;
+    public Guid Id { get; set; } = Guid.NewGuid();
     public ICollection<int> PostsIndexes = new HashSet<int>();
+    
 }

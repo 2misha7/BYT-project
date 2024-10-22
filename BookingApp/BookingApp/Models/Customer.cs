@@ -16,7 +16,6 @@ public class Customer(
     List<Customer> invitedCustomers)
     : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
 {
-    public int IdCustomer;
     public IAccountType AccountType { get; set; } = accountType;
     public List<Customer> InvitedCustomers { get; set; } = [];
 
