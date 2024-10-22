@@ -1,6 +1,8 @@
-﻿namespace BookingApp.Repositories;
+﻿using BookingApp.Models;
 
-public class CouponsRepository() : AbstractRepository(_filePath)
+namespace BookingApp.Repositories;
+
+public class CouponsRepository() : AbstractRepository<Coupon>(_filePath)
 {
-    private static readonly string _filePath = "coupon.json";
+    private static readonly string _filePath = "D:\\BYT-project\\BookingApp\\BookingApp\\Repositories\\Files\\coupon.json";
 }

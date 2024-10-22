@@ -1,8 +1,8 @@
 ﻿namespace BookingApp.Models;
 
-public abstract class Person
+public abstract class Person : IEntity
 {
-    protected Person(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance)
+    protected Person(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance) 
     {
         FirstName = firstName;
         LastName = lastName;
@@ -14,6 +14,7 @@ public abstract class Person
         City = city;
         WalletBalance = 0;
     }
+    public Guid Id { get; set; } = Guid.NewGuid();
     
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -24,4 +25,5 @@ public abstract class Person
     public string Address { get; set; }
     public string City { get; set; }
     public decimal WalletBalance { get; set; }
+    
 }

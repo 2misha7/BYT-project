@@ -1,8 +1,8 @@
 ﻿namespace BookingApp.Models;
 
-public class Notification(string text)
+public class Notification(string text) : IEntity
 {
-    public int IdNotification;
+    public Guid Id { get; set; } = Guid.NewGuid();
     public string Text = text;
-
+    
 }

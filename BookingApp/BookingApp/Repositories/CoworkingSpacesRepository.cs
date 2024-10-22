@@ -1,6 +1,8 @@
-﻿namespace BookingApp.Repositories;
+﻿using BookingApp.Models;
 
-public class CoworkingSpacesRepository() : AbstractRepository(_filePath)
+namespace BookingApp.Repositories;
+
+public class CoworkingSpacesRepository() : AbstractRepository<CoworkingSpace>(_filePath)
 {
-    private static readonly string _filePath = "coworkingSpace.json";
+    private const string _filePath = "coworkingSpace.json";
 }

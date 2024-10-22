@@ -1,6 +1,8 @@
-﻿namespace BookingApp.Repositories;
+﻿using BookingApp.Models;
 
-public class PortfolioPagesRepository() : AbstractRepository(_filepath)
+namespace BookingApp.Repositories;
+
+public class PortfolioPagesRepository() : AbstractRepository<PortfolioPage>(_filepath)
 {
     private static readonly string _filepath = "portfolioPage.json";
 }

@@ -1,8 +1,9 @@
 ﻿namespace BookingApp.Models;
 
-public class Booking
+public class Booking : IEntity
 {
-    public int IdBooking;
+    public Guid Id { get; set; } = Guid.NewGuid();
     public decimal TotalPrice;
     public ICollection<int> ServiceBookedId = new HashSet<int>();
+    
 }

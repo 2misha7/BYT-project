@@ -2,9 +2,9 @@
 
 namespace BookingApp.Models;
 
-public class Review(ReviewRating rating, string comment, DateTime date)
+public class Review(ReviewRating rating, string comment, DateTime date) : IEntity
 {
-    public int IdReview;
+    public Guid Id { get; set; } = Guid.NewGuid();
     public ReviewRating Rating = rating;
     public string Comment = comment;
     public DateTime Date = date;

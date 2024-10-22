@@ -1,6 +1,8 @@
-﻿namespace BookingApp.Repositories;
+﻿using BookingApp.Models;
 
-public class WorkStationsRepository() : AbstractRepository(_filePath)                   
+namespace BookingApp.Repositories;
+
+public class WorkStationsRepository() : AbstractRepository<WorkStation>(_filePath)                   
 {   
     private static readonly string _filePath = "workStation.json";
 }
