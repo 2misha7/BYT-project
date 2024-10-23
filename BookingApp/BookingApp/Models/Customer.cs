@@ -11,9 +11,8 @@ public class Customer(
     string password,
     string address,
     string city,
-    decimal walletBalance,
     IAccountType accountType)
-    : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
+    : Person(firstName, lastName, email, phoneNumber, login, password, address, city)
 {
     public IAccountType AccountType { get; set; } = accountType;
     public ICollection<Guid> CustomersInvited { get; set; } = new HashSet<Guid>();

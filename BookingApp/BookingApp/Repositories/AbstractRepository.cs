@@ -17,6 +17,12 @@ public abstract class AbstractRepository<T> where T : IEntity
     public void Save(List<T> items)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
+        
+        if (typeof(Person).IsAssignableFrom(typeof(T)))
+        {
+            options.Converters.Add(new AccountTypeConverter());
+        }
+
         var json = JsonSerializer.Serialize(items, options);
         File.WriteAllText(FilePath, json);
     }
@@ -27,12 +33,23 @@ public abstract class AbstractRepository<T> where T : IEntity
         {
             return new List<T>();
         }
+
         var json = File.ReadAllText(FilePath);
         if (string.IsNullOrWhiteSpace(json))
         {
-            return []; 
+            return new List<T>();
         }
-        return JsonSerializer.Deserialize<List<T>>(json);
+
+        var options = new JsonSerializerOptions();
+
+        // Check if T inherits from Person
+        if (typeof(Person).IsAssignableFrom(typeof(T)))
+        {
+            // If T inherits from Person, add the custom converter
+            options.Converters.Add(new AccountTypeConverter());
+        }
+
+        return JsonSerializer.Deserialize<List<T>>(json, options);
     }
     
     public void Add(T newItem)
@@ -48,6 +65,19 @@ public abstract class AbstractRepository<T> where T : IEntity
         var itemToRemove = items.SingleOrDefault(r => r.Id == id);
         if (itemToRemove != null) items.Remove(itemToRemove);
         Save(items);
+    }
+    
+    public T? Find(Guid id)
+    {
+        var items = Load();
+        var itFound = items.SingleOrDefault(r => r.Id == id);
+        return itFound;
+    }
+    
+    public List<T> FindManyByIds(ICollection<Guid> ids)
+    {
+        var items = Load();
+        return items.Where(item => ids.Contains(item.Id)).ToList();
     }
 
 }

@@ -11,17 +11,15 @@ public class BeautyProfessional(
     string password,
     string address,
     string city,
-    decimal walletBalance,
     List<string> specializations,
     string experience,
-    IAccountType accountType,
-    Guid portfolioPageId)
-    : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
+    IAccountType accountType)
+    : Person(firstName, lastName, email, phoneNumber, login, password, address, city)
 {
     
     public string Experience { get; set; } = experience;
     public List<string> Specializations { get; set; } = specializations;
-    
+    public ICollection<Guid> ServicesId { get; set; } = new List<Guid>();
 
     public IAccountType AccountType { get; set; } = accountType;
     

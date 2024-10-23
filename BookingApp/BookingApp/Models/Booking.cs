@@ -3,9 +3,9 @@
 public class Booking(Guid customerId, ICollection<Guid> serviceBookedId) : IEntity
 {
     public Guid Id { get; set; } = Guid.NewGuid();
-    public decimal TotalPrice { get; set; } = 0;
-    public Guid CusomerId { get; set; } = customerId;
+    //will be calculated while saving a booking to the system 
+    public decimal? TotalPrice { get; set; }
+    public Guid CustomerId { get; set; } = customerId;
     public ICollection<Guid> ServiceBookedId { get; set; } = serviceBookedId;
-
-    //find total price 
+    
 }

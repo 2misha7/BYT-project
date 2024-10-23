@@ -2,7 +2,7 @@
 using BookingApp.Models.Enums;
 namespace BookingApp.Models;
 
-public class Service(string name, StationCategory serviceCategory, string description, decimal price, Guid workStationId) : IEntity
+public class Service(Guid beautyProfId, string name, StationCategory serviceCategory, string description, decimal price, Guid workStationId) : IEntity
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; } = name;
@@ -14,4 +14,5 @@ public class Service(string name, StationCategory serviceCategory, string descri
     public ICollection<Guid> PromotionsId = new HashSet<Guid>();
     public ICollection<Guid> ReviewsId = new HashSet<Guid>();
     public Guid WorkStationId { get; set; } = workStationId;
+    public Guid BeautyProfId { get; set; } = beautyProfId;
 }
