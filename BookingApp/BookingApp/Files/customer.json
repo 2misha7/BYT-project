@@ -1,0 +1,22 @@
+[
+  {
+    "AccountType": {
+      "StartOfSubscription": "2024-10-23T21:40:03.3737303+02:00",
+      "EndOfSubscription": "2025-10-23T21:40:03.3737303+02:00",
+      "Duration": 12
+    },
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "cdec50c7-93b9-4784-a24d-0e56e28cd803",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "john@qw.wq",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
+  }
+]

@@ -4,5 +4,5 @@ namespace BookingApp.Repositories;
 
 public class CouponsRepository() : AbstractRepository<Coupon>(_filePath)
 {
-    private static readonly string _filePath = "C:\\Users\\HARDPC\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\Repositories\\Files\\service.json";
+    private static readonly string _filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Files\coupon.json");
 }
