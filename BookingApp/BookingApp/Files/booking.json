@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "5c961fd3-50f5-4ff5-af77-1225efc2a54d",
+    "TotalPrice": 51.905,
+    "CustomerId": "09994cfc-29bc-4db5-910d-d63ccdda593c",
+    "ServiceBookedId": [
+      "74e4934c-45c8-495a-807c-e440a4424878",
+      "070b538a-bbbe-4ea1-af14-5b9ec66b70e8"
+    ]
+  },
+  {
+    "Id": "72e90e39-f9bd-49a4-84f3-b6f3b253c795",
+    "TotalPrice": 51.905,
+    "CustomerId": "cdec50c7-93b9-4784-a24d-0e56e28cd803",
+    "ServiceBookedId": [
+      "746c8ac9-6f2b-4ffa-a5a1-919ffbce2fcd",
+      "fa6c70da-0c05-4211-9605-5e0842f1317e"
+    ]
+  }
+]
