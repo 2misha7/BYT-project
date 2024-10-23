@@ -14,12 +14,15 @@ public class BeautyProfessional(
     decimal walletBalance,
     List<string> specializations,
     string experience,
-    IAccountType accountType)
+    IAccountType accountType,
+    Guid portfolioPageId)
     : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
 {
     
     public string Experience { get; set; } = experience;
     public List<string> Specializations { get; set; } = specializations;
+    
+
     public IAccountType AccountType { get; set; } = accountType;
     
     public void UpgradeToPremium(DateTime startOfSubscription, SubscriptionDuration duration)

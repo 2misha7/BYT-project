@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Xml;
 using BookingApp.Models;
 
 namespace BookingApp.Repositories;
@@ -31,7 +30,7 @@ public abstract class AbstractRepository<T> where T : IEntity
         var json = File.ReadAllText(FilePath);
         if (string.IsNullOrWhiteSpace(json))
         {
-            return new List<T>(); 
+            return []; 
         }
         return JsonSerializer.Deserialize<List<T>>(json);
     }
@@ -40,9 +39,15 @@ public abstract class AbstractRepository<T> where T : IEntity
     {
         List<T> items = Load();
         items.Add(newItem);
-        
         Save(items);
     }
-    
-    
+
+    public void Delete(Guid id)
+    {
+        var items = Load();
+        var itemToRemove = items.SingleOrDefault(r => r.Id == id);
+        if (itemToRemove != null) items.Remove(itemToRemove);
+        Save(items);
+    }
+
 }
