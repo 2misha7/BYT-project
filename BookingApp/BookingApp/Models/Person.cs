@@ -2,7 +2,7 @@
 
 public abstract class Person : IEntity
 {
-    protected Person(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance) 
+    protected Person(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city) 
     {
         FirstName = firstName;
         LastName = lastName;

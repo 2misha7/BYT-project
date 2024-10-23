@@ -1,2 +1,35 @@
-{
-}
+[
+  {
+    "Id": "e2cff998-c1ac-4dd8-a980-ea201a1de682",
+    "TotalPrice": null,
+    "CustomerId": "00000000-0000-0000-0000-000000000000",
+    "ServiceBookedId": null
+  },
+  {
+    "Id": "f12ec017-9b3a-4b97-9a0d-2c3ec39f64e0",
+    "TotalPrice": null,
+    "CustomerId": "00000000-0000-0000-0000-000000000000",
+    "ServiceBookedId": null
+  },
+  {
+    "Id": "ffb986bd-558b-4267-8340-4a005690d8b3",
+    "TotalPrice": null,
+    "CustomerId": "00000000-0000-0000-0000-000000000000",
+    "ServiceBookedId": null
+  },
+  {
+    "Id": "c8dda83b-97fc-49e8-b82b-f0c50b79c870",
+    "TotalPrice": null,
+    "CustomerId": "00000000-0000-0000-0000-000000000000",
+    "ServiceBookedId": null
+  },
+  {
+    "Id": "293ed703-6090-4088-b965-cc632b8691a2",
+    "TotalPrice": 51.905,
+    "CustomerId": "9fcde624-220f-46e3-b63e-535240478b9c",
+    "ServiceBookedId": [
+      "b396edd5-41dd-46d2-98e9-46ad6b077c7b",
+      "967c4810-7c06-40d4-baeb-28505f268cfb"
+    ]
+  }
+]
