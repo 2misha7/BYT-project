@@ -12,12 +12,13 @@ public class Customer(
     string address,
     string city,
     decimal walletBalance,
-    IAccountType accountType,
-    List<Customer> invitedCustomers)
+    IAccountType accountType)
     : Person(firstName, lastName, email, phoneNumber, login, password, address, city, walletBalance)
 {
     public IAccountType AccountType { get; set; } = accountType;
-    public List<Customer> InvitedCustomers { get; set; } = [];
+    public ICollection<Guid> CustomersInvited { get; set; } = new HashSet<Guid>();
+    public ICollection<Guid> Bookings { get; set; } = new HashSet<Guid>();
+    public ICollection<Guid> Coupons { get; set; } = new HashSet<Guid>();
 
     public void UpgradeToPremium(DateTime startOfSubscription, SubscriptionDuration duration)
     {
