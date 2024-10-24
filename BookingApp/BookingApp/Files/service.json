@@ -124,5 +124,23 @@
     "Price": 27.555,
     "WorkStationId": "536a866b-cd6e-4fc4-988d-14d6891a60d3",
     "BeautyProfId": "77850c2a-9f4a-45b4-9d55-f8cadcc3956c"
+  },
+  {
+    "Id": "9974118b-d0b0-4410-8a44-b72189bea12d",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "cf01276d-1f79-4f0c-9875-0ab2e0aff338",
+    "BeautyProfId": "7a8e2fd6-9c83-4daf-b6b0-9db738312c10"
+  },
+  {
+    "Id": "30ccbe84-d728-4f92-9cdb-1e4f1721ce4f",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "cf01276d-1f79-4f0c-9875-0ab2e0aff338",
+    "BeautyProfId": "7a8e2fd6-9c83-4daf-b6b0-9db738312c10"
   }
 ]

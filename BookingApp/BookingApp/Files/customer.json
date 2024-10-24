@@ -18,5 +18,25 @@
     "Address": "wqr",
     "City": "wasd",
     "WalletBalance": 0
+  },
+  {
+    "AccountType": {
+      "StartOfSubscription": "2024-10-24T12:30:53.989558+02:00",
+      "EndOfSubscription": "2025-10-24T12:30:53.989558+02:00",
+      "Duration": 12
+    },
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "458b62d8-da32-4d4c-bd48-91fc393f75d0",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "john@qw.wq",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
   }
 ]
