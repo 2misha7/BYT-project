@@ -1,0 +1,92 @@
+[
+  {
+    "Id": "8ca42b2d-2ed5-4b26-bb7e-55a43f2098a9",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "ee4c74dd-5be6-4cf8-9b3f-a9bc082a4863",
+    "BeautyProfId": "423fe703-c19e-44bb-bce9-35e0f99d456f"
+  },
+  {
+    "Id": "38b854dc-e84d-4ad5-8273-be3528c1e46d",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "ee4c74dd-5be6-4cf8-9b3f-a9bc082a4863",
+    "BeautyProfId": "423fe703-c19e-44bb-bce9-35e0f99d456f"
+  },
+  {
+    "Id": "a942c001-1184-43f2-b033-24584d236591",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "b07d57af-2a60-4cb7-925b-0e3752ec29c6",
+    "BeautyProfId": "3d09d721-21a0-4459-8f4f-19b07c97108e"
+  },
+  {
+    "Id": "ecb5851f-9680-4ab5-bd75-88710081d708",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "b07d57af-2a60-4cb7-925b-0e3752ec29c6",
+    "BeautyProfId": "3d09d721-21a0-4459-8f4f-19b07c97108e"
+  },
+  {
+    "Id": "f635ac4c-88a5-4b8b-ad2d-f131b9b04c46",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "72f5922c-b1f3-45cb-9793-b080a248ca2f",
+    "BeautyProfId": "bd2728aa-ec98-4f3a-aa74-2c5893e63526"
+  },
+  {
+    "Id": "3e35a5ff-ca45-4c1e-9394-094a3711aaeb",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "72f5922c-b1f3-45cb-9793-b080a248ca2f",
+    "BeautyProfId": "bd2728aa-ec98-4f3a-aa74-2c5893e63526"
+  },
+  {
+    "Id": "0eb1ae56-662c-4793-a624-e48d7189f89e",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "f9c9df30-f1b1-4da2-a228-45b0bdac5835",
+    "BeautyProfId": "680ddb87-3ab2-4512-8367-e1d8e15f2ab0"
+  },
+  {
+    "Id": "aa420ab9-79bc-45dd-aa48-bab48ade38d1",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "f9c9df30-f1b1-4da2-a228-45b0bdac5835",
+    "BeautyProfId": "680ddb87-3ab2-4512-8367-e1d8e15f2ab0"
+  },
+  {
+    "Id": "da42c1ca-ba0d-480b-b8e9-ef9f35ba3476",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "c0da4cd4-911e-4282-b4b3-b69bcfb641ae",
+    "BeautyProfId": "b909d25f-c9ba-409e-983c-92e241a9b145"
+  },
+  {
+    "Id": "98168954-d11f-4228-9a4d-092112ca6e67",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "c0da4cd4-911e-4282-b4b3-b69bcfb641ae",
+    "BeautyProfId": "b909d25f-c9ba-409e-983c-92e241a9b145"
+  }
+]

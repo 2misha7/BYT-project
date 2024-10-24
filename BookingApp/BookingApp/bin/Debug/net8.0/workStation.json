@@ -1,0 +1,104 @@
+[
+  {
+    "Id": "ee4c74dd-5be6-4cf8-9b3f-a9bc082a4863",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "5de7dd04-b66c-49ba-ae07-13982f337470"
+  },
+  {
+    "Id": "78a292d6-bc1a-421e-8c6a-9e604c4d6dbe",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "58b5dbcb-9de8-4fa6-bfe5-4fa2c7216e1e"
+  },
+  {
+    "Id": "ef059cbe-1425-45d5-a07d-bb090b5bad7e",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "ca13da2d-a9cd-4d18-a63c-c7a0f09499df"
+  },
+  {
+    "Id": "b07d57af-2a60-4cb7-925b-0e3752ec29c6",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "acc90560-456a-4b73-8673-49b01450583d"
+  },
+  {
+    "Id": "72f5922c-b1f3-45cb-9793-b080a248ca2f",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "3ce2e873-1643-4a79-ba59-be1b28061b01"
+  },
+  {
+    "Id": "f9c9df30-f1b1-4da2-a228-45b0bdac5835",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "a4b03e01-025e-4f10-800d-39be4f9b46dc"
+  },
+  {
+    "Id": "92413f74-9be0-4b4b-a985-f0e8828feafb",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "0045a452-7226-4861-94a0-92ce4eb364df"
+  },
+  {
+    "Id": "7b329b89-3104-4e56-9740-5c1566b6629f",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "3cc199a4-25f4-46f2-b165-4e7a1dbd1402"
+  },
+  {
+    "Id": "c0da4cd4-911e-4282-b4b3-b69bcfb641ae",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "33322c5b-8ce8-4e86-b6e4-b84e58b07a41"
+  },
+  {
+    "Id": "c327c54f-d57d-49cb-afdf-1bbc092c0c02",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "126db292-2684-424e-9edd-e8b59746d37f"
+  },
+  {
+    "Id": "f5cc1cb4-75c8-4490-a601-b0bc7916715f",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "efe9f7f2-476a-425a-8786-e00b7343e0ed"
+  },
+  {
+    "Id": "3c61512a-2525-402d-88cc-fa5a6d866bff",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "fa3e8aa8-d9d5-4bd9-a5ad-f627198fbbd8"
+  },
+  {
+    "Id": "67002239-1b0f-472a-931e-df3f6fce178e",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "e37b4f04-952c-4f41-8775-db4da5d29d09"
+  },
+  {
+    "Id": "f84dc848-021b-41b6-81c2-6dca0a8c270b",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "30741329-66b0-4fe0-a43a-c0e106a31c3f"
+  },
+  {
+    "Id": "d4161fee-d4ee-409e-910c-c1c9d7bcdd94",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "bc3915a5-3f71-4d55-aa82-105f5c2817c1"
+  },
+  {
+    "Id": "5b7baee5-cddf-4d9e-94cf-a913747c0f84",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "96967c59-8bac-47a0-b828-8352a3722d04"
+  },
+  {
+    "Id": "9bd7a155-0f7d-41ce-a5bd-b787d8589850",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "ba50b314-43e8-4d68-a478-b456b33c2de0"
+  }
+]

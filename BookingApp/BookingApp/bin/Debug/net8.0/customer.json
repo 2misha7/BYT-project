@@ -1,0 +1,74 @@
+[
+  {
+    "AccountType": {},
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "8c9ccfae-04d6-499d-b100-a839af9777a4",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "qwe",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
+  },
+  {
+    "AccountType": {},
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "1584cccc-07a9-4b70-9b39-9c821dbab659",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "qwe",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
+  },
+  {
+    "AccountType": {
+      "StartOfSubscription": "2024-10-23T18:02:20.4729872+02:00",
+      "EndOfSubscription": "2025-10-23T18:02:20.4729872+02:00",
+      "Duration": 12
+    },
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "3f8bd287-bc33-4a11-8b35-37ee41f60f86",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "qwe",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
+  },
+  {
+    "AccountType": {
+      "StartOfSubscription": "2024-10-23T18:02:30.0773592+02:00",
+      "EndOfSubscription": "2025-10-23T18:02:30.0773592+02:00",
+      "Duration": 12
+    },
+    "CustomersInvited": [],
+    "Bookings": [],
+    "Coupons": [],
+    "Id": "fc13af31-63bc-44fa-8354-3b631b5eb0aa",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "qwe",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
+  }
+]
