@@ -4,5 +4,11 @@
     "Category": 4,
     "Price": 2,
     "CoworkingSpaceId": "0b634865-2566-4463-84d3-e4ccaf3d7aa7"
+  },
+  {
+    "Id": "cf01276d-1f79-4f0c-9875-0ab2e0aff338",
+    "Category": 4,
+    "Price": 2,
+    "CoworkingSpaceId": "a5a422de-a062-4355-8f7f-7fb02eada3d1"
   }
 ]

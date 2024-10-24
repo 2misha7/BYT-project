@@ -14,5 +14,21 @@
     "Address": "wqr",
     "City": "wasd",
     "WalletBalance": 0
+  },
+  {
+    "Experience": "qwe",
+    "Specializations": [],
+    "ServicesId": [],
+    "AccountType": {},
+    "Id": "7a8e2fd6-9c83-4daf-b6b0-9db738312c10",
+    "FirstName": "John",
+    "LastName": "Smith",
+    "Email": "qwe",
+    "PhoneNumber": "123",
+    "Login": "qwe",
+    "Password": "qwe34",
+    "Address": "wqr",
+    "City": "wasd",
+    "WalletBalance": 0
   }
 ]

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LCsBDXr0wMosAL06jzlGSVkw2QHWBKH5JjnUzRMUF7rkFqDnJXE4WTHY1euCUzJFsuV+7tbupg6Ahrhvheubdw==",
+  "dgSpecHash": "NT7m1zqzRPg=",
   "success": true,
-  "projectFilePath": "D:\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\julia\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\julia\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\julia\\.nuget\\packages\\nunit\\3.14.0\\nunit.3.14.0.nupkg.sha512"
+  ],
   "logs": []
 }
