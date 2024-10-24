@@ -124,5 +124,131 @@
     "Price": 27.555,
     "WorkStationId": "536a866b-cd6e-4fc4-988d-14d6891a60d3",
     "BeautyProfId": "77850c2a-9f4a-45b4-9d55-f8cadcc3956c"
+  },
+  {
+    "Id": "9346b0d9-a644-4b4f-bf65-cd6441a4385c",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "22096540-590b-45af-b59b-c946920db495",
+    "BeautyProfId": "30d0aeaf-d27c-41e6-9914-7f854fe3eefa"
+  },
+  {
+    "Id": "85567470-3c19-46eb-a347-cddfcaacd34f",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "22096540-590b-45af-b59b-c946920db495",
+    "BeautyProfId": "30d0aeaf-d27c-41e6-9914-7f854fe3eefa"
+  },
+  {
+    "Id": "70eafefe-1fdf-4227-9bf4-8e011f2ec7d0",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "a41c2899-eb98-4343-a451-91b29c5439a4",
+    "BeautyProfId": "15248508-63ad-4f48-8666-55d48f110839"
+  },
+  {
+    "Id": "1b1e6ad0-580e-42a9-ae81-04ac7dce2008",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "a41c2899-eb98-4343-a451-91b29c5439a4",
+    "BeautyProfId": "15248508-63ad-4f48-8666-55d48f110839"
+  },
+  {
+    "Id": "b3f7b12b-d920-4827-9436-ad1ebfd79e87",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "140ef827-cfb2-4963-a6ef-2691e4348dac",
+    "BeautyProfId": "50cb5651-f62b-4c02-86b9-35de1612b7eb"
+  },
+  {
+    "Id": "334e4dd5-29ca-4e3a-a4e0-de82efc2f98e",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "140ef827-cfb2-4963-a6ef-2691e4348dac",
+    "BeautyProfId": "50cb5651-f62b-4c02-86b9-35de1612b7eb"
+  },
+  {
+    "Id": "2ad8d6a7-b658-4d9d-bf32-779ff64e2a07",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "725370b7-9ae4-4ff4-85b7-91c9b45af320",
+    "BeautyProfId": "f796a358-1279-4d73-8e09-4a09a88cabf7"
+  },
+  {
+    "Id": "9bbf88cf-c13f-438e-bb84-54ccd1d050ea",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "725370b7-9ae4-4ff4-85b7-91c9b45af320",
+    "BeautyProfId": "f796a358-1279-4d73-8e09-4a09a88cabf7"
+  },
+  {
+    "Id": "cb0242af-53bb-4d5a-9aca-d3b2514204f8",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "ec0a0210-1383-4f69-be32-867fd20933e2",
+    "BeautyProfId": "b777cd54-bfb9-460e-ad8e-50faf7ed9e99"
+  },
+  {
+    "Id": "125fd1aa-415d-4cef-8a23-8d7652f4e174",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "ec0a0210-1383-4f69-be32-867fd20933e2",
+    "BeautyProfId": "b777cd54-bfb9-460e-ad8e-50faf7ed9e99"
+  },
+  {
+    "Id": "f8081c87-f794-4e30-ba4b-efb042ae370a",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "84b406a6-8420-4b9f-8ef0-88083d296538",
+    "BeautyProfId": "4a1e75c2-1703-49a5-8550-e9d1d976cc11"
+  },
+  {
+    "Id": "73c0fc6a-4f82-4619-a68e-637d0b6ba114",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "84b406a6-8420-4b9f-8ef0-88083d296538",
+    "BeautyProfId": "4a1e75c2-1703-49a5-8550-e9d1d976cc11"
+  },
+  {
+    "Id": "8af41621-9394-44a3-a5ac-5c99c313c107",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 24.35,
+    "WorkStationId": "cd058013-c517-45c2-bd13-ec265639a5ce",
+    "BeautyProfId": "0362ca44-806a-402d-86b2-f1f80438b618"
+  },
+  {
+    "Id": "3096fa5b-2662-4a1d-8871-78973fa09373",
+    "Name": "qwe",
+    "ServiceCategory": 4,
+    "Description": "qwret",
+    "Price": 27.555,
+    "WorkStationId": "cd058013-c517-45c2-bd13-ec265639a5ce",
+    "BeautyProfId": "0362ca44-806a-402d-86b2-f1f80438b618"
   }
 ]
