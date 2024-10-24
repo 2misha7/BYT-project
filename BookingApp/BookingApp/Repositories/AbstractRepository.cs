@@ -41,11 +41,8 @@ public abstract class AbstractRepository<T> where T : IEntity
         }
 
         var options = new JsonSerializerOptions();
-
-        // Check if T inherits from Person
         if (typeof(Person).IsAssignableFrom(typeof(T)))
         {
-            // If T inherits from Person, add the custom converter
             options.Converters.Add(new AccountTypeConverter());
         }
 
