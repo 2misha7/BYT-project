@@ -1,0 +1,265 @@
+[33mcommit 07b2db1fb3f67d8f847fa0c6d5737d1731727eb0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmisha[m[33m)[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Thu Oct 24 13:07:20 2024 +0200
+
+    changes
+
+[33mcommit 30358dff35e8eb61dc25317b7545edb66b7d9bd9[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Thu Oct 24 13:01:18 2024 +0200
+
+    changes
+
+[33mcommit 2ba301c1c73bd40facd0b3577fee45bcc3b07ec5[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Thu Oct 24 13:00:33 2024 +0200
+
+    AbstractRepo modified
+
+[33mcommit 1ff76d637635637394a14b7ae5bf42a4d2e3138f[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 7a47d57 6261b11
+Author: Iuliia Pak <95545776+s26845@users.noreply.github.com>
+Date:   Thu Oct 24 12:57:11 2024 +0200
+
+    Merge pull request #17 from 2misha7/julia
+    
+    Julia
+
+[33mcommit 6261b11ac023b1d005640b960ad4e06e8ffd6484[m[33m ([m[1;31morigin/julia[m[33m)[m
+Merge: e49193c 7a47d57
+Author: Iuliia Pak <95545776+s26845@users.noreply.github.com>
+Date:   Thu Oct 24 12:53:52 2024 +0200
+
+    Merge pull request #16 from 2misha7/main
+    
+    Merge pull request #15 from 2misha7/julia
+
+[33mcommit e49193cb899999f9120c1f64358e934b7daa04ea[m
+Author: julia <juliapostcard@gmail.com>
+Date:   Thu Oct 24 12:51:52 2024 +0200
+
+    unit test
+
+[33mcommit 7a47d57deeaf448a27dc27a4f758b0a4a86678fe[m
+Merge: 7b73949 f8dac88
+Author: Iuliia Pak <95545776+s26845@users.noreply.github.com>
+Date:   Thu Oct 24 12:50:12 2024 +0200
+
+    Merge pull request #15 from 2misha7/julia
+    
+    file operations unit tests
+
+[33mcommit f8dac8892b5f6acb98f3b8d24e62946dda8f31fd[m
+Author: julia <juliapostcard@gmail.com>
+Date:   Thu Oct 24 12:47:29 2024 +0200
+
+    file operations unit tests
+
+[33mcommit 7b73949e49a101319ed08890afab53bb0ad4b5a7[m
+Merge: 967a2ec 92c43f9
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 21:40:57 2024 +0200
+
+    Merge pull request #14 from 2misha7/misha
+    
+    Path to file DONE
+
+[33mcommit 92c43f9dedce9056c9f7c8d0d05c0d04d79ab34c[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 21:40:27 2024 +0200
+
+    Path to file DONE
+
+[33mcommit 967a2ec08389df6f0d6a2f54919388c2c6d47fcd[m
+Merge: 564f980 0b20757
+Author: s24685 <163856163+s24685@users.noreply.github.com>
+Date:   Wed Oct 23 20:50:05 2024 +0200
+
+    Merge pull request #13 from 2misha7/polly
+    
+    jsonconverter + classes modified
+
+[33mcommit 0b207575743d24169a2f74b0116417bd226fc21e[m[33m ([m[1;31morigin/polly[m[33m)[m
+Author: s24685 <s24685@pjwstk.edu.pl>
+Date:   Wed Oct 23 20:46:53 2024 +0200
+
+    jsonconverter + classes modified
+
+[33mcommit 564f98042c47a447119b895842cf83ff64a09986[m
+Merge: 2a84e76 dd9d8ec
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 15:56:45 2024 +0200
+
+    Merge pull request #12 from 2misha7/misha
+    
+    Promotion class added
+
+[33mcommit dd9d8ec0cc68ed314bb1087bd15fb5cbb0a7d1ef[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 15:56:14 2024 +0200
+
+    Promotion class added
+
+[33mcommit 2a84e7618465b70d763057684a3828a28895a2f0[m
+Merge: a9d0039 51531c2
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 15:55:25 2024 +0200
+
+    Merge pull request #11 from 2misha7/misha
+    
+    Common delete method, dependenciew between classes finished
+
+[33mcommit 51531c2c369b708b61f0c981186b437842bf78c7[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Wed Oct 23 15:54:49 2024 +0200
+
+    Common delete method, dependenciew between classes finished
+
+[33mcommit a9d0039681ac8a7565b323e0f6a9c629ce153710[m
+Merge: 7c8cb8c 57ea176
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 21:56:54 2024 +0200
+
+    Merge pull request #10 from 2misha7/misha
+    
+    IEntity pushed
+
+[33mcommit 57ea176c7cefea490c4b5745689b8f8d5567d8cc[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 21:56:06 2024 +0200
+
+    IEntity pushed
+
+[33mcommit 7c8cb8ce0ea0a815542fb721e774c481a25c3576[m
+Merge: 4f843a0 66af562
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 21:53:37 2024 +0200
+
+    Merge pull request #9 from 2misha7/misha
+    
+    IEntity + AbstractRepository<T>
+
+[33mcommit 66af56288430a5cbb05be3810918f2e620140f9f[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 21:51:14 2024 +0200
+
+    IEntity done with Guid, AbstractRepository with Save, Load and Add methods
+
+[33mcommit 4f843a05e3b57f1f0a2fcd234d4a800bbf97e7f7[m
+Merge: be43290 8dbc25b
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 15:45:36 2024 +0200
+
+    Merge pull request #8 from 2misha7/misha
+    
+    Classes for repos
+
+[33mcommit 8dbc25be2d1ee73c7d539a9d76e5391eb68fbbe9[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 15:42:06 2024 +0200
+
+    empty classes for repo created
+
+[33mcommit 935aef54d5d3b2e4863ce95ebbe45aad184423a7[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 15:41:38 2024 +0200
+
+    Classes for repositories only created + one Abstract for all, jsonFiles created(classes are empty)
+
+[33mcommit be43290a72be43eafdc070ef5ac8448effc1843c[m
+Merge: 271ca2c 20a49a4
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:42:01 2024 +0200
+
+    Merge pull request #7 from 2misha7/misha
+    
+    id added to classes
+
+[33mcommit 20a49a40ad5873128edaa511a6fa0bf6afe15c30[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:40:13 2024 +0200
+
+    id added to classes
+
+[33mcommit 271ca2cce21fd3baf2477a2ae80d536bb667a515[m
+Merge: 81f4a4b 36a63ce
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:31:29 2024 +0200
+
+    Merge pull request #6 from 2misha7/misha
+    
+    Coupopn class modified + enum structured
+
+[33mcommit 36a63cef9ee4fbbd0881afd852361007f964d908[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:29:48 2024 +0200
+
+    coupon class modified
+
+[33mcommit b3cb9e8c7d1dfc57a9464d8c960b08d6dfeb161a[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:28:05 2024 +0200
+
+    enums moved to a specific folder
+
+[33mcommit bd1222c8db942f6593f46c0948bdf2dbdea7af40[m
+Merge: 576411f 5caa4c9
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:26:30 2024 +0200
+
+    Merge branch 'refs/heads/main' into misha
+    
+    # Conflicts:
+    #       BookingApp/BookingApp/obj/Debug/net8.0/BookingApp.AssemblyInfo.cs
+    #       BookingApp/BookingApp/obj/Debug/net8.0/BookingApp.AssemblyInfoInputs.cache
+
+[33mcommit 5caa4c9f099b7b6f8de170ae67573a989fc2adf9[m
+Author: Mikhalina Kuliashova <mikhalina10@gmail.com>
+Date:   Tue Oct 22 10:22:10 2024 +0200
+
+    before rabase
+
+[33mcommit 81f4a4b35031e47a7c1d79d529a4fdfbe0dfef4a[m
+Merge: bd956c0 a6c842c
+Author: s24685 <163856163+s24685@users.noreply.github.com>
+Date:   Mon Oct 21 21:21:52 2024 +0200
+
+    Merge pull request #5 from 2misha7/polly
+    
+    created Booking.cs CoworkingSpace.cs Payment.cs PaymentStatus.cs Work…
+
+[33mcommit a6c842c5039361bbb1b564319b98c06c936792ac[m
+Author: s24685 <s24685@pjwstk.edu.pl>
+Date:   Mon Oct 21 21:02:44 2024 +0200
+
+    created Booking.cs CoworkingSpace.cs Payment.cs PaymentStatus.cs WorkStation.cs StationCategory.cs
+
+[33mcommit bd956c043c5ed23e796d24c55bbf29d5625c9778[m
+Merge: 49c3872 c95bc05
+Author: s26845 <95545776+s26845@users.noreply.github.com>
+Date:   Mon Oct 21 20:30:48 2024 +0200
+
+    Merge pull request #4 from 2misha7/julia
+    
+    Julia
+
+[33mcommit c95bc05fc4e5b335bd7b1c0119d90673cb454b73[m
+Author: julia <juliapostcard@gmail.com>
+Date:   Mon Oct 21 20:16:15 2024 +0200
+
+    created Notification.cs Review.cs Service.cs
+
+[33mcommit 972addde7dfb82a20220b3b23e920f7dbbbdc1a5[m
+Author: julia <juliapostcard@gmail.com>
+Date:   Mon Oct 21 20:00:32 2024 +0200
+
+    added PortfolioPage.cs
+
+[33mcommit b899cd5e4017077e886dba399c0d328ebac8ba41[m
+Author: julia <juliapostcard@gmail.com>
+Date:   Mon Oct 21 19:56:43 2024 +0200
+
+    added  ReviewRating.cs , filled Post.cs
+
+[33mcommit 576411f88439dc8f325e57ed1353078a063701f4[m
+Author: Mikhalina K
