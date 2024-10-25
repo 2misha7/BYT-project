@@ -46,3 +46,6 @@ C:\Users\julia\RiderProjects\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\
 C:\Users\julia\RiderProjects\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.pdb
 C:\Users\julia\RiderProjects\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.genruntimeconfig.cache
 C:\Users\julia\RiderProjects\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\ref\BookingApp.dll
+D:\BYT-project\BookingApp\BookingApp\bin\Debug\net8.0\nunit.framework.dll
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.csproj.AssemblyReference.cache
+D:\BYT-project\BookingApp\BookingApp\obj\Debug\net8.0\BookingApp.csproj.Up2Date

@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj": {}
+    "D:\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj": {
+    "D:\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
+        "projectUniqueName": "D:\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
         "projectName": "BookingApp",
-        "projectPath": "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
-        "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julia\\RiderProjects\\BYT-project\\BookingApp\\BookingApp\\obj\\",
+        "projectPath": "D:\\BYT-project\\BookingApp\\BookingApp\\BookingApp.csproj",
+        "packagesPath": "C:\\Users\\MY PC\\.nuget\\packages\\",
+        "outputPath": "D:\\BYT-project\\BookingApp\\BookingApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\MY PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -67,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
