@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.Models;
+﻿namespace BookingApp.Models;
 
 public class PremiumAccountType(DateTime startOfSubscription, DateTime endOfSubscription, SubscriptionDuration duration)
     : IAccountType

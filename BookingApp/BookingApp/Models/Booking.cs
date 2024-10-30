@@ -1,14 +1,45 @@
-﻿namespace ConsoleApp1.Models;
-
+﻿namespace BookingApp.Models;
+//catch exception in constructor 
 public class Booking : ModelBase<Booking>
 {
-    public Booking(int id, decimal totalPrice)
+    
+    private int _id;
+    public int Id
     {
-        Id = id;
-        TotalPrice = totalPrice;
-        Add(this);
+        get => _id;
+        set => _id = value;
     }
-
-    public int Id { get; set; }     
-    public decimal TotalPrice { get; set; }
+    
+    private decimal _totalPrice;
+    public decimal TotalPrice
+    {
+        get => _totalPrice;
+        private set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Total price cannot be negative");
+            }
+            _totalPrice = value;
+        }
+    }
+    
+    public Booking(decimal totalPrice)
+    {
+        try
+        {
+            TotalPrice = totalPrice;
+            Add(this);
+        }
+        catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+        
+    }
+    protected override void AssignId()
+    {
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
+    }
+    
 }

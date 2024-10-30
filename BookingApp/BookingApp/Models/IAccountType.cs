@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1.Models;
+﻿namespace BookingApp.Models;
 
 public interface IAccountType
 {
