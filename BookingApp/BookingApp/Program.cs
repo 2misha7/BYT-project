@@ -9,11 +9,13 @@ using BookingApp.Models;
 //FileOperations.SaveAll();
 
 FileOperations.LoadAll();
-//var n = new Notification("sdfg");
-//
-//var n1 = new Notification("sdfg");
-//FileOperations.SaveAll();
-//
+var n = new Notification("asfsgdhf");
+
+var n1 = new Notification("sdfg");
+
+
+FileOperations.SaveAll();
+
 //FileOperations.LoadAll();
 //var b  = Notification.GetAll();
 //foreach (var booking in b)

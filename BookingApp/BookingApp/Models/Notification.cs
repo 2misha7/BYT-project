@@ -8,7 +8,7 @@ public class Notification: ModelBase<Notification>
     public int Id
     {
         get => _id;
-        set => _id = value;
+        private set => _id = value;
     }
     private string _text = null!;
     public string Text
