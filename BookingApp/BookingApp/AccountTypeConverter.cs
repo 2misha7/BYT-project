@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using ConsoleApp1.Models;
+using BookingApp.Models;
 
-namespace ConsoleApp1;
+namespace BookingApp;
 
 public class AccountTypeConverter : JsonConverter<IAccountType>
 {

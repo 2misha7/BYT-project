@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
-using ConsoleApp1.Models;
+using BookingApp.Models;
 
-namespace ConsoleApp1;
+namespace BookingApp;
 
-public class FileOperations
+public static class FileOperations
 {
-    private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Files\data.json");
+    private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\data.json");
 
     public static void SaveAll()
     {
@@ -32,26 +32,40 @@ public class FileOperations
             WriteIndented = true 
         };
         
-        File.WriteAllText(FilePath, JsonSerializer.Serialize(data, options));
+        try
+        { 
+            File.WriteAllText(FilePath, JsonSerializer.Serialize(data, options));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving data: {ex.Message}");
+        }
     }
 
 
     public static void LoadAll()
     {
-        BeautyProfessional.LoadFromFile();
-        Booking.LoadFromFile();
-        Coupon.LoadFromFile();
-        CoworkingSpace.LoadFromFile();
-        Customer.LoadFromFile();
-        Notification.LoadFromFile();
-        Payment.LoadFromFile();
-        PortfolioPage.LoadFromFile();
-        Post.LoadFromFile();
-        Promotion.LoadFromFile();
-        Review.LoadFromFile(); 
-        Service.LoadFromFile();
-        ServiceBooked.LoadFromFile();
-        WorkStation.LoadFromFile();
+        try
+        {
+            BeautyProfessional.LoadFromFile();
+            Booking.LoadFromFile();
+            Coupon.LoadFromFile();
+            CoworkingSpace.LoadFromFile();
+            Customer.LoadFromFile();
+            Notification.LoadFromFile();
+            Payment.LoadFromFile();
+            PortfolioPage.LoadFromFile();
+            Post.LoadFromFile();
+            Promotion.LoadFromFile();
+            Review.LoadFromFile();
+            Service.LoadFromFile();
+            ServiceBooked.LoadFromFile();
+            WorkStation.LoadFromFile();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading all entities: {ex.Message}");
+        }
     }
     
 }

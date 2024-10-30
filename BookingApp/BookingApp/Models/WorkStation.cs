@@ -1,9 +1,57 @@
 ﻿
-namespace ConsoleApp1.Models;
+namespace BookingApp.Models;
 
-public class WorkStation(int id, StationCategory category, decimal price) : ModelBase<WorkStation>
+public class WorkStation : ModelBase<WorkStation>
 {
-    public int Id { get; set; } = id;
-    public StationCategory Category { get; set; } = category;
-    public decimal Price { get; set; } = price;
+    private int _id;
+    public int Id
+    {
+        get => _id;
+        private set => _id = value;
+    }
+
+    private StationCategory _category;
+    public StationCategory Category
+    {
+        get => _category;
+        set
+        {
+            if (value == null)
+            {
+                throw new ArgumentException("Category cannot be null");
+            }
+            _category = value;
+        }
+    }
+
+    private decimal _price;
+    public decimal Price
+    {
+        get => _price;
+        set
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException("Price cannot be negative");
+            }
+            _price = value;
+        }
+    }
+
+    protected override void AssignId()
+    {
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+    }
+    public WorkStation(StationCategory category, decimal price)
+    {
+        try
+        {
+            Category = category;
+            Price = price;
+            Add(this);
+        }catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
 }

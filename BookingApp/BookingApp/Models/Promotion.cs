@@ -1,12 +1,75 @@
-﻿namespace ConsoleApp1.Models;
+﻿namespace BookingApp.Models;
 
-public class Promotion(int id, int totalDiscountPercentage, string name, string discount)  : ModelBase<Promotion>
+public class Promotion: ModelBase<Promotion>
 {
-    public int Id { get; set; } = id;
-    public string Name { get; set; } = name;
-    public string Discount { get; set; } = discount;
-    public int TotalDiscountPercentage { get; set; } = totalDiscountPercentage;
+    
+    private int _id;
+    public int Id
+    {
+        get => _id;
+        private set => _id = value;
+    }
+
+    private string _name = null!;
+
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Name cannot be empty");
+            }
+            _name = value;
+        }
+    }
+
+    private string _discountDescription = null!;
+    public string DiscountDescription
+    {
+        get => _discountDescription;
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Description cannot be empty");
+            }
+            _discountDescription = value;
+        }
+    }
+
+    private int _totalDiscountPercentage;
+    public int TotalDiscountPercentage
+    {
+        get => _totalDiscountPercentage;
+        set
+        {
+            if (value < MinDiscountPercentage || value > MaxDiscountPercentage)
+            {
+                throw new ArgumentException($"Total discount percentage must be between {MinDiscountPercentage} and {MaxDiscountPercentage}.");
+            }
+            _totalDiscountPercentage = value;
+        }
+    }
     public static int MinDiscountPercentage { get; set; } = 5;
     public static int MaxDiscountPercentage { get; set; } = 40;
     
+    public Promotion(string name, string discountDescription, int totalDiscountPercentage)
+    {
+        try
+        {
+            Name = name;
+            DiscountDescription = discountDescription;
+            TotalDiscountPercentage = totalDiscountPercentage;
+            Add(this); 
+        }catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
+    protected override void AssignId()
+    {
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+    }
 }
