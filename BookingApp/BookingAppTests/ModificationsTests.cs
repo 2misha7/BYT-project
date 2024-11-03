@@ -19,4 +19,5 @@ public class ModificationsTests
         Assert.AreEqual("Price cannot be negative", ex.Message);
         
     }
+    
 }

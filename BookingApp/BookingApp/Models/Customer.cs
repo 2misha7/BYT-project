@@ -151,7 +151,7 @@ public class Customer : ModelBase<Customer>, IPerson
         set => _accountType = value ?? throw new ArgumentException("Account type cannot be null");
     }
     
-    public Customer(int id, string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance, IAccountType accountType)
+    public Customer(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance, IAccountType accountType)
     {
         try
         {

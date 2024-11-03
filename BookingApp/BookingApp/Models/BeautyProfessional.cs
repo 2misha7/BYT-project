@@ -9,7 +9,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     public int Id
     {
         get => _id;
-        set => _id = value;
+        private set => _id = value;
     }
     private string _firstName = null!;
     public string FirstName
@@ -178,7 +178,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
         set => _accountType = value ?? throw new ArgumentException("Account type cannot be null");
     }
     
-    public BeautyProfessional(int id, string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance, string experience, ICollection<string> specializations, IAccountType accountType)
+    public BeautyProfessional(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance, string experience, ICollection<string> specializations, IAccountType accountType)
     {
         try
         {

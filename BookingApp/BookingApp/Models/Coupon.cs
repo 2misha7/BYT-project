@@ -1,5 +1,6 @@
 ﻿namespace BookingApp.Models;
 
+//check optionality of an attribute
 public class Coupon : ModelBase<Coupon> 
 {
     private int _id;
@@ -55,10 +56,7 @@ public class Coupon : ModelBase<Coupon>
         get => _validFrom;
         set
         {
-            if (value > ValidTo)
-            {
-                throw new ArgumentException("ValidFrom date cannot be later than ValidTo date");
-            }
+            
             _validFrom = value;
         }
     }
