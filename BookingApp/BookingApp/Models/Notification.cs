@@ -8,7 +8,7 @@ public class Notification: ModelBase<Notification>
     public int Id
     {
         get => _id;
-        set => _id = value;
+        private set => _id = value;
     }
     private string _text = null!;
     public string Text
@@ -39,6 +39,6 @@ public class Notification: ModelBase<Notification>
     
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1;
     }
 }

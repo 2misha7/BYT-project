@@ -2,6 +2,7 @@
 
 namespace BookingApp.Models;
 
+
 public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
 {
     private int _id;
@@ -203,6 +204,6 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     }
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
     }
 }

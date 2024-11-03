@@ -10,11 +10,16 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bed1fcc9_002D5833_002D4768_002Dafb6_002Dd86fca55792a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddToRepository" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;ProjectFile&gt;8B5EE10E-6A93-42B2-8207-F22C7A4B120B/f:UnitTest1.cs&lt;/ProjectFile&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e0d9378e_002D05ff_002D4746_002Dac67_002D3fef1bd5c062/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;BookingAppTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\julia\RiderProjects\BYT-project\BookingApp\BookingAppTests" Presentation="&amp;lt;BookingAppTests&amp;gt;" /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e656917a_002Dc578_002D4f46_002D84f8_002D4ffb9c118ba2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e0d9378e_002D05ff_002D4746_002Dac67_002D3fef1bd5c062/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;BookingAppTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::EA724548-93CB-492A-B90A-CBE4AC33CA2A::net8.0::BookingAppTests.Tests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ModificationsTests.Workstation_ModifyToIncorrectPrice_ThrowsException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e656917a_002Dc578_002D4f46_002D84f8_002D4ffb9c118ba2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AttributeCorrectnessTests.Workstation_ThrowsExceptionWithNegativePrice&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ModificationsTests.Workstation_ModifyToIncorrectPrice_ThrowsException&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	</wpf:ResourceDictionary>

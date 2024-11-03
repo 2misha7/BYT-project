@@ -1,0 +1,25 @@
+{
+  "BeautyProfessional": [],
+  "Booking": [],
+  "Coupon": [],
+  "CoworkingSpace": [],
+  "Customer": [],
+  "Notification": [
+    {
+      "Id": 1,
+      "Text": "sdfg"
+    },
+    {
+      "Id": 2,
+      "Text": "sdfg"
+    }
+  ],
+  "Payment": [],
+  "PortfolioPage": [],
+  "Post": [],
+  "Promotion": [],
+  "Review": [],
+  "Service": [],
+  "ServiceBooked": [],
+  "WorkStation": []
+}

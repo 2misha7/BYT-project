@@ -70,6 +70,6 @@ public class Promotion: ModelBase<Promotion>
     }
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
     }
 }
