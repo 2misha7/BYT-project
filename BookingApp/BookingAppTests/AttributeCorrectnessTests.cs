@@ -13,6 +13,7 @@ public class AttributeCorrectnessTests
  
     
     //WorkStation 
+    //one test to check if we get correct info back
     [Test]
     public void WorkstationCreate_GetCorrectInfoBack()
     {
@@ -25,6 +26,7 @@ public class AttributeCorrectnessTests
         Assert.That(workStation.Price, Is.EqualTo(price));
     }
 
+    //check all exceptions, not possible to create an object without passing validation
     [Test]
     public void Workstation_ThrowsExceptionWithNegativePrice()
     {
@@ -33,6 +35,19 @@ public class AttributeCorrectnessTests
         
         var ex = Assert.Throws<ArgumentException>(() => new WorkStation(category, negativePrice));
         Assert.AreEqual("Price cannot be negative", ex.Message); 
+    }
+    //check id initialization 
+    [Test]
+    public void WorkStation_IdIsAssignedCorrectly()
+    {
+        var category = StationCategory.Body;
+        var price = 100.00m;
+        
+        var firstWorkStation = new WorkStation(category, price);
+        var secondWorkStation = new WorkStation(category, 150.00m);
+        
+        Assert.AreEqual(1, firstWorkStation.Id);
+        Assert.AreEqual(2, secondWorkStation.Id);
     }
     
 }

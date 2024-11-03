@@ -2,11 +2,20 @@
 using BookingApp.Models;
 
 
-var b1 = new Booking();
-var b2 = new Booking();
-var bp2= new BeautyProfessional(2,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
-var bp1= new BeautyProfessional(1,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
-FileOperations.SaveAll();
+//var b1 = new Booking();
+//var b2 = new Booking();
+//var bp2= new BeautyProfessional(2,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
+//var bp1= new BeautyProfessional(1,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
+//FileOperations.SaveAll();
+
+Repository.GetAllFromFile();
+var n = new Notification("asfsgdhf");
+var w = new WorkStation(StationCategory.Body, 12);
+
+Repository.WriteAllToFile();
+
+//FileOperations.SaveAll();
+
 
 //FileOperations.LoadAll();
 //var n = new Notification("asfsgdhf");

@@ -4,7 +4,6 @@ namespace BookingApp;
 
 public abstract class ModelBase<T> where T : ModelBase<T>
 {
-    private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\data.json");
     private static readonly ICollection<T> Entities = new List<T>();
     
     private bool _isDeserializing = false;
@@ -28,24 +27,22 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         Entities.Add(entity);
     }
 
-    public static void LoadFromFile()
+    public static void LoadClassExtentFromFile()
     {
         
-        if (!File.Exists(FilePath))
+        if (!FileOperations.FileExists())
         {
-            using (File.Create(FilePath)) { } 
             Entities.Clear();
             return;
         }
         
         try
         {
-            var json = File.ReadAllText(FilePath);
+            var json = FileOperations.ReadTextFromFile();
             var options = new JsonSerializerOptions
             {
                 Converters = { new AccountTypeConverter() },
             };
-
             var data = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
             if (data != null && data.TryGetValue(typeof(T).Name, out JsonElement entityDataElement))
             {

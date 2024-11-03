@@ -5,27 +5,16 @@ namespace BookingApp;
 
 public static class FileOperations
 {
-    private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\data.json");
+    private static string _filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\data.json");
 
-    public static void SaveAll()
+    public static string FilePath
     {
-        var data = new Dictionary<string, object>
-        {
-            {nameof(BeautyProfessional), BeautyProfessional.All()},
-            {nameof(Booking), Booking.All()}, 
-            {nameof(Coupon), Coupon.All()}, 
-            {nameof(CoworkingSpace), CoworkingSpace.All()}, 
-            {nameof(Customer), Customer.All()}, 
-            {nameof(Notification), Notification.All()}, 
-            {nameof(Payment), Payment.All()}, 
-            {nameof(PortfolioPage), PortfolioPage.All()}, 
-            {nameof(Post), Post.All()}, 
-            {nameof(Promotion), Promotion.All()}, 
-            {nameof(Review), Review.All()}, 
-            {nameof(Service), Service.All()},
-            {nameof(ServiceBooked), ServiceBooked.All()}, 
-            {nameof(WorkStation), WorkStation.All()}, 
-        };
+        get => _filePath;
+        set => _filePath = value;
+    }
+
+    public static void WriteToFile(Dictionary<string,object> data)
+    {
         var options = new JsonSerializerOptions
         {
             Converters = { new AccountTypeConverter() },
@@ -34,7 +23,7 @@ public static class FileOperations
         
         try
         { 
-            File.WriteAllText(FilePath, JsonSerializer.Serialize(data, options));
+            File.WriteAllText(_filePath, JsonSerializer.Serialize(data, options));
         }
         catch (Exception ex)
         {
@@ -42,30 +31,23 @@ public static class FileOperations
         }
     }
 
-
-    public static void LoadAll()
+    public static bool FileExists()
     {
-        try
+        if (!File.Exists(_filePath))
         {
-            BeautyProfessional.LoadFromFile();
-            Booking.LoadFromFile();
-            Coupon.LoadFromFile();
-            CoworkingSpace.LoadFromFile();
-            Customer.LoadFromFile();
-            Notification.LoadFromFile();
-            Payment.LoadFromFile();
-            PortfolioPage.LoadFromFile();
-            Post.LoadFromFile();
-            Promotion.LoadFromFile();
-            Review.LoadFromFile();
-            Service.LoadFromFile();
-            ServiceBooked.LoadFromFile();
-            WorkStation.LoadFromFile();
+            using (File.Create(_filePath)) { }
+            return false;
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error loading all entities: {ex.Message}");
-        }
+
+        return true;
     }
+
+    public static string ReadTextFromFile()
+    {
+        return File.ReadAllText(_filePath);
+    }
+
+
+    
     
 }

@@ -3,7 +3,7 @@ namespace BookingApp.Models;
 
 public class WorkStation : ModelBase<WorkStation>
 {
-    //auto
+    
     private int _id;
     public int Id
     {
