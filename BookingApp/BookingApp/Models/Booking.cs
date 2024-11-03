@@ -1,5 +1,5 @@
 ﻿namespace BookingApp.Models;
-//catch exception in constructor 
+
 public class Booking : ModelBase<Booking>
 {
     
@@ -10,25 +10,17 @@ public class Booking : ModelBase<Booking>
         set => _id = value;
     }
     
-    private decimal _totalPrice;
+    //do after implementing relationships, no setter, getter must return totalPrice
+    private decimal _totalPrice = 0;
     public decimal TotalPrice
     {
         get => _totalPrice;
-        private set
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException("Total price cannot be negative");
-            }
-            _totalPrice = value;
-        }
     }
     
-    public Booking(decimal totalPrice)
+    public Booking()
     {
         try
         {
-            TotalPrice = totalPrice;
             Add(this);
         }
         catch (ArgumentException e)
@@ -39,7 +31,7 @@ public class Booking : ModelBase<Booking>
     }
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1;
     }
     
 }

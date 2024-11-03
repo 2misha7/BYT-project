@@ -10,7 +10,7 @@ public abstract class ModelBase<T> where T : ModelBase<T>
     private bool _isDeserializing = false;
     protected abstract void AssignId();
 
-    public static IReadOnlyCollection<T> GetAll()
+    public static IReadOnlyCollection<T> All()
     {
         return Entities.ToList().AsReadOnly();
     }
@@ -69,3 +69,5 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         }
     }
 }
+
+

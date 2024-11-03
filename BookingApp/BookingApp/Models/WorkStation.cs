@@ -3,6 +3,7 @@ namespace BookingApp.Models;
 
 public class WorkStation : ModelBase<WorkStation>
 {
+    //auto
     private int _id;
     public int Id
     {
@@ -14,14 +15,7 @@ public class WorkStation : ModelBase<WorkStation>
     public StationCategory Category
     {
         get => _category;
-        set
-        {
-            if (value == null)
-            {
-                throw new ArgumentException("Category cannot be null");
-            }
-            _category = value;
-        }
+        set => _category = value;
     }
 
     private decimal _price;
@@ -40,7 +34,7 @@ public class WorkStation : ModelBase<WorkStation>
 
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
     }
     public WorkStation(StationCategory category, decimal price)
     {

@@ -6,7 +6,7 @@ public class Payment : ModelBase<Payment>
     public int Id
     {
         get => _id;
-        set => _id = value;
+        private set => _id = value;
     }
 
     private string? _couponCode;
@@ -14,7 +14,14 @@ public class Payment : ModelBase<Payment>
     public string? CouponCode
     {
         get => _couponCode;
-        set => _couponCode = value;
+        set
+        {
+            if (value != null && string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("Coupon code cannot be empty or whitespace.");
+            }
+            _couponCode = value;
+        }
 
     }
 
@@ -63,7 +70,7 @@ public class Payment : ModelBase<Payment>
             CouponCode = couponCode;
             AmountPaid = 0; 
             Status = PaymentStatus.Pending; 
-            Add(this); 
+            Add(this);
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -74,7 +81,7 @@ public class Payment : ModelBase<Payment>
 
     protected override void AssignId()
     {
-        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
+        Id = All().Count > 0 ? All().Last().Id + 1 : 1;
     }
 
 }
