@@ -62,14 +62,27 @@ public class Promotion: ModelBase<Promotion>
             Name = name;
             DiscountDescription = discountDescription;
             TotalDiscountPercentage = totalDiscountPercentage;
-            Add(this); 
+            Add(new Promotion(this)); 
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
         }
     }
+    
+    private Promotion(Promotion original)
+    {
+        _id = original._id;
+        _name = original._name;
+        _discountDescription = original._discountDescription;
+        _totalDiscountPercentage = original._totalDiscountPercentage;
+    }
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+    }
+
+    protected override Promotion Clone()
+    {
+        return new Promotion(this);
     }
 }

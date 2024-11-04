@@ -83,7 +83,7 @@ public class Coupon : ModelBase<Coupon>
             DiscountPercentage = discountPercentage;
             ValidFrom = validFrom;
             ValidTo = validTo;
-            Add(this);
+            Add(new Coupon(this));
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -93,6 +93,21 @@ public class Coupon : ModelBase<Coupon>
     }
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1; // Assign new ID
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; // Assign new ID
+    }
+
+    private Coupon(Coupon original)
+    {
+        _id = original._id;
+        _couponCode = original._couponCode;
+        _description = original._description;
+        _discountPercentage = original._discountPercentage;
+        _validFrom = original._validFrom;
+        _validTo = original._validTo;
+    }
+
+    protected override Coupon Clone()
+    {
+        return new Coupon(this);
     }
 }

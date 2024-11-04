@@ -12,8 +12,8 @@ public class ClassExtentTests
     public void WorkStationExtent_StoresCorrectClass()
     {
         var workStation = new WorkStation(StationCategory.Body, 100m);
-        Assert.AreEqual(1, WorkStation.All().Count);
-        Assert.IsTrue(WorkStation.All().Contains(workStation));
+        Assert.AreEqual(1, WorkStation.GetAll().Count);
+        Assert.IsTrue(WorkStation.GetAll().Contains(workStation));
     }
     
     //ServiceBooked
@@ -21,8 +21,8 @@ public class ClassExtentTests
     public void ServiceBookedExtent_StoresCorrectClass()
     {
         var serviceBooked = new ServiceBooked(DateTime.Now.AddDays(1));
-        Assert.AreEqual(1, ServiceBooked.All().Count);
-        Assert.IsTrue(ServiceBooked.All().Contains(serviceBooked));
+        Assert.AreEqual(1, ServiceBooked.GetAll().Count);
+        Assert.IsTrue(ServiceBooked.GetAll().Contains(serviceBooked));
     }
     
     //Service
@@ -30,8 +30,8 @@ public class ClassExtentTests
     public void ServiceExtent_StoresCorrectClass()
     {
         var service = new Service("NewService", StationCategory.Body, "Description", 10m);
-        Assert.AreEqual(1, Service.All().Count);
-        Assert.IsTrue(Service.All().Contains(service));
+        Assert.AreEqual(1, Service.GetAll().Count);
+        Assert.IsTrue(Service.GetAll().Contains(service));
     }
     
     //Review
@@ -39,8 +39,8 @@ public class ClassExtentTests
     public void ReviewExtent_StoresCorrectClass()
     {
         var review = new Review(ReviewRating.Awful, "comment", DateTime.Now);
-        Assert.AreEqual(1, Review.All().Count);
-        Assert.IsTrue(Review.All().Contains(review));
+        Assert.AreEqual(1, Review.GetAll().Count);
+        Assert.IsTrue(Review.GetAll().Contains(review));
     }
     
     //Promotion
@@ -48,16 +48,16 @@ public class ClassExtentTests
     public void PromotionExtent_StoresCorrectClass()
     {
         var promotion = new Promotion("name", "description", 10);
-        Assert.AreEqual(1, Promotion.All().Count);
-        Assert.IsTrue(Promotion.All().Contains(promotion));
+        Assert.AreEqual(1, Promotion.GetAll().Count);
+        Assert.IsTrue(Promotion.GetAll().Contains(promotion));
     }
     //Post
     [Test]
     public void PostExtent_StoresCorrectClass()
     {
         var post = new Post("link", "text");
-        Assert.AreEqual(1, Post.All().Count);
-        Assert.IsTrue(Post.All().Contains(post));
+        Assert.AreEqual(1, Post.GetAll().Count);
+        Assert.IsTrue(Post.GetAll().Contains(post));
     }
     
     //PortfolioPage
@@ -65,8 +65,8 @@ public class ClassExtentTests
     public void PortfolioPageExtent_StoresCorrectClass()
     {
         var portfolioPage = new PortfolioPage("description");
-        Assert.AreEqual(1, PortfolioPage.All().Count);
-        Assert.IsTrue(PortfolioPage.All().Contains(portfolioPage));
+        Assert.AreEqual(1, PortfolioPage.GetAll().Count);
+        Assert.IsTrue(PortfolioPage.GetAll().Contains(portfolioPage));
     }
     
     //Payment
@@ -74,8 +74,8 @@ public class ClassExtentTests
     public void PaymentExtent_StoresCorrectClass()
     {
         var payment = new Payment(10m, "CouponCode");
-        Assert.AreEqual(1, Payment.All().Count);
-        Assert.IsTrue(Payment.All().Contains(payment));
+        Assert.AreEqual(1, Payment.GetAll().Count);
+        Assert.IsTrue(Payment.GetAll().Contains(payment));
     }
     
     //Notification
@@ -83,8 +83,8 @@ public class ClassExtentTests
     public void NotificationExtent_StoresCorrectClass()
     {
         var notification = new Notification("Notification");
-        Assert.AreEqual(1, Notification.All().Count);
-        Assert.IsTrue(Notification.All().Contains(notification));
+        Assert.AreEqual(1, Notification.GetAll().Count);
+        Assert.IsTrue(Notification.GetAll().Contains(notification));
     }
     
     //Customer
@@ -93,8 +93,8 @@ public class ClassExtentTests
     {
         var customer = new Customer("name", "surname", "email@gmail.com", "789456123", "login", "ASDFpoi!234",
             "address", "Warsaw", 10m, new RegularAccountType());
-        Assert.AreEqual(1, Customer.All().Count);
-        Assert.IsTrue(Customer.All().Contains(customer));
+        Assert.AreEqual(1, Customer.GetAll().Count);
+        Assert.IsTrue(Customer.GetAll().Contains(customer));
     }
     
     //CoworkingSpace
@@ -102,8 +102,8 @@ public class ClassExtentTests
     public void CoworkingSpaceExtent_StoresCorrectClass()
     {
         var coworkingSpace = new CoworkingSpace("address", "warsaw", "789456123");
-        Assert.AreEqual(1, CoworkingSpace.All().Count);
-        Assert.IsTrue(CoworkingSpace.All().Contains(coworkingSpace));
+        Assert.AreEqual(1, CoworkingSpace.GetAll().Count);
+        Assert.IsTrue(CoworkingSpace.GetAll().Contains(coworkingSpace));
     }
     
     //Coupon
@@ -113,8 +113,8 @@ public class ClassExtentTests
         DateTime validFrom = DateTime.Now;
         DateTime validTo = validFrom.AddDays(30);
         var coupon = new Coupon("code", "description", 10, validFrom, validTo);
-        Assert.AreEqual(1, Coupon.All().Count);
-        Assert.IsTrue(Coupon.All().Contains(coupon));
+        Assert.AreEqual(1, Coupon.GetAll().Count);
+        Assert.IsTrue(Coupon.GetAll().Contains(coupon));
     }
     
     //Booking
@@ -122,8 +122,8 @@ public class ClassExtentTests
     public void BookingExtent_StoresCorrectClass()
     {
         var booking = new Booking();
-        Assert.AreEqual(1, Booking.All().Count);
-        Assert.IsTrue(Booking.All().Contains(booking));
+        Assert.AreEqual(1, Booking.GetAll().Count);
+        Assert.IsTrue(Booking.GetAll().Contains(booking));
     }
     
     //BeautyProfessional
@@ -133,8 +133,8 @@ public class ClassExtentTests
         var specializations = new[] { "Hair" };
         var beautyProf = new BeautyProfessional("name", "surname", "email@gmail.com", "789456123", "login", "ASDFpoi!234",
             "address", "Warsaw", 10m, "experienced", specializations, new RegularAccountType());
-        Assert.AreEqual(1, BeautyProfessional.All().Count);
-        Assert.IsTrue(BeautyProfessional.All().Contains(beautyProf));
+        Assert.AreEqual(1, BeautyProfessional.GetAll().Count);
+        Assert.IsTrue(BeautyProfessional.GetAll().Contains(beautyProf));
     }
     
     

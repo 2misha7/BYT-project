@@ -8,20 +8,20 @@ public class Repository
     {
         var data = new Dictionary<string, object>
         {
-            {nameof(BeautyProfessional), BeautyProfessional.All()},
-            {nameof(Booking), Booking.All()}, 
-            {nameof(Coupon), Coupon.All()}, 
-            {nameof(CoworkingSpace), CoworkingSpace.All()}, 
-            {nameof(Customer), Customer.All()}, 
-            {nameof(Notification), Notification.All()}, 
-            {nameof(Payment), Payment.All()}, 
-            {nameof(PortfolioPage), PortfolioPage.All()}, 
-            {nameof(Post), Post.All()}, 
-            {nameof(Promotion), Promotion.All()}, 
-            {nameof(Review), Review.All()}, 
-            {nameof(Service), Service.All()},
-            {nameof(ServiceBooked), ServiceBooked.All()}, 
-            {nameof(WorkStation), WorkStation.All()}, 
+            {nameof(BeautyProfessional), BeautyProfessional.GetAll()},
+            {nameof(Booking), Booking.GetAll()}, 
+            {nameof(Coupon), Coupon.GetAll()}, 
+            {nameof(CoworkingSpace), CoworkingSpace.GetAll()}, 
+            {nameof(Customer), Customer.GetAll()}, 
+            {nameof(Notification), Notification.GetAll()}, 
+            {nameof(Payment), Payment.GetAll()}, 
+            {nameof(PortfolioPage), PortfolioPage.GetAll()}, 
+            {nameof(Post), Post.GetAll()}, 
+            {nameof(Promotion), Promotion.GetAll()}, 
+            {nameof(Review), Review.GetAll()}, 
+            {nameof(Service), Service.GetAll()},
+            {nameof(ServiceBooked), ServiceBooked.GetAll()}, 
+            {nameof(WorkStation), WorkStation.GetAll()}, 
         };
         FileOperations.WriteToFile(data);
     }
