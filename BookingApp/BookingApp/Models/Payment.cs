@@ -66,6 +66,7 @@ public class Payment : ModelBase<Payment>
     {
         try
         {
+            AssignId();
             FinalAmount = finalAmount;
             CouponCode = couponCode;
             AmountPaid = 0; 

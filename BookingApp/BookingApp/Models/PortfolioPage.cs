@@ -26,6 +26,7 @@ public class PortfolioPage : ModelBase<PortfolioPage>
     {
         try
         {
+            AssignId();
             Description = description;
             Add(new PortfolioPage(this)); 
         }catch (ArgumentException e)

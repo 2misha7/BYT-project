@@ -28,6 +28,7 @@ public class Notification: ModelBase<Notification>
     {
         try
         {
+            AssignId();
             Text = text;
             Add( new Notification(this));
         }

@@ -1,0 +1,22 @@
+{
+  "BeautyProfessional": [],
+  "Booking": [],
+  "Coupon": [],
+  "CoworkingSpace": [],
+  "Customer": [],
+  "Notification": [],
+  "Payment": [],
+  "PortfolioPage": [],
+  "Post": [],
+  "Promotion": [],
+  "Review": [],
+  "Service": [],
+  "ServiceBooked": [],
+  "WorkStation": [
+    {
+      "Id": 1,
+      "Category": 4,
+      "Price": 10
+    }
+  ]
+}

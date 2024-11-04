@@ -62,6 +62,7 @@ public class Service: ModelBase<Service>
     {
         try
         {
+            AssignId();
             Name = name;
             ServiceCategory = serviceCategory;
             Description = description;

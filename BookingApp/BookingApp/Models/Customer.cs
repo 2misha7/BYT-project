@@ -155,6 +155,7 @@ public class Customer : ModelBase<Customer>, IPerson
     {
         try
         {
+            AssignId();
             FirstName = firstName;
             LastName = lastName;
             Email = email;

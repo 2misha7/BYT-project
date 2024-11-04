@@ -21,6 +21,7 @@ public class Booking : ModelBase<Booking>
     {
         try
         {
+            AssignId();
             Add(new Booking(this));
         }
         catch (ArgumentException e)

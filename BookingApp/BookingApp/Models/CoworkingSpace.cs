@@ -57,6 +57,7 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     {
         try
         {
+            AssignId();
             Address = address;
             City = city;
             ContactNumber = contactNumber;
