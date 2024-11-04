@@ -23,12 +23,18 @@ public class ServiceBooked : ModelBase<ServiceBooked>
         }
     }
 
+    private ServiceBooked(ServiceBooked original)
+    {
+        _id = original._id;
+        _serviceTime = original._serviceTime;
+    }
+    
     public ServiceBooked(DateTime serviceTime)
     {
         try
         {
             ServiceTime = serviceTime;
-            Add(this);
+            Add(new ServiceBooked(this));
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -37,6 +43,11 @@ public class ServiceBooked : ModelBase<ServiceBooked>
     
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+    }
+
+    protected override ServiceBooked Clone()
+    {
+        return new ServiceBooked(this);
     }
 }

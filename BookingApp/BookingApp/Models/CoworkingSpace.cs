@@ -60,7 +60,7 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
             Address = address;
             City = city;
             ContactNumber = contactNumber;
-            Add(this);
+            Add(new CoworkingSpace(this));
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -68,7 +68,20 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     }
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
 
+    private CoworkingSpace(CoworkingSpace original)
+    {
+        _id = original._id;
+        _address = original._address;
+        _city = original._city;
+        _contactNumber = original._contactNumber;
+    }
+
+    // Clone method
+    protected override CoworkingSpace Clone()
+    {
+        return new CoworkingSpace(this);
+    }
 }

@@ -21,7 +21,7 @@ public class Booking : ModelBase<Booking>
     {
         try
         {
-            Add(this);
+            Add(new Booking(this));
         }
         catch (ArgumentException e)
         {
@@ -31,7 +31,16 @@ public class Booking : ModelBase<Booking>
     }
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1;
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
-    
+
+    private Booking(Booking original)
+    {
+        _id = original._id;
+    }
+
+    protected override Booking Clone()
+    {
+        return new Booking(this);
+    }
 }

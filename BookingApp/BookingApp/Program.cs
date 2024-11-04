@@ -9,10 +9,37 @@ using BookingApp.Models;
 //FileOperations.SaveAll();
 
 Repository.GetAllFromFile();
-var n = new Notification("asfsgdhf");
-var w = new WorkStation(StationCategory.Body, 12);
+//
+//var notifications = Notification.GetAll();
+//foreach (var notification in notifications)
+//{
+//   Console.WriteLine(notification.Text); // Will output the original text, not modified.
+//}
+//Console.WriteLine("----------");
+//
+//
+//var newNot = new Notification("adfsg");
+//
+//newNot.Text = "111";
+var not = Notification.GetAll().FirstOrDefault();
+not.Text = "qew";
+//
 
-Repository.WriteAllToFile();
+//var not = Notification.GetAll().Where(m => m.Text = "qew")
+
+
+
+Console.WriteLine(not.Text);
+
+var notifications = Notification.GetAll();
+foreach (var notification in notifications)
+{
+   Console.WriteLine(notification.Text); // Will output the original text, not modified.
+}
+
+
+
+//Repository.WriteAllToFile();
 
 //FileOperations.SaveAll();
 

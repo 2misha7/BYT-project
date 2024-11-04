@@ -48,16 +48,29 @@ public class Review: ModelBase<Review>
             Rating = rating; 
             Comment = comment;
             Date = date;
-            Add(this); 
+            Add(new Review(this)); 
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
         }
     }
     
+    
+    private Review(Review original)
+    {
+        _id = original._id;
+        _rating = original._rating;
+        _comment = original._comment;
+        _date = original._date;
+    }
     protected override void AssignId()
     {
-        Id = All().Count > 0 ? All().Last().Id + 1 : 1; 
+        Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
+    }
+
+    protected override Review Clone()
+    {
+        return new Review(this);
     }
 }
 

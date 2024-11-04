@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 
 namespace BookingApp;
-
+//implmet clone everywhere, private copy constructor, add copy ro entities 
 public abstract class ModelBase<T> where T : ModelBase<T>
 {
     private static readonly ICollection<T> Entities = new List<T>();
@@ -9,9 +9,12 @@ public abstract class ModelBase<T> where T : ModelBase<T>
     private bool _isDeserializing = false;
     protected abstract void AssignId();
 
-    public static IReadOnlyCollection<T> All()
+    
+    protected abstract T Clone();
+    public static IReadOnlyCollection<T> GetAll()
     {
-        return Entities.ToList().AsReadOnly();
+        return Entities.Select(entity => entity.Clone()).ToList().AsReadOnly();
+        //return Entities.ToList().AsReadOnly();
     }
 
     protected static void Add(T entity)
@@ -26,6 +29,8 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         }
         Entities.Add(entity);
     }
+    
+    
 
     public static void LoadClassExtentFromFile()
     {
