@@ -33,6 +33,7 @@ public class ServiceBooked : ModelBase<ServiceBooked>
     {
         try
         {
+            AssignId();
             ServiceTime = serviceTime;
             Add(new ServiceBooked(this));
         }catch (ArgumentException e)

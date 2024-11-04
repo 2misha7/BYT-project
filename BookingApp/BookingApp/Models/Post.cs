@@ -45,6 +45,7 @@ public class Post : ModelBase<Post>
     {
         try
         {
+            AssignId();
             ImageLink = imageLink;
             Text = text;
             Add(new Post(this));

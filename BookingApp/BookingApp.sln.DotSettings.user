@@ -3,5 +3,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ClassExtentTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ExtentPersistencyTests.File&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ModificationsTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

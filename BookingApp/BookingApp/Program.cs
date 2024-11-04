@@ -8,7 +8,7 @@ using BookingApp.Models;
 //var bp1= new BeautyProfessional(1,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
 //FileOperations.SaveAll();
 
-Repository.GetAllFromFile();
+//Repository.GetAllFromFile();
 //
 //var notifications = Notification.GetAll();
 //foreach (var notification in notifications)
@@ -19,27 +19,27 @@ Repository.GetAllFromFile();
 //
 //
 //var newNot = new Notification("adfsg");
+////
+////newNot.Text = "111";
+//var not = Notification.GetAll().FirstOrDefault();
+//not.Text = "qew";
+////
 //
-//newNot.Text = "111";
-var not = Notification.GetAll().FirstOrDefault();
-not.Text = "qew";
+////var not = Notification.GetAll().Where(m => m.Text = "qew")
 //
-
-//var not = Notification.GetAll().Where(m => m.Text = "qew")
-
-
-
-Console.WriteLine(not.Text);
-
-var notifications = Notification.GetAll();
-foreach (var notification in notifications)
-{
-   Console.WriteLine(notification.Text); // Will output the original text, not modified.
-}
+//
+//
+//Console.WriteLine(not.Text);
+//
+//var notifications = Notification.GetAll();
+//foreach (var notification in notifications)
+//{
+//   Console.WriteLine(notification.Text); // Will output the original text, not modified.
+//}
 
 
-
-//Repository.WriteAllToFile();
+Repository.GetAllFromFile();
+Repository.WriteAllToFile();
 
 //FileOperations.SaveAll();
 

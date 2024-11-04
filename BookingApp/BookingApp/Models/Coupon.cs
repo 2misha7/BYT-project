@@ -78,6 +78,7 @@ public class Coupon : ModelBase<Coupon>
     {
         try
         {
+            AssignId();
             CouponCode = couponCode;
             Description = description;
             DiscountPercentage = discountPercentage;

@@ -27,6 +27,7 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         {
             entity.AssignId();
         }
+        
         Entities.Add(entity);
     }
     

@@ -47,6 +47,7 @@ public class WorkStation : ModelBase<WorkStation>
     {
         try
         {
+            AssignId();
             Category = category;
             Price = price;
             Add(new WorkStation(this));

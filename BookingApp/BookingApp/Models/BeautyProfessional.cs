@@ -182,6 +182,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     {
         try
         {
+            AssignId();
             FirstName = firstName;
             LastName = lastName;
             Email = email;

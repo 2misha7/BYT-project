@@ -59,6 +59,7 @@ public class Promotion: ModelBase<Promotion>
     {
         try
         {
+            AssignId();
             Name = name;
             DiscountDescription = discountDescription;
             TotalDiscountPercentage = totalDiscountPercentage;
