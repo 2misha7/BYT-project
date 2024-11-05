@@ -3,8 +3,7 @@ using BookingApp.Models;
 
 namespace BookingAppTests;
 
-//A unit test for checking if the principle of encapsulation is met (if I modify an attribute
-//without using a constructor would it change the values in the class extent)
+//If an object is modified from the class, the class extent will be modified
 public class ModificationsTests
 {
     [OneTimeSetUp]
@@ -36,7 +35,7 @@ public class ModificationsTests
     }
     //Workstation 
     [Test]
-    public void Workstation_ObjectFromFileModified_ClassExtentNotModified()
+    public void Workstation_ObjectFromFileModified_ClassExtentModified()
     {
         var workstation = WorkStation.GetAll().FirstOrDefault();
         workstation.Category = StationCategory.Hair;
@@ -44,10 +43,10 @@ public class ModificationsTests
 
         var sameWorkstationInExtent = WorkStation.GetAll().FirstOrDefault(w => w.Id == workstation.Id);
         Assert.AreEqual(workstation.Category, StationCategory.Hair);
-        Assert.AreEqual(sameWorkstationInExtent.Category, StationCategory.Body);
+        Assert.AreEqual(sameWorkstationInExtent.Category, StationCategory.Hair);
     }
     [Test]
-    public void Workstation_NewObjectModified_ClassExtentNotModified()
+    public void Workstation_NewObjectModified_ClassExtentModified()
     {
         var newWorkstation = new WorkStation(StationCategory.Makeup, 15m);
 
@@ -56,13 +55,13 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newWorkstation.Category, StationCategory.Skin);
-        Assert.AreEqual(sameWorkstationInExtent.Category, StationCategory.Makeup);
+        Assert.AreEqual(sameWorkstationInExtent.Category, StationCategory.Skin);
     }
 
     
     //ServiceBooked
     [Test]
-    public void ServiceBooked_ObjectModified_ClassExtentNotModified()
+    public void ServiceBooked_ObjectModified_ClassExtentModified()
     {
         var serviceBooked = ServiceBooked.GetAll().FirstOrDefault();
         serviceBooked.ServiceTime = new DateTime(2026, 1, 1, 14, 30, 0);
@@ -70,11 +69,11 @@ public class ModificationsTests
 
         var sameServiceBookedInExtent = ServiceBooked.GetAll().FirstOrDefault(s => s.Id == serviceBooked.Id);
         Assert.AreEqual(serviceBooked.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2025, 1, 1, 14, 30, 0));
+        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
     }
 
     [Test]
-    public void ServiceBooked_NewObjectModified_ClassExtentNotModified()
+    public void ServiceBooked_NewObjectModified_ClassExtentModified()
     {
         var newServiceBooked =  new ServiceBooked(new DateTime(2025, 1, 1, 14, 30, 0));
 
@@ -83,12 +82,12 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newServiceBooked.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2025, 1, 1, 14, 30, 0));
+        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
     }
     
     //Review 
     [Test]
-    public void Review_ObjectModified_ClassExtentNotModified()
+    public void Review_ObjectModified_ClassExtentModified()
     {
         var review = Review.GetAll().FirstOrDefault();
         review.Rating = ReviewRating.VeryGood;
@@ -96,11 +95,11 @@ public class ModificationsTests
 
         var sameReviewInExtent = Review.GetAll().FirstOrDefault(w => w.Id == review.Id);
         Assert.AreEqual(review.Rating, ReviewRating.VeryGood);
-        Assert.AreEqual(sameReviewInExtent.Rating, ReviewRating.Awful);
+        Assert.AreEqual(sameReviewInExtent.Rating, ReviewRating.VeryGood);
     }
 
     [Test]
-    public void Review_NewObjectModified_ClassExtentNotModified()
+    public void Review_NewObjectModified_ClassExtentModified()
     {
         var newReview = new Review(ReviewRating.Bad, "comment", DateTime.Now.AddDays(1));
         newReview.Rating = ReviewRating.Good;
@@ -109,14 +108,14 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newReview.Rating, ReviewRating.Good);
-        Assert.AreEqual(sameReviewInExtent.Rating, ReviewRating.Bad);
+        Assert.AreEqual(sameReviewInExtent.Rating, ReviewRating.Good);
         
     }
     
     
     //Service 
     [Test]
-    public void Service_ObjectModified_ClassExtentNotModified()
+    public void Service_ObjectModified_ClassExtentModified()
     {
         var service = Service.GetAll().FirstOrDefault();
         service.ServiceCategory = StationCategory.Hair;
@@ -124,11 +123,11 @@ public class ModificationsTests
 
         var sameServiceInExtent = Service.GetAll().FirstOrDefault(w => w.Id == service.Id);
         Assert.AreEqual(service.ServiceCategory, StationCategory.Hair);
-        Assert.AreEqual(sameServiceInExtent.ServiceCategory, StationCategory.Body);
+        Assert.AreEqual(sameServiceInExtent.ServiceCategory, StationCategory.Hair);
     }
 
     [Test]
-    public void Service_NewObjectModified_ClassExtentNotModified()
+    public void Service_NewObjectModified_ClassExtentModified()
     {
         var newService = new Service("NewService", StationCategory.Makeup, "description", 10m);
         newService.ServiceCategory = StationCategory.Hair;
@@ -137,12 +136,12 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newService.ServiceCategory, StationCategory.Hair);
-        Assert.AreEqual(sameServiceInExtent.ServiceCategory, StationCategory.Makeup);
+        Assert.AreEqual(sameServiceInExtent.ServiceCategory, StationCategory.Hair);
     }
 
     //Promotion
     [Test]
-    public void Promotion_ObjectModified_ClassExtentNotModified()
+    public void Promotion_ObjectModified_ClassExtentModified()
     {
         var promotion = Promotion.GetAll().FirstOrDefault();
         promotion.TotalDiscountPercentage = 20;
@@ -150,11 +149,11 @@ public class ModificationsTests
 
         var samePromotionInExtent = Promotion.GetAll().FirstOrDefault(w => w.Id == promotion.Id);
         Assert.AreEqual(promotion.TotalDiscountPercentage, 20);
-        Assert.AreEqual(samePromotionInExtent.TotalDiscountPercentage, 10);
+        Assert.AreEqual(samePromotionInExtent.TotalDiscountPercentage, 20);
     }
 
     [Test]
-    public void Promotion_NewObjectModified_ClassExtentNotModified()
+    public void Promotion_NewObjectModified_ClassExtentModified()
     {
         var newPromotion = new Promotion("Name", "Description", 10);
         newPromotion.TotalDiscountPercentage = 20;
@@ -163,14 +162,14 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newPromotion.TotalDiscountPercentage,20);
-        Assert.AreEqual(samePromotionInExtent.TotalDiscountPercentage, 10);
+        Assert.AreEqual(samePromotionInExtent.TotalDiscountPercentage, 20);
     }
 
 
 
     //Post 
     [Test]
-    public void Post_ObjectModified_ClassExtentNotModified()
+    public void Post_ObjectModified_ClassExtentModified()
     {
         var post = Post.GetAll().FirstOrDefault();
         post.Text = "newText";
@@ -178,11 +177,11 @@ public class ModificationsTests
 
         var samePostInExtent = Post.GetAll().FirstOrDefault(w => w.Id == post.Id);
         Assert.AreEqual(post.Text, "newText");
-        Assert.AreEqual(samePostInExtent.Text, "text");
+        Assert.AreEqual(samePostInExtent.Text, "newText");
     }
     
     [Test]
-    public void Post_NewObjectModified_ClassExtentNotModified()
+    public void Post_NewObjectModified_ClassExtentModified()
     {
         var newPost = new Post("link", "text");
         newPost.Text = "newText";
@@ -191,13 +190,13 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newPost.Text,"newText");
-        Assert.AreEqual(samePostInExtent.Text, "text");
+        Assert.AreEqual(samePostInExtent.Text, "newText");
     }
     
     
     //PortfolioPage 
     [Test]
-    public void PortfolioPage_ObjectModified_ClassExtentNotModified()
+    public void PortfolioPage_ObjectModified_ClassExtentModified()
     {
         var portfolioPage = PortfolioPage.GetAll().FirstOrDefault();
         portfolioPage.Description = "newDescription";
@@ -205,11 +204,11 @@ public class ModificationsTests
 
         var samePageInExtent = PortfolioPage.GetAll().FirstOrDefault(w => w.Id == portfolioPage.Id);
         Assert.AreEqual(portfolioPage.Description, "newDescription");
-        Assert.AreEqual(samePageInExtent.Description, "description");
+        Assert.AreEqual(samePageInExtent.Description, "newDescription");
     }
     
     [Test]
-    public void PortfolioPage_NewObjectModified_ClassExtentNotModified()
+    public void PortfolioPage_NewObjectModified_ClassExtentModified()
     {
         var newPage = new PortfolioPage("description");
         newPage.Description = "newText";
@@ -218,12 +217,12 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newPage.Description,"newText");
-        Assert.AreEqual(samePageInExtent.Description, "description");
+        Assert.AreEqual(samePageInExtent.Description, "newText");
     }
     
     //Payment 
     [Test]
-    public void Payment_ObjectModified_ClassExtentNotModified()
+    public void Payment_ObjectModified_ClassExtentModified()
     {
         var payment = Payment.GetAll().FirstOrDefault();
         payment.CouponCode = "C2";
@@ -231,11 +230,11 @@ public class ModificationsTests
 
         var samePaymentInExtent = Payment.GetAll().FirstOrDefault(w => w.Id == payment.Id);
         Assert.AreEqual(payment.CouponCode, "C2");
-        Assert.AreEqual(samePaymentInExtent.CouponCode, "C1");
+        Assert.AreEqual(samePaymentInExtent.CouponCode, "C2");
     }
     
     [Test]
-    public void Payment_NewObjectModified_ClassExtentNotModified()
+    public void Payment_NewObjectModified_ClassExtentModified()
     {
         var newPayment = new Payment(10m, "C1");
         newPayment.CouponCode = "C2";
@@ -244,12 +243,12 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newPayment.CouponCode,"C2");
-        Assert.AreEqual(samePaymentInExtent.CouponCode, "C1");
+        Assert.AreEqual(samePaymentInExtent.CouponCode, "C2");
     }
     
     //Notification 
     [Test]
-    public void Notification_ObjectModified_ClassExtentNotModified()
+    public void Notification_ObjectModified_ClassExtentModified()
     {
         
         var notification = Notification.GetAll().FirstOrDefault();
@@ -258,10 +257,10 @@ public class ModificationsTests
 
         var sameNotificationInExtent = Notification.GetAll().FirstOrDefault(w => w.Id == notification.Id);
         Assert.AreEqual(notification.Text, "newText");
-        Assert.AreEqual(sameNotificationInExtent.Text, "text");
+        Assert.AreEqual(sameNotificationInExtent.Text, "newText");
     }
     [Test]
-    public void Notification_NewObjectModified_ClassExtentNotModified()
+    public void Notification_NewObjectModified_ClassExtentModified()
     {
         var newNotification = new Notification("text");
         newNotification.Text = "newText";
@@ -270,12 +269,12 @@ public class ModificationsTests
         
         
         Assert.AreEqual(newNotification.Text,"newText");
-        Assert.AreEqual(sameNotificationInExtent.Text, "text");
+        Assert.AreEqual(sameNotificationInExtent.Text, "newText");
     }
     
     //Customer 
     [Test]
-    public void Customer_ObjectModified_ClassExtentNotModified()
+    public void Customer_ObjectModified_ClassExtentModified()
     {
         var customer = Customer.GetAll().FirstOrDefault();
         customer.FirstName = "NewFirstName";
@@ -283,11 +282,11 @@ public class ModificationsTests
         var sameCustomerInExtent = Customer.GetAll().FirstOrDefault(c => c.Id == customer.Id);
 
         Assert.AreEqual(customer.FirstName, "NewFirstName");
-        Assert.AreEqual(sameCustomerInExtent.FirstName, "John");
+        Assert.AreEqual(sameCustomerInExtent.FirstName, "NewFirstName");
     }
 
     [Test]
-    public void Customer_NewObjectModified_ClassExtentNotModified()
+    public void Customer_NewObjectModified_ClassExtentModified()
     {
         var newCustomer = new Customer("Bob","Ross", "bob.ross@example.com", "+123456789", "bobross", "happytrees",
             "Bob Street", "New York", 100m, new RegularAccountType()
@@ -298,14 +297,14 @@ public class ModificationsTests
         var sameCustomerInExtent = Customer.GetAll().FirstOrDefault(c => c.Id == newCustomer.Id);
     
         Assert.AreEqual(newCustomer.FirstName, "ModifiedBob");
-        Assert.AreEqual(sameCustomerInExtent.FirstName, "Bob");
+        Assert.AreEqual(sameCustomerInExtent.FirstName, "ModifiedBob");
         
     }
 
     
     //CoworkingSpace 
     [Test]
-    public void CoworkingSpace_ObjectModified_ClassExtentNotModified()
+    public void CoworkingSpace_ObjectModified_ClassExtentModified()
     {
         var coworkingSpace = CoworkingSpace.GetAll().FirstOrDefault();
         coworkingSpace.Address= "newAddress";
@@ -313,12 +312,12 @@ public class ModificationsTests
 
         var sameCoworkingSpaceInExtent = CoworkingSpace.GetAll().FirstOrDefault(c => c.Id == coworkingSpace.Id);
         Assert.AreEqual(coworkingSpace.Address, "newAddress");
-        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "street");
+        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "newAddress");
         
     }
 
     [Test]
-    public void CoworkingSpace_NewObjectModified_ClassExtentNotModified()
+    public void CoworkingSpace_NewObjectModified_ClassExtentModified()
     {
         var newCoworkingSpace = new CoworkingSpace("Main", "New York", "+1234566789");
         newCoworkingSpace.Address = "newMain";
@@ -326,13 +325,13 @@ public class ModificationsTests
         var sameCoworkingSpaceInExtent = CoworkingSpace.GetAll().FirstOrDefault(c => c.Id == newCoworkingSpace.Id);
 
         Assert.AreEqual(newCoworkingSpace.Address, "newMain");
-        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "Main"); 
+        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "newMain"); 
     }
     
     
     //Coupon 
     [Test]
-    public void Coupon_ObjectModified_ClassExtentNotModified()
+    public void Coupon_ObjectModified_ClassExtentModified()
     {
         var coupon = Coupon.GetAll().FirstOrDefault();
         coupon.Description = "New Description";
@@ -340,13 +339,13 @@ public class ModificationsTests
         var sameCouponInExtent = Coupon.GetAll().FirstOrDefault(c => c.Id == coupon.Id);
 
         Assert.AreEqual(coupon.Description, "New Description");
-        Assert.AreEqual(sameCouponInExtent.Description, "text");
+        Assert.AreEqual(sameCouponInExtent.Description, "New Description");
         
         
     }
     
     [Test]
-    public void Coupon_NewObjectModified_ClassExtentNotModified()
+    public void Coupon_NewObjectModified_ClassExtentModified()
     {
         var newCoupon = new Coupon("NewCoupon", "Text",20,DateTime.Now, DateTime.Now.AddHours(1));
         newCoupon.Description = "newText";
@@ -354,7 +353,7 @@ public class ModificationsTests
         var sameCouponInExtent = Coupon.GetAll().FirstOrDefault(c => c.Id == newCoupon.Id);
 
         Assert.AreEqual(newCoupon.Description, "newText");
-        Assert.AreEqual(sameCouponInExtent.Description, "Text"); 
+        Assert.AreEqual(sameCouponInExtent.Description, "newText"); 
         
         
     }
@@ -362,7 +361,7 @@ public class ModificationsTests
     
     //Booking 
     [Test]
-    public void Booking_ObjectModified_ClassExtentNotModified()
+    public void Booking_ObjectModified_ClassExtentModified()
     {
         var booking = new Booking();
         var sameBookingInExtent = Booking.GetAll().FirstOrDefault(b => b.Id == booking.Id);
@@ -377,7 +376,7 @@ public class ModificationsTests
     
     //BeautyProfessional 
     [Test]
-    public void BeautyProfessional_ObjectModified_ClassExtentNotModified()
+    public void BeautyProfessional_ObjectModified_ClassExtentModified()
     {
         var beautyProfessional = BeautyProfessional.GetAll().FirstOrDefault();
         beautyProfessional.FirstName = "ModifiedName";
@@ -385,12 +384,12 @@ public class ModificationsTests
         var sameBeautyProfessionalInExtent = BeautyProfessional.GetAll().FirstOrDefault(bp => bp.Id == beautyProfessional.Id);
 
         Assert.AreEqual(beautyProfessional.FirstName, "ModifiedName");
-        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "anna");
+        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "ModifiedName");
 
     }
     
     [Test]
-    public void BeautyProfessional_NewObjectModified_ClassExtentNotModified()
+    public void BeautyProfessional_NewObjectModified_ClassExtentModified()
     {
         var newBeautyProfessional = new BeautyProfessional("John", "Doe", "john@google.com", "+11234567890", "johndoe", 
             "password", "Street 1", "Paris", 50m, "3 years", new List<string> { "hair stylist"}, new RegularAccountType());
@@ -400,7 +399,7 @@ public class ModificationsTests
         var sameBeautyProfessionalInExtent = BeautyProfessional.GetAll().FirstOrDefault(bp => bp.Id == newBeautyProfessional.Id);
 
         Assert.AreEqual(newBeautyProfessional.FirstName, "ModifiedJohn");
-        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "John"); 
+        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "ModifiedJohn"); 
     }
 
 }
