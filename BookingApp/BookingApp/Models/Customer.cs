@@ -155,7 +155,7 @@ public class Customer : ModelBase<Customer>, IPerson
     {
         try
         {
-            AssignId();
+            //AssignId();
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -166,7 +166,7 @@ public class Customer : ModelBase<Customer>, IPerson
             City = city;
             WalletBalance = walletBalance;
             AccountType = accountType;
-            Add(new Customer(this));
+            Add(this);
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -178,24 +178,24 @@ public class Customer : ModelBase<Customer>, IPerson
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
 
-    private Customer(Customer original)
-    {
-        _id = original._id;
-        _firstName = original._firstName;
-        _lastName = original._lastName;
-        _email = original._email;
-        _phoneNumber = original._phoneNumber;
-        _login = original._login;
-        _password = original._password;
-        _address = original._address;
-        _city = original._city;
-        _walletBalance = original._walletBalance;
-        _accountType = original._accountType; // Assuming IAccountType is correctly handled
-    }
-
-    // Clone method
-    protected override Customer Clone()
-    {
-        return new Customer(this);
-    }
+    //private Customer(Customer original)
+    //{
+    //    _id = original._id;
+    //    _firstName = original._firstName;
+    //    _lastName = original._lastName;
+    //    _email = original._email;
+    //    _phoneNumber = original._phoneNumber;
+    //    _login = original._login;
+    //    _password = original._password;
+    //    _address = original._address;
+    //    _city = original._city;
+    //    _walletBalance = original._walletBalance;
+    //    _accountType = original._accountType; // Assuming IAccountType is correctly handled
+    //}
+//
+    //// Clone method
+    //protected override Customer Clone()
+    //{
+    //    return new Customer(this);
+    //}
 }

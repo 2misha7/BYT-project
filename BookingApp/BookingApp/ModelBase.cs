@@ -10,11 +10,11 @@ public abstract class ModelBase<T> where T : ModelBase<T>
     protected abstract void AssignId();
 
     
-    protected abstract T Clone();
+    //protected abstract T Clone();
     public static IReadOnlyCollection<T> GetAll()
     {
-        return Entities.Select(entity => entity.Clone()).ToList().AsReadOnly();
-        //return Entities.ToList().AsReadOnly();
+        //return Entities.Select(entity => entity.Clone()).ToList().AsReadOnly();
+        return Entities.ToList().AsReadOnly();
     }
 
     protected static void Add(T entity)

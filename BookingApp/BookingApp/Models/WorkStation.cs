@@ -37,32 +37,32 @@ public class WorkStation : ModelBase<WorkStation>
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
 
-    protected override WorkStation Clone()
-    {
-        return new WorkStation(this);
-    }
+    //protected override WorkStation Clone()
+    //{
+    //    return new WorkStation(this);
+    //}
 
 
     public WorkStation(StationCategory category, decimal price)
     {
         try
         {
-            AssignId();
+            //AssignId();
             Category = category;
             Price = price;
-            Add(new WorkStation(this));
+            Add(this);
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
         }
     }
     
-    private WorkStation(WorkStation other)
-    {
-        _id = other.Id;
-        _category = other.Category;
-        _price = other.Price;
-    }
+    //private WorkStation(WorkStation other)
+    //{
+    //    _id = other.Id;
+    //    _category = other.Category;
+    //    _price = other.Price;
+    //}
     
     
 }
