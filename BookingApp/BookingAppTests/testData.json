@@ -4,9 +4,27 @@
   "Coupon": [],
   "CoworkingSpace": [],
   "Customer": [],
-  "Notification": [],
-  "Payment": [],
-  "PortfolioPage": [],
+  "Notification": [
+    {
+      "Id": 1,
+      "Text": "text"
+    }
+  ],
+  "Payment": [
+    {
+      "Id": 1,
+      "CouponCode": "C1",
+      "FinalAmount": 10,
+      "AmountPaid": 0,
+      "Status": 0
+    }
+  ],
+  "PortfolioPage": [
+    {
+      "Id": 1,
+      "Description": "description"
+    }
+  ],
   "Post": [
     {
       "Id": 1,
@@ -30,7 +48,7 @@
       "Id": 1,
       "Rating": 0,
       "Comment": "Comment",
-      "Date": "2024-11-05T11:40:42.2846831+01:00"
+      "Date": "2024-11-05T13:33:04.6360508+01:00"
     }
   ],
   "Service": [

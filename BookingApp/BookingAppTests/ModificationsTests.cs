@@ -19,7 +19,8 @@ public class ModificationsTests
         var promotion = new Promotion("Name", "Description", 10);
         var post = new Post("link", "text");
         var portfolioPage = new PortfolioPage("description");
-        
+        var payment = new Payment(10m, "C1");
+        var notification = new Notification("text");
         Repository.WriteAllToFile();
         Repository.GetAllFromFile();
 
@@ -189,14 +190,52 @@ public class ModificationsTests
     [Test]
     public void PortfolioPage_ObjectModified_ClassExtentNotModified()
     {
+        var portfolioPage = PortfolioPage.GetAll().FirstOrDefault();
+        portfolioPage.Description = "newDescription";
+
+
+        var samePageInExtent = PortfolioPage.GetAll().FirstOrDefault(w => w.Id == portfolioPage.Id);
+        Assert.AreEqual(portfolioPage.Description, "newDescription");
+        Assert.AreEqual(samePageInExtent.Description, "description");
+    }
+    
+    [Test]
+    public void PortfolioPage_NewObjectModified_ClassExtentNotModified()
+    {
+        var newPage = new PortfolioPage("description");
+        newPage.Description = "newText";
         
+        var samePageInExtent = PortfolioPage.GetAll().FirstOrDefault(w => w.Id == newPage.Id);
+        
+        
+        Assert.AreEqual(newPage.Description,"newText");
+        Assert.AreEqual(samePageInExtent.Description, "description");
     }
     
     //Payment 
     [Test]
     public void Payment_ObjectModified_ClassExtentNotModified()
     {
+        var payment = Payment.GetAll().FirstOrDefault();
+        payment.CouponCode = "C2";
+
+
+        var samePaymentInExtent = Payment.GetAll().FirstOrDefault(w => w.Id == payment.Id);
+        Assert.AreEqual(payment.CouponCode, "C2");
+        Assert.AreEqual(samePaymentInExtent.CouponCode, "C1");
+    }
+    
+    [Test]
+    public void Payment_NewObjectModified_ClassExtentNotModified()
+    {
+        var newPayment = new Payment(10m, "C1");
+        newPayment.CouponCode = "C2";
         
+        var samePaymentInExtent = Payment.GetAll().FirstOrDefault(w => w.Id == newPayment.Id);
+        
+        
+        Assert.AreEqual(newPayment.CouponCode,"C2");
+        Assert.AreEqual(samePaymentInExtent.CouponCode, "C1");
     }
     
     //Notification 
@@ -204,6 +243,25 @@ public class ModificationsTests
     public void Notification_ObjectModified_ClassExtentNotModified()
     {
         
+        var notification = Notification.GetAll().FirstOrDefault();
+        notification.Text= "newText";
+
+
+        var sameNotificationInExtent = Notification.GetAll().FirstOrDefault(w => w.Id == notification.Id);
+        Assert.AreEqual(notification.Text, "newText");
+        Assert.AreEqual(sameNotificationInExtent.Text, "text");
+    }
+    [Test]
+    public void Notification_NewObjectModified_ClassExtentNotModified()
+    {
+        var newNotification = new Notification("text");
+        newNotification.Text = "newText";
+        
+        var sameNotificationInExtent = Notification.GetAll().FirstOrDefault(w => w.Id == newNotification.Id);
+        
+        
+        Assert.AreEqual(newNotification.Text,"newText");
+        Assert.AreEqual(sameNotificationInExtent.Text, "text");
     }
     
     //Customer 
