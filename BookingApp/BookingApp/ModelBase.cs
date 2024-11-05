@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 
 namespace BookingApp;
-//implmet clone everywhere, private copy constructor, add copy ro entities 
+
 public abstract class ModelBase<T> where T : ModelBase<T>
 {
     private static readonly ICollection<T> Entities = new List<T>();
