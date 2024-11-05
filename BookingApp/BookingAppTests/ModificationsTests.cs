@@ -21,6 +21,15 @@ public class ModificationsTests
         var portfolioPage = new PortfolioPage("description");
         var payment = new Payment(10m, "C1");
         var notification = new Notification("text");
+        var customer = new Customer("John", "Doe", "john.doe@example.com", "+123456789", "johndoe", "password123",
+            "street", "city", 100m, new RegularAccountType());
+        var coworkingSpace = new CoworkingSpace("street", "Warsaw", "+123456789");
+        var coupon = new Coupon("DISCOUNT10", "text", 10, DateTime.Now,
+            DateTime.Now.AddMonths(1));
+        var beautyProfessional = new BeautyProfessional("anna","smith","anna@gmail.com","+489595995","smith","123",
+            "street","Warsaw",1m,"1 year",new List<string> { "makeup" }, new RegularAccountType());
+        
+
         Repository.WriteAllToFile();
         Repository.GetAllFromFile();
 
@@ -268,33 +277,130 @@ public class ModificationsTests
     [Test]
     public void Customer_ObjectModified_ClassExtentNotModified()
     {
+        var customer = Customer.GetAll().FirstOrDefault();
+        customer.FirstName = "NewFirstName";
+
+        var sameCustomerInExtent = Customer.GetAll().FirstOrDefault(c => c.Id == customer.Id);
+
+        Assert.AreEqual(customer.FirstName, "NewFirstName");
+        Assert.AreEqual(sameCustomerInExtent.FirstName, "John");
+    }
+
+    [Test]
+    public void Customer_NewObjectModified_ClassExtentNotModified()
+    {
+        var newCustomer = new Customer("Bob","Ross", "bob.ross@example.com", "+123456789", "bobross", "happytrees",
+            "Bob Street", "New York", 100m, new RegularAccountType()
+        );
+    
+        newCustomer.FirstName = "ModifiedBob";
+    
+        var sameCustomerInExtent = Customer.GetAll().FirstOrDefault(c => c.Id == newCustomer.Id);
+    
+        Assert.AreEqual(newCustomer.FirstName, "ModifiedBob");
+        Assert.AreEqual(sameCustomerInExtent.FirstName, "Bob");
         
     }
+
     
     //CoworkingSpace 
     [Test]
     public void CoworkingSpace_ObjectModified_ClassExtentNotModified()
     {
+        var coworkingSpace = CoworkingSpace.GetAll().FirstOrDefault();
+        coworkingSpace.Address= "newAddress";
+
+
+        var sameCoworkingSpaceInExtent = CoworkingSpace.GetAll().FirstOrDefault(c => c.Id == coworkingSpace.Id);
+        Assert.AreEqual(coworkingSpace.Address, "newAddress");
+        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "street");
         
     }
+
+    [Test]
+    public void CoworkingSpace_NewObjectModified_ClassExtentNotModified()
+    {
+        var newCoworkingSpace = new CoworkingSpace("Main", "New York", "+1234566789");
+        newCoworkingSpace.Address = "newMain";
+
+        var sameCoworkingSpaceInExtent = CoworkingSpace.GetAll().FirstOrDefault(c => c.Id == newCoworkingSpace.Id);
+
+        Assert.AreEqual(newCoworkingSpace.Address, "newMain");
+        Assert.AreEqual(sameCoworkingSpaceInExtent.Address, "Main"); 
+    }
+    
+    
     //Coupon 
     [Test]
     public void Coupon_ObjectModified_ClassExtentNotModified()
     {
+        var coupon = Coupon.GetAll().FirstOrDefault();
+        coupon.Description = "New Description";
+
+        var sameCouponInExtent = Coupon.GetAll().FirstOrDefault(c => c.Id == coupon.Id);
+
+        Assert.AreEqual(coupon.Description, "New Description");
+        Assert.AreEqual(sameCouponInExtent.Description, "text");
+        
         
     }
+    
+    [Test]
+    public void Coupon_NewObjectModified_ClassExtentNotModified()
+    {
+        var newCoupon = new Coupon("NewCoupon", "Text",20,DateTime.Now, DateTime.Now.AddHours(1));
+        newCoupon.Description = "newText";
+
+        var sameCouponInExtent = Coupon.GetAll().FirstOrDefault(c => c.Id == newCoupon.Id);
+
+        Assert.AreEqual(newCoupon.Description, "newText");
+        Assert.AreEqual(sameCouponInExtent.Description, "Text"); 
+        
+        
+    }
+    
     
     //Booking 
     [Test]
     public void Booking_ObjectModified_ClassExtentNotModified()
     {
+        var booking = new Booking();
+        var sameBookingInExtent = Booking.GetAll().FirstOrDefault(b => b.Id == booking.Id);
+
+        Assert.AreEqual(booking.Id, sameBookingInExtent.Id);
+        Assert.AreEqual(booking.TotalPrice, sameBookingInExtent.TotalPrice);
         
     }
+    
+    
+    
     
     //BeautyProfessional 
     [Test]
     public void BeautyProfessional_ObjectModified_ClassExtentNotModified()
     {
-        
+        var beautyProfessional = BeautyProfessional.GetAll().FirstOrDefault();
+        beautyProfessional.FirstName = "ModifiedName";
+
+        var sameBeautyProfessionalInExtent = BeautyProfessional.GetAll().FirstOrDefault(bp => bp.Id == beautyProfessional.Id);
+
+        Assert.AreEqual(beautyProfessional.FirstName, "ModifiedName");
+        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "anna");
+
     }
+    
+    [Test]
+    public void BeautyProfessional_NewObjectModified_ClassExtentNotModified()
+    {
+        var newBeautyProfessional = new BeautyProfessional("John", "Doe", "john@google.com", "+11234567890", "johndoe", 
+            "password", "Street 1", "Paris", 50m, "3 years", new List<string> { "hair stylist"}, new RegularAccountType());
+
+        newBeautyProfessional.FirstName = "ModifiedJohn";
+
+        var sameBeautyProfessionalInExtent = BeautyProfessional.GetAll().FirstOrDefault(bp => bp.Id == newBeautyProfessional.Id);
+
+        Assert.AreEqual(newBeautyProfessional.FirstName, "ModifiedJohn");
+        Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "John"); 
+    }
+
 }
