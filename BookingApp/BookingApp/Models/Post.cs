@@ -45,10 +45,10 @@ public class Post : ModelBase<Post>
     {
         try
         {
-            AssignId();
+            //AssignId();
             ImageLink = imageLink;
             Text = text;
-            Add(new Post(this));
+            Add(this);
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
@@ -59,19 +59,19 @@ public class Post : ModelBase<Post>
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
 
-    private Post(Post original)
-    {
-        _id = original._id;
-        _imageLink = original._imageLink;
-        _text = original._text;
-        Likes = original.Likes;
-        Dislikes = original.Dislikes;
-        Comments = new List<string>(original.Comments); // Deep copy of comments
-    }
-
-    // Clone method
-    protected override Post Clone()
-    {
-        return new Post(this);
-    }
+    //private Post(Post original)
+    //{
+    //    _id = original._id;
+    //    _imageLink = original._imageLink;
+    //    _text = original._text;
+    //    Likes = original.Likes;
+    //    Dislikes = original.Dislikes;
+    //    Comments = new List<string>(original.Comments); // Deep copy of comments
+    //}
+//
+    //// Clone method
+    //protected override Post Clone()
+    //{
+    //    return new Post(this);
+    //}
 }

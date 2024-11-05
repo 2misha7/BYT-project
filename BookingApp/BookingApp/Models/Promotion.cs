@@ -59,31 +59,31 @@ public class Promotion: ModelBase<Promotion>
     {
         try
         {
-            AssignId();
+            //AssignId();
             Name = name;
             DiscountDescription = discountDescription;
             TotalDiscountPercentage = totalDiscountPercentage;
-            Add(new Promotion(this)); 
+            Add(this); 
         }catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
         }
     }
     
-    private Promotion(Promotion original)
-    {
-        _id = original._id;
-        _name = original._name;
-        _discountDescription = original._discountDescription;
-        _totalDiscountPercentage = original._totalDiscountPercentage;
-    }
+    //private Promotion(Promotion original)
+    //{
+    //    _id = original._id;
+    //    _name = original._name;
+    //    _discountDescription = original._discountDescription;
+    //    _totalDiscountPercentage = original._totalDiscountPercentage;
+    //}
     protected override void AssignId()
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
 
-    protected override Promotion Clone()
-    {
-        return new Promotion(this);
-    }
+    //protected override Promotion Clone()
+    //{
+    //    return new Promotion(this);
+    //}
 }

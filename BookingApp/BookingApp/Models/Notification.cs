@@ -28,9 +28,9 @@ public class Notification: ModelBase<Notification>
     {
         try
         {
-            AssignId();
+            //AssignId();
             Text = text;
-            Add( new Notification(this));
+            Add( this);
         }
         catch (ArgumentException e)
         {
@@ -38,17 +38,17 @@ public class Notification: ModelBase<Notification>
         }
     }
     
-    private Notification(Notification original)
-    {
-        _id = original._id; 
-        _text = original._text; 
-        
-    }
-
-    protected override Notification Clone()
-    {
-        return new Notification(this);
-    }
+    //private Notification(Notification original)
+    //{
+    //    _id = original._id; 
+    //    _text = original._text; 
+    //    
+    //}
+//
+    //protected override Notification Clone()
+    //{
+    //    return new Notification(this);
+    //}
 
 
     
