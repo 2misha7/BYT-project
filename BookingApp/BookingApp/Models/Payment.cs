@@ -46,10 +46,6 @@ public class Payment : ModelBase<Payment>
         get => _amountPaid;
         private set 
         {
-            if (value < 0)
-            {
-                throw new ArgumentException("Amount paid cannot be negative");
-            }
             _amountPaid = value;
         }
     }

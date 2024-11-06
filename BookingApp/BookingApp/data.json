@@ -1,12 +1,21 @@
 {
   "BeautyProfessional": [],
-  "Booking": [],
+  "Booking": [
+    {
+      "Id": 1,
+      "TotalPrice": 0
+    },
+    {
+      "Id": 2,
+      "TotalPrice": 0
+    }
+  ],
   "Coupon": [],
   "CoworkingSpace": [],
   "Customer": [],
   "Notification": [
     {
-      "Id": 0,
+      "Id": 1,
       "Text": "111"
     }
   ],

@@ -2,7 +2,7 @@
 
 namespace BookingApp.Models;
 
-
+//MODELBASE, PAYMENT COMMIT
 public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
 {
     private int _id;

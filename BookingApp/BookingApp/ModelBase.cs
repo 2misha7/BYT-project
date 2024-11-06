@@ -45,6 +45,11 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         try
         {
             var json = FileOperations.ReadTextFromFile();
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                Entities.Clear();
+                return;
+            }
             var options = new JsonSerializerOptions
             {
                 Converters = { new AccountTypeConverter() },
