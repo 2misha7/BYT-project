@@ -2,13 +2,14 @@
 using BookingApp.Models;
 
 
-//var b1 = new Booking();
-//var b2 = new Booking();
-//var bp2= new BeautyProfessional(2,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
-//var bp1= new BeautyProfessional(1,"qw","qwe","qersf","ewr","wer","qwert,", "sdfg","wert",12, "qwe",new List<string>(), new RegularAccountType());
+
+
+
 //FileOperations.SaveAll();
 
-//Repository.GetAllFromFile();
+Repository.GetAllFromFile();
+var b1 = new Booking();
+var b2 = new Booking();
 //
 //var notifications = Notification.GetAll();
 //foreach (var notification in notifications)
@@ -38,7 +39,7 @@ using BookingApp.Models;
 //}
 
 
-Repository.GetAllFromFile();
+//Repository.GetAllFromFile();
 Repository.WriteAllToFile();
 
 //FileOperations.SaveAll();
