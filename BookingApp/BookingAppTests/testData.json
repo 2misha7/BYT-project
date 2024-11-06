@@ -18,15 +18,20 @@
       "AccountType": {}
     }
   ],
-  "Booking": [],
+  "Booking": [
+    {
+      "Id": 1,
+      "TotalPrice": 0
+    }
+  ],
   "Coupon": [
     {
       "Id": 1,
       "CouponCode": "DISCOUNT10",
       "Description": "text",
       "DiscountPercentage": 10,
-      "ValidFrom": "2024-11-05T23:33:08.0787848+01:00",
-      "ValidTo": "2024-12-05T23:33:08.0787872+01:00"
+      "ValidFrom": "2024-11-06T14:57:25.2639726+01:00",
+      "ValidTo": "2024-12-06T14:57:25.2639913+01:00"
     }
   ],
   "CoworkingSpace": [
@@ -96,7 +101,7 @@
       "Id": 1,
       "Rating": 0,
       "Comment": "Comment",
-      "Date": "2024-11-05T23:33:08.0749379+01:00"
+      "Date": "2024-11-06T14:57:25.2562095+01:00"
     }
   ],
   "Service": [
