@@ -2,7 +2,7 @@
 
 public class Promotion : ModelBase<Promotion>
 {
-    private static int _maxDiscountPercentage = 35;
+    private static int _maxDiscountPercentage = 40;
     private static int _minDiscountPercentage = 5;
     public static int MaxDiscountPercentage
     {
