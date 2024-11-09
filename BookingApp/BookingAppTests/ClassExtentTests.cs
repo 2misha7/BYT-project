@@ -1,16 +1,23 @@
-﻿using BookingApp.Models;
+﻿using BookingApp;
+using BookingApp.Models;
 
 namespace BookingAppTests;
 
 public class ClassExtentTests
 {
-    //misha
     //A unit test for checking if your class extent is storing the correct classes
-    
+    [OneTimeSetUp]
+    public void SetUp()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
+        Repository.GetAllFromFile();
+    }
     //Workstation
     [Test]
     public void WorkStationExtent_StoresCorrectClass()
     {
+        //return a reference
         var workStation = new WorkStation(StationCategory.Body, 100m);
         Assert.AreEqual(1, WorkStation.GetAll().Count);
         Assert.IsTrue(WorkStation.GetAll().Contains(workStation));
@@ -137,6 +144,11 @@ public class ClassExtentTests
         Assert.IsTrue(BeautyProfessional.GetAll().Contains(beautyProf));
     }
     
-    
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
+    }
     
 }

@@ -8,12 +8,9 @@ public abstract class ModelBase<T> where T : ModelBase<T>
     
     private bool _isDeserializing = false;
     protected abstract void AssignId();
-
     
-    //protected abstract T Clone();
     public static IReadOnlyCollection<T> GetAll()
     {
-        //return Entities.Select(entity => entity.Clone()).ToList().AsReadOnly();
         return Entities.ToList().AsReadOnly();
     }
 

@@ -21,7 +21,6 @@ public class Booking : ModelBase<Booking>
     {
         try
         {
-            //AssignId();
             Add(this);
         }
         catch (ArgumentException e)
@@ -34,14 +33,4 @@ public class Booking : ModelBase<Booking>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
-
-    //private Booking(Booking original)
-    //{
-    //    _id = original._id;
-    //}
-
-   //protected override Booking Clone()
-   //{
-   //    return new Booking(this);
-   //}
 }

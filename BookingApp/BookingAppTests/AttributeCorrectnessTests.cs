@@ -16,6 +16,7 @@ public class AttributeCorrectnessTests
     public void SetUp()
     {
         FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
         Repository.GetAllFromFile();
     }
 
@@ -834,5 +835,12 @@ public class AttributeCorrectnessTests
         var pastServiceTime = DateTime.Now.AddHours(-1); // Past time
         var ex = Assert.Throws<ArgumentException>(() => new ServiceBooked(pastServiceTime));
         Assert.AreEqual("Service time cannot be in the past", ex.Message);
+    }
+    
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
     }
 }

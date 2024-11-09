@@ -401,5 +401,10 @@ public class ModificationsTests
         Assert.AreEqual(newBeautyProfessional.FirstName, "ModifiedJohn");
         Assert.AreEqual(sameBeautyProfessionalInExtent.FirstName, "ModifiedJohn"); 
     }
-
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
+    }
 }

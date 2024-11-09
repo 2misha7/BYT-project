@@ -62,7 +62,6 @@ public class Payment : ModelBase<Payment>
     {
         try
         {
-            //AssignId();
             FinalAmount = finalAmount;
             CouponCode = couponCode;
             AmountPaid = 0; 
@@ -80,21 +79,6 @@ public class Payment : ModelBase<Payment>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
-
-    //private Payment(Payment original)
-    //{
-    //    _id = original._id;
-    //    _couponCode = original._couponCode;
-    //    _finalAmount = original._finalAmount;
-    //    _amountPaid = original._amountPaid;
-    //    _status = original._status;
-    //}
-//
-    //// Clone method
-    //protected override Payment Clone()
-    //{
-    //    return new Payment(this);
-    //}
 }
 public enum PaymentStatus
 {

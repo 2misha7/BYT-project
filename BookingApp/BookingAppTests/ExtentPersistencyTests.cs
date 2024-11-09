@@ -12,6 +12,7 @@ public class ExtentPersistencyTests
     {
         FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
         File.WriteAllText(FileOperations.FilePath, string.Empty);
+        Repository.GetAllFromFile();
         var workstation = new WorkStation(StationCategory.Body, 10m);
         var serviceBooked = new ServiceBooked(new DateTime(2025, 1, 1, 14, 30, 0));
         var service = new Service("Name", StationCategory.Body, "Description", 10m);
@@ -212,5 +213,12 @@ public class ExtentPersistencyTests
 
         Assert.AreEqual(1, firstLoadBooking.Count);
         
+    }
+    
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
     }
 }

@@ -1,5 +1,4 @@
-﻿//clone method, constructot to private 
-namespace BookingApp.Models;
+﻿namespace BookingApp.Models;
 
 public class WorkStation : ModelBase<WorkStation>
 {
@@ -36,18 +35,10 @@ public class WorkStation : ModelBase<WorkStation>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
-
-    //protected override WorkStation Clone()
-    //{
-    //    return new WorkStation(this);
-    //}
-
-
     public WorkStation(StationCategory category, decimal price)
     {
         try
         {
-            //AssignId();
             Category = category;
             Price = price;
             Add(this);
@@ -56,13 +47,5 @@ public class WorkStation : ModelBase<WorkStation>
             throw new ArgumentException(e.Message);
         }
     }
-    
-    //private WorkStation(WorkStation other)
-    //{
-    //    _id = other.Id;
-    //    _category = other.Category;
-    //    _price = other.Price;
-    //}
-    
     
 }

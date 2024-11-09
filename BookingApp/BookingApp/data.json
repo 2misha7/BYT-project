@@ -13,13 +13,16 @@
   "Coupon": [],
   "CoworkingSpace": [],
   "Customer": [],
-  "Notification": [
+  "Notification": [],
+  "Payment": [
     {
       "Id": 1,
-      "Text": "111"
+      "CouponCode": null,
+      "FinalAmount": 12,
+      "AmountPaid": 0,
+      "Status": 0
     }
   ],
-  "Payment": [],
   "PortfolioPage": [],
   "Post": [],
   "Promotion": [],

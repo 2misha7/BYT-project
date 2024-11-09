@@ -26,7 +26,6 @@ public class PortfolioPage : ModelBase<PortfolioPage>
     {
         try
         {
-            //AssignId();
             Description = description;
             Add(this); 
         }catch (ArgumentException e)
@@ -39,16 +38,4 @@ public class PortfolioPage : ModelBase<PortfolioPage>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
-
-    //private PortfolioPage(PortfolioPage original)
-    //{
-    //    _id = original._id;
-    //    _description = original._description;
-    //}
-//
-    //// Clone method
-    //protected override PortfolioPage Clone()
-    //{
-    //    return new PortfolioPage(this);
-    //}
 }
