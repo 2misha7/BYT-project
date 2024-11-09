@@ -734,7 +734,7 @@ public class AttributeCorrectnessTests
 
         // Act & Assert
         var ex = Assert.Throws<ArgumentException>(() => new Promotion("Sale", "Discount description", lowDiscountPercentage));
-        Assert.AreEqual("Total discount percentage must be between 5 and 40.", ex.Message);
+        Assert.AreEqual("Total discount percentage must be between 5 and 35.", ex.Message);
     }
     [Test]
     public void Promotion_ThrowsExceptionWithDiscountAboveMax()
@@ -744,7 +744,7 @@ public class AttributeCorrectnessTests
 
         // Act & Assert
         var ex = Assert.Throws<ArgumentException>(() => new Promotion("Sale", "Discount description", highDiscountPercentage));
-        Assert.AreEqual("Total discount percentage must be between 5 and 40.", ex.Message);
+        Assert.AreEqual("Total discount percentage must be between 5 and 35.", ex.Message);
     }
 
     //review
