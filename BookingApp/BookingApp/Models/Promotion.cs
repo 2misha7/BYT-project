@@ -4,8 +4,19 @@ public class Promotion : ModelBase<Promotion>
 {
     private static int _maxDiscountPercentage = 35;
     private static int _minDiscountPercentage = 5;
+    public static int MaxDiscountPercentage
+    {
+        get => _maxDiscountPercentage;
+        set => _maxDiscountPercentage = value;
+    }
     
-private int _id;
+    public static int MinDiscountPercentage
+    {
+        get => _minDiscountPercentage;
+        set => _minDiscountPercentage = value;
+    }
+    
+    private int _id;
     public int Id
     {
         get => _id;
@@ -54,8 +65,6 @@ private int _id;
             _totalDiscountPercentage = value;
         }
     }
-    public static int MinDiscountPercentage { get; set; } = 5;
-    public static int MaxDiscountPercentage { get; set; } = 40;
     
     public Promotion(string name, string discountDescription, int totalDiscountPercentage)
     {
