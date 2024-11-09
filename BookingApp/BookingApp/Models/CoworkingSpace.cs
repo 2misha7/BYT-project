@@ -57,7 +57,6 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     {
         try
         {
-            //AssignId();
             Address = address;
             City = city;
             ContactNumber = contactNumber;
@@ -71,18 +70,4 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
-
-   //private CoworkingSpace(CoworkingSpace original)
-   //{
-   //    _id = original._id;
-   //    _address = original._address;
-   //    _city = original._city;
-   //    _contactNumber = original._contactNumber;
-   //}
-
-   //// Clone method
-   //protected override CoworkingSpace Clone()
-   //{
-   //    return new CoworkingSpace(this);
-   //}
 }

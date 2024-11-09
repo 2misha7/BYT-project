@@ -23,39 +23,22 @@ public class Notification: ModelBase<Notification>
             _text = value;
         }
     }
-    
+
     public Notification(string text)
     {
         try
         {
-            //AssignId();
             Text = text;
-            Add( this);
+            Add(this);
         }
         catch (ArgumentException e)
         {
             throw new ArgumentException(e.Message);
         }
     }
-    
-    //private Notification(Notification original)
-    //{
-    //    _id = original._id; 
-    //    _text = original._text; 
-    //    
-    //}
-//
-    //protected override Notification Clone()
-    //{
-    //    return new Notification(this);
-    //}
 
-
-    
     protected override void AssignId()
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
-    
-    
 }

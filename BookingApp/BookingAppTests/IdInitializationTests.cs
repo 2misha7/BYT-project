@@ -225,4 +225,11 @@ public class IdInitializationTests
         Assert.AreEqual(1, serviceBooked1.Id);
         Assert.AreEqual(2, serviceBooked2.Id);
     }
+    
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
+        File.WriteAllText(FileOperations.FilePath, string.Empty);
+    }
 }

@@ -62,7 +62,6 @@ public class Service: ModelBase<Service>
     {
         try
         {
-            //AssignId();
             Name = name;
             ServiceCategory = serviceCategory;
             Description = description;
@@ -74,23 +73,10 @@ public class Service: ModelBase<Service>
             throw new ArgumentException(e.Message);
         }
     }
-    
-    //private Service(Service original)
-    //{
-    //    _id = original._id;
-    //    _name = original._name;
-    //    _serviceCategory = original._serviceCategory;
-    //    _description = original._description;
-    //    _price = original._price;
-    //    _availableTimeSlots = new HashSet<DateTime>(original._availableTimeSlots); // Clone available time slots
-    //}
+  
     protected override void AssignId()
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
 
-    //protected override Service Clone()
-    //{
-    //    return new Service(this);
-    //}
 }

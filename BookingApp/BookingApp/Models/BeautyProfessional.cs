@@ -2,7 +2,6 @@
 
 namespace BookingApp.Models;
 
-//MODELBASE, PAYMENT COMMIT
 public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
 {
     private int _id;
@@ -182,7 +181,6 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     {
         try
         {
-            //AssignId();
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -207,26 +205,4 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
-
-    //public BeautyProfessional(BeautyProfessional other)
-    //{
-    //    _id = other.Id; // Copy ID if needed
-    //    _firstName = other.FirstName;
-    //    _lastName = other.LastName;
-    //    _email = other.Email;
-    //    _phoneNumber = other.PhoneNumber;
-    //    _login = other.Login;
-    //    _password = other.Password; // Consider hashing if necessary
-    //    _address = other.Address;
-    //    _city = other.City;
-    //    _walletBalance = other.WalletBalance;
-    //    _experience = other.Experience;
-    //    _specializations = new List<string>(other.Specializations); // Create a new list for deep copy
-    //    _accountType = other.AccountType; // If IAccountType is mutable, consider cloning it as well
-    //}
-    
-    //protected override BeautyProfessional Clone()
-    //{
-    //    return new BeautyProfessional(this);
-    //}
 }

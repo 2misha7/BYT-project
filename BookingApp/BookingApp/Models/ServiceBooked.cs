@@ -22,18 +22,11 @@ public class ServiceBooked : ModelBase<ServiceBooked>
             _serviceTime = value;
         }
     }
-
-    //private ServiceBooked(ServiceBooked original)
-    //{
-    //    _id = original._id;
-    //    _serviceTime = original._serviceTime;
-    //}
     
     public ServiceBooked(DateTime serviceTime)
     {
         try
         {
-            //AssignId();
             ServiceTime = serviceTime;
             Add(this);
         }catch (ArgumentException e)
@@ -46,9 +39,5 @@ public class ServiceBooked : ModelBase<ServiceBooked>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
-
-    //protected override ServiceBooked Clone()
-    //{
-    //    return new ServiceBooked(this);
-    //}
+    
 }
