@@ -747,7 +747,7 @@ public class AttributeCorrectnessTests
         Assert.AreEqual("Total discount percentage must be between 5 and 35.", ex.Message);
     }
 
-    //Review
+    //review
     [Test]
     public void Review_AttributesAssignedCorrectly()
     {
