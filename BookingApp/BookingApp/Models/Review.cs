@@ -45,7 +45,7 @@ public class Review: ModelBase<Review>
     {
         try
         {
-            //AssignId();
+           
             Rating = rating; 
             Comment = comment;
             Date = date;

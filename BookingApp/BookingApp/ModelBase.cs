@@ -1,10 +1,12 @@
 ﻿using System.Text.Json;
+using BookingApp.Models;
 
 namespace BookingApp;
 
 public abstract class ModelBase<T> where T : ModelBase<T>
 {
     private static readonly ICollection<T> Entities = new List<T>();
+    
     
     private bool _isDeserializing = false;
     protected abstract void AssignId();
@@ -26,6 +28,15 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         }
         
         Entities.Add(entity);
+    }
+
+    protected static void Delete(T entity)
+    {
+        if (entity == null)
+        {
+            throw new ArgumentException($"{nameof(entity)} cannot be null");
+        }
+        Entities.Remove(entity);
     }
     
     
@@ -74,5 +85,3 @@ public abstract class ModelBase<T> where T : ModelBase<T>
         }
     }
 }
-
-

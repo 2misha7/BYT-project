@@ -2,9 +2,6 @@
 using BookingApp.Models;
 namespace BookingAppTests;
 
-//tests for all getter and setter and exception
-// tests for all class extents is everything saved and stored correctly
-
 public class AttributeCorrectnessTests
 {
     //Check if every attribute in your diagram was implemented correctly :
@@ -615,7 +612,7 @@ public class AttributeCorrectnessTests
         string? couponCode = "DISCOUNT10";
         PaymentStatus status = PaymentStatus.Pending;
 
-        // Act
+          // Act
         var payment = new Payment(finalAmount, couponCode);
 
         // Assert
