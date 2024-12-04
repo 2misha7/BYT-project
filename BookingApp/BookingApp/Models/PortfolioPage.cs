@@ -2,6 +2,7 @@
 
 public class PortfolioPage : ModelBase<PortfolioPage>
 {
+    
     private int _id;
     public int Id
     {

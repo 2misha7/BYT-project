@@ -158,6 +158,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
         }
     }
     private ICollection<string> _specializations = null!;
+    //todo empty string
     public ICollection<string> Specializations
     {
         get => _specializations;

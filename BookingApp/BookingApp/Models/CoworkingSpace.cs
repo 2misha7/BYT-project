@@ -70,4 +70,68 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    
+    //Association with workstation
+    private readonly List<WorkStation> _workStations = new();
+    public IReadOnlyList<WorkStation> WorkStations => _workStations.AsReadOnly();
+    private bool _isUpdating = false;
+    public void AddWorkStation(WorkStation workStation)
+    {
+        if (workStation == null)
+            throw new ArgumentNullException(nameof(workStation));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_workStations.Contains(workStation))
+            throw new InvalidOperationException("This WorkStation is already part of this Coworking Space.");
+        _isUpdating = true;
+        _workStations.Add(workStation);
+        workStation.AddWorkstationToCoworking(this);
+        _isUpdating = false;
+    }
+    public void RemoveWorkStationFromCoworking(WorkStation workStation)
+    {
+        if (workStation == null)
+            throw new ArgumentNullException(nameof(workStation));
+
+        if (_isUpdating) return; 
+        if (!_workStations.Contains(workStation)) throw new InvalidOperationException("This WorkStation is not part of this CoworkingSpace."); 
+
+        _isUpdating = true;
+        _workStations.Remove(workStation);
+        workStation.RemoveWorkstationFromCoworkingSpace();
+        _isUpdating = false;
+    }
+
+    public void AddWorkstationFromAnotherCoworking(WorkStation workStation)
+    {
+        if (workStation == null)
+            throw new ArgumentNullException(nameof(workStation));
+        if (_workStations.Contains(workStation))
+        {
+            throw new Exception("This Workstation is already in this Coworking space");
+        }
+
+        if (workStation.CoworkingSpace == null)
+        {
+            throw new Exception("It is not possible to add this Workstation from another CoworkingSpace, as it is not assigned to any");
+        }
+        
+        workStation.RemoveWorkstationFromCoworkingSpace();
+        AddWorkStation(workStation);
+    }
+    
+    //After deletion of the coworking space, workstation will not be deleted, but will not be assigned to a coworking 
+    public void DeleteCoworkingSpace()
+    {
+        if(_workStations.Count > 0)
+        {
+            foreach(var ws in _workStations.ToList()){
+                ws.RemoveWorkstationFromCoworkingSpace(); 
+            }
+        }
+        Delete(this);
+    }
 }
