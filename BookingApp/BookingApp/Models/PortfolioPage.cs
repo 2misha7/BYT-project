@@ -39,4 +39,12 @@ public class PortfolioPage : ModelBase<PortfolioPage>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    //Association with Post (composition)
+    private readonly List<Post> _posts = new();
+    public IReadOnlyList<Post> Posts => _posts.AsReadOnly();
+    private bool _isUpdating = false;
+    
+    
+    
 }

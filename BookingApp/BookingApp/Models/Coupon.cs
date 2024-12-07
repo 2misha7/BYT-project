@@ -94,4 +94,61 @@ public class Coupon : ModelBase<Coupon>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    //Association with Customer (many-to-one)
+    private Customer? _customer; 
+
+    public Customer? Customer => _customer;
+    private bool _isUpdating = false; 
+    
+    public void AssignToCustomer(Customer customer)
+    {
+        if (customer == null)
+            throw new ArgumentNullException(nameof(customer));
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (_customer != null)
+        {
+            throw new InvalidOperationException("This Coupon is already assigned to a Customer.");
+        }
+        _isUpdating = true;
+        _customer = customer;
+        customer.AddCoupon(this);
+        _isUpdating = false;
+    }
+    
+    public void TakeCouponFromCustomer()
+    {
+        if (_isUpdating) return;
+        if (_customer == null) 
+            throw new InvalidOperationException("This coupon is not assigned to a Customer");
+        _isUpdating = true;
+        var previousCustomer = _customer;
+        _customer = null;
+        previousCustomer.RemoveCoupon(this); 
+        _isUpdating = false;
+        
+    }
+    
+    public void ChangeCustomerAssignedToCoupon(Customer newCustomer)
+    {
+        if (newCustomer == null)
+            throw new ArgumentNullException(nameof(newCustomer));
+        if (_customer == newCustomer)
+        {
+            throw new InvalidOperationException("This Coupon is already assigned to exactly this Customer");
+        }
+
+        if (_customer == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign this coupon to a new Customer, because it is not assigned to any");
+        }
+        TakeCouponFromCustomer(); 
+        AssignToCustomer(newCustomer); 
+    }
+    
+    
 }

@@ -72,7 +72,7 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     }
     
     
-    //Association with workstation
+    //Association with workstation (aggregation)
     private readonly List<WorkStation> _workStations = new();
     public IReadOnlyList<WorkStation> WorkStations => _workStations.AsReadOnly();
     private bool _isUpdating = false;
@@ -105,22 +105,29 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
         _isUpdating = false;
     }
 
-    public void AddWorkstationFromAnotherCoworking(WorkStation workStation)
+    public void SubstituteWorkStation(WorkStation oldW, WorkStation newW)
     {
-        if (workStation == null)
-            throw new ArgumentNullException(nameof(workStation));
-        if (_workStations.Contains(workStation))
+        if (oldW == null)
+            throw new ArgumentNullException(nameof(oldW));
+        if (newW == null)
+            throw new ArgumentNullException(nameof(newW));
+        if (!_workStations.Contains(oldW))
         {
-            throw new Exception("This Workstation is already in this Coworking space");
+            throw new Exception("This Coworking does not have this old WorkStation");
         }
 
-        if (workStation.CoworkingSpace == null)
+        if (_workStations.Contains(newW))
         {
-            throw new Exception("It is not possible to add this Workstation from another CoworkingSpace, as it is not assigned to any");
+            throw new Exception("This Coworking already had this new WorkStation");
         }
         
-        workStation.RemoveWorkstationFromCoworkingSpace();
-        AddWorkStation(workStation);
+        if (newW.CoworkingSpace != null)
+        {
+            throw new Exception("It is not possible to add this WorkStation to a Coworking, as it is already assigned to a Coworking in the system");
+        }
+        
+        RemoveWorkStationFromCoworking(oldW); 
+        AddWorkStation(newW);
     }
     
     //After deletion of the coworking space, workstation will not be deleted, but will not be assigned to a coworking 

@@ -57,4 +57,7 @@ public class Post : ModelBase<Post>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    //Association with PortfolioPage (composition)
+    
 }
