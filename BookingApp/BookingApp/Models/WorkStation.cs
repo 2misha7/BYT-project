@@ -48,7 +48,7 @@ public class WorkStation : ModelBase<WorkStation>
         }
     }
     
-    //Association with CoworkingSpace 
+    //Association with CoworkingSpace (aggregation)
     private CoworkingSpace? _coworkingSpace; 
 
     public CoworkingSpace? CoworkingSpace => _coworkingSpace;

@@ -176,4 +176,64 @@ public class Customer : ModelBase<Customer>, IPerson
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
+    //Association with Coupon (one-to-many)
+    private readonly List<Coupon> _coupons = new();
+    public IReadOnlyList<Coupon> Coupons => _coupons.AsReadOnly();
+    private bool _isUpdating = false;
+    
+    public void AddCoupon(Coupon coupon)
+    {
+        if (coupon == null)
+            throw new ArgumentNullException(nameof(coupon));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_coupons.Contains(coupon))
+            throw new InvalidOperationException("This Customer already has this Coupon.");
+        _isUpdating = true;
+        _coupons.Add(coupon);
+        coupon.AssignToCustomer(this);
+        _isUpdating = false;
+    }
+    
+    public void RemoveCoupon(Coupon coupon)
+    {
+        if (coupon == null)
+            throw new ArgumentNullException(nameof(coupon));
+
+        if (_isUpdating) return; 
+        if (!_coupons.Contains(coupon)) throw new InvalidOperationException("This Customer does not have this Coupon."); 
+
+        _isUpdating = true;
+        _coupons.Remove(coupon);
+        coupon.TakeCouponFromCustomer();
+        _isUpdating = false;
+    }
+    
+    public void SubstituteCoupon(Coupon oldCoupon, Coupon newCoupon)
+    {
+        if (oldCoupon == null)
+            throw new ArgumentNullException(nameof(oldCoupon));
+        if (newCoupon == null)
+            throw new ArgumentNullException(nameof(newCoupon));
+        if (!_coupons.Contains(oldCoupon))
+        {
+            throw new Exception("This Customer does not have this old Coupon");
+        }
+
+        if (_coupons.Contains(newCoupon))
+        {
+            throw new Exception("This Customer already had this new Coupon");
+        }
+        
+        if (newCoupon.Customer != null)
+        {
+            throw new Exception("It is not possible to add this Coupon to a Customer, as it is already assigned to a Customer in the system");
+        }
+        
+        RemoveCoupon(oldCoupon); 
+        AddCoupon(newCoupon);
+    }
+    
 }
