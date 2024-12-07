@@ -236,4 +236,61 @@ public class Customer : ModelBase<Customer>, IPerson
         AddCoupon(newCoupon);
     }
     
+    //Customer-Booking Association  (one-to-many)
+    private readonly List<Booking> _bookings = new();
+    public IReadOnlyList<Booking> Bookings => _bookings.AsReadOnly();
+    public void AddBooking(Booking booking)
+    {
+        if (booking == null)
+            throw new ArgumentNullException(nameof(booking));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_bookings.Contains(booking))
+            throw new InvalidOperationException("This Customer already has this Booking.");
+        _isUpdating = true;
+        _bookings.Add(booking);
+        booking.AddBookingToCustomer(this);
+        _isUpdating = false;
+    }
+    public void RemoveBooking(Booking booking)
+    {
+        if (booking == null)
+            throw new ArgumentNullException(nameof(booking));
+
+        if (_isUpdating) return; 
+        if (!_bookings.Contains(booking)) throw new InvalidOperationException("This Customer does not have this Booking."); 
+
+        _isUpdating = true;
+        _bookings.Remove(booking);
+        booking.RemoveBookingFromCustomer();
+        _isUpdating = false;
+    }
+    
+    public void SubstituteBooking(Booking oldBooking, Booking newBooking)
+    {
+        if (oldBooking == null)
+            throw new ArgumentNullException(nameof(oldBooking));
+        if (newBooking == null)
+            throw new ArgumentNullException(nameof(newBooking));
+        if (!_bookings.Contains(oldBooking))
+        {
+            throw new Exception("This Customer does not have this old Booking");
+        }
+
+        if (_bookings.Contains(newBooking))
+        {
+            throw new Exception("This Customer already had this new Booking");
+        }
+        
+        if (newBooking.Customer != null)
+        {
+            throw new Exception("It is not possible to add this Booking to a Customer, as it is already assigned to a Customer in the system");
+        }
+        
+        RemoveBooking(oldBooking); 
+        AddBooking(newBooking);
+    }
+    
 }

@@ -150,4 +150,5 @@ public class Coupon : ModelBase<Coupon>
         AssignToCustomer(newCustomer); 
     }
     
+    
 }
