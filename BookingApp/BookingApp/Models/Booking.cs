@@ -139,4 +139,60 @@ public class Booking : ModelBase<Booking>
         RemoveBookingFromNotification(); 
         AddNotificationToBooking(newNotification); 
     }
+    
+    // One-to-One Relationship with Payment
+    private Payment? _payment;
+    public Payment? Payment => _payment;
+    
+    public void AddPaymentToBooking(Payment payment)
+    {
+        if (payment == null)
+            throw new ArgumentNullException(nameof(payment));
+
+        if (_isUpdating)
+        {
+            return;
+        }
+
+        if (_payment != null)
+        {
+            throw new InvalidOperationException("This Booking already has a Payment.");
+        }
+
+        _isUpdating = true;
+        _payment = payment;
+        payment.AddBookingToPayment(this);
+        _isUpdating = false;
+    }
+    
+    public void RemovePaymentFromBooking()
+    {
+        if (_isUpdating) return;
+        if (_payment == null) 
+            throw new InvalidOperationException("This Booking does not have a Payment");
+        _isUpdating = true;
+        var previousPayment = _payment;
+        _payment = null;
+        previousPayment.RemoveBookingFromPayment(); 
+        _isUpdating = false;
+        
+    }
+    
+    public void ChangePaymentForBooking(Payment newPayment)
+    {
+        if (newPayment == null)
+            throw new ArgumentNullException(nameof(newPayment));
+        if (_payment == newPayment)
+        {
+            throw new InvalidOperationException("This Payment is already assigned to this Booking");
+        }
+
+        if (_payment == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign a new Payment to this Booking, because it does not have any");
+        }
+        RemovePaymentFromBooking(); 
+        AddPaymentToBooking(newPayment); 
+    }
 }

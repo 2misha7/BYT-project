@@ -79,12 +79,72 @@ public class Payment : ModelBase<Payment>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1;
     }
+    
+    
+    // One-to-One Relationship with Booking
+    private Booking? _booking;
+    public Booking? Booking => _booking;
+    private bool _isUpdating = false;
+    public void AddBookingToPayment(Booking booking)
+    {
+        if (booking == null)
+            throw new ArgumentNullException(nameof(booking));
+
+        if (_isUpdating)
+        {
+            return;
+        }
+
+        if (_booking != null)
+        {
+            throw new InvalidOperationException("This Payment is already assigned to a Booking.");
+        }
+
+        _isUpdating = true;
+        _booking = booking;
+        booking.AddPaymentToBooking(this);
+        _isUpdating = false;
+    }
+    
+    public void RemoveBookingFromPayment()
+    {
+        if (_isUpdating) return;
+        if (_booking == null) 
+            throw new InvalidOperationException("This Payment does not have a booking");
+        _isUpdating = true;
+        var previousBooking = _booking;
+        _booking= null;
+        previousBooking.RemovePaymentFromBooking(); 
+        _isUpdating = false;
+        
+    }
+    
+    public void ChangeBookingForThisPayment(Booking newBooking)
+    {
+        if (newBooking == null)
+            throw new ArgumentNullException(nameof(newBooking));
+        if (_booking == newBooking)
+        {
+            throw new InvalidOperationException("This Payment is already assigned to this Booking");
+        }
+
+        if (_booking == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign a new Booking to this Payment, because it does not have any");
+        }
+        RemoveBookingFromPayment(); 
+        AddBookingToPayment(newBooking); 
+    }
 }
+
+
+
+
 public enum PaymentStatus
 {
     Pending, 
-    Completed,
-    Failed,
-    Cancelled,
+    Accepted,
+    Canceled, 
     Refunded
 }
