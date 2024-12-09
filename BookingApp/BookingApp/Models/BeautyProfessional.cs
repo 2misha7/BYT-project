@@ -206,4 +206,61 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    // One-to-One Relationship BeautyPro - PortfolioPage
+    private PortfolioPage? _portfolioPage;
+    public PortfolioPage? PortfolioPage => _portfolioPage;
+    private bool _isUpdating = false;
+    
+    public void AddPortfolioPageToBeautyPro(PortfolioPage portfolioPage)
+    {
+        if (portfolioPage == null)
+            throw new ArgumentNullException(nameof(portfolioPage));
+
+        if (_isUpdating)
+        {
+            return;
+        }
+
+        if (_portfolioPage != null)
+        {
+            throw new InvalidOperationException("This Beauty Pro already has a PortfolioPage.");
+        }
+
+        _isUpdating = true;
+        _portfolioPage = portfolioPage;
+        portfolioPage.AddBeautyProToPortfolioPage(this);
+        _isUpdating = false;
+    }
+    
+    public void RemovePortfolioPageFromBeautyPro()
+    {
+        if (_isUpdating) return;
+        if (_portfolioPage == null) 
+            throw new InvalidOperationException("This BeautyPro does not have a PortfolioPage");
+        _isUpdating = true;
+        var previousPortfolioPage = _portfolioPage;
+        _portfolioPage = null;
+        previousPortfolioPage.RemoveBeautyProFromPortfolioPage(); 
+        _isUpdating = false;
+        
+    }
+    
+    public void ChangePortfolioPageForBeautyPro(PortfolioPage newPortfolioPage)
+    {
+        if (newPortfolioPage == null)
+            throw new ArgumentNullException(nameof(newPortfolioPage));
+        if (_portfolioPage == newPortfolioPage)
+        {
+            throw new InvalidOperationException("This PortfolioPage is already assigned to this BeautyPro");
+        }
+
+        if (_portfolioPage == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign a new PortfolioPage to this BeautyPro, because it does not have any");
+        }
+        RemovePortfolioPageFromBeautyPro(); 
+        AddPortfolioPageToBeautyPro(newPortfolioPage); 
+    }
 }
