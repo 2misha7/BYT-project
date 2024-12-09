@@ -219,6 +219,7 @@ public class CoworkingWorkstationTests
         workStation1.DeleteWorkstation();
         Assert.AreEqual(1, coworkingSpace1.WorkStations.Count);
         Assert.AreEqual(workStation2, coworkingSpace1.WorkStations[0]);
+        Assert.AreEqual(1, WorkStation.GetAll().Count);
     }
     
     //Delete CoworkingSpace
@@ -233,6 +234,8 @@ public class CoworkingWorkstationTests
        
         
         coworkingSpace1.DeleteCoworkingSpace();
+        Assert.AreEqual(0, CoworkingSpace.GetAll().Count);
+        Assert.AreEqual(2, WorkStation.GetAll().Count);
         Assert.IsNull(workStation1.CoworkingSpace);
         Assert.IsNull(workStation2.CoworkingSpace);
     }
