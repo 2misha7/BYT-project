@@ -58,6 +58,67 @@ public class Post : ModelBase<Post>
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
     
-    //Association with PortfolioPage (composition)
+    //Association Post - PortfolioPage many-to-one (composition)
+    private PortfolioPage? _portfolioPage; 
+
+    public PortfolioPage? PortfolioPage => _portfolioPage;
+    private bool _isUpdating = false;
+    public void AddPortfolioPageToPost(PortfolioPage portfolioPage)
+    {
+        if (portfolioPage == null)
+            throw new ArgumentNullException(nameof(portfolioPage));
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (_portfolioPage != null)
+        {
+            throw new InvalidOperationException("This Post is already assigned to a PortfolioPage in the system.");
+        }
+        _isUpdating = true;
+        _portfolioPage = portfolioPage;
+        portfolioPage.AddPostToPortfolioPage(this);
+        _isUpdating = false;
+    }
+    
+    public void RemovePortfolioPageFromPost()
+    {
+        if (_isUpdating) return;
+        if (_portfolioPage == null) 
+            throw new InvalidOperationException("This Post is not assigned to a PortfolioPage");
+        _isUpdating = true;
+        var previousPP = _portfolioPage;
+        _portfolioPage = null;
+        previousPP.RemovePostFromPortfolioPage(this); 
+        _isUpdating = false;
+        
+    }
+
+    public void ChangePortfolioPagePostIn(PortfolioPage newPortfolioPage)
+    {
+        if (newPortfolioPage == null)
+            throw new ArgumentNullException(nameof(newPortfolioPage));
+        if (_portfolioPage == newPortfolioPage)
+        {
+            throw new InvalidOperationException("This Post is already assigned to exactly this PortfolioPage");
+        }
+
+        if (_portfolioPage == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign the post to another portfolioPage, because it is not assigned to any");
+        }
+        RemovePortfolioPageFromPost(); 
+        AddPortfolioPageToPost(newPortfolioPage); 
+    }
+    
+    public void DeletePost()
+    {
+        if (_portfolioPage != null)
+        {
+            RemovePortfolioPageFromPost();    
+        }
+        Delete(this);
+    }
     
 }
