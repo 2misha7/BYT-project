@@ -84,4 +84,59 @@ public class Booking : ModelBase<Booking>
         RemoveBookingFromCustomer(); 
         AddBookingToCustomer(newCustomer); 
     }
+    // Notification Association (One-to-One)
+    private Notification? _notification;
+    public Notification? Notification => _notification;
+
+    public void AddNotificationToBooking(Notification notification)
+    {
+        if (notification == null)
+            throw new ArgumentNullException(nameof(notification));
+
+        if (_isUpdating)
+        {
+            return;
+        }
+
+        if (_notification != null)
+        {
+            throw new InvalidOperationException("This Booking already has a Notification.");
+        }
+
+        _isUpdating = true;
+        _notification = notification;
+        notification.AddBookingToNotification(this);
+        _isUpdating = false;
+    }
+    
+    public void RemoveBookingFromNotification()
+    {
+        if (_isUpdating) return;
+        if (_notification == null) 
+            throw new InvalidOperationException("This booking does not have a notification");
+        _isUpdating = true;
+        var previousNotification = _notification;
+        _notification = null;
+        previousNotification.RemoveNotificationFromBooking(); 
+        _isUpdating = false;
+        
+    }
+    
+    public void ChangeNotificationInBooking(Notification newNotification)
+    {
+        if (newNotification == null)
+            throw new ArgumentNullException(nameof(newNotification));
+        if (_notification == newNotification)
+        {
+            throw new InvalidOperationException("This Booking already has exactly this Notification");
+        }
+
+        if (_notification == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign a new notification to this Booking, because it does not have any");
+        }
+        RemoveBookingFromNotification(); 
+        AddNotificationToBooking(newNotification); 
+    }
 }

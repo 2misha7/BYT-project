@@ -293,4 +293,5 @@ public class Customer : ModelBase<Customer>, IPerson
         AddBooking(newBooking);
     }
     
+    
 }
