@@ -1,47 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\MY PC\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_BookingApp.1453353181\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0545f75f_002D16c5_002D4a95_002D8ebe_002D7569a13971e3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CoworkingWorkstationTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b09c9f4c_002Decad_002D4c36_002Daabb_002Dbe1c814502fb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ReviewServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CouponCustomerTests.Test_AddCouponToCustomer_StartedInCoupon&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CouponCustomerTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingCustomerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ReviewServiceTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=27b5bc3a_002D9d2e_002D4b50_002D8807_002D74df3bdf9792/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ClassExtentTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ClassExtentTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ModificationsTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AttributeCorrectnessTests.WorkstationCreate_GetCorrectInfoBack&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AttributeCorrectnessTests.WorkStation_IdIsAssignedCorrectly&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AttributeCorrectnessTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.IdIntializationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.ExtentPersistencyTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.IdInitializationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CustomerCustomerTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5c846384_002D1354_002D4ec6_002Da3bd_002D69aa094fc8e0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_InviteCustomer" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingCustomerTests.Test_RemoveBookingFromCustomer_StartedInCustomer_ExceptionHandling&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CouponCustomerTests.Test_ChangeCustomerAssignedToCoupon&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests.Test_AddWorkStationToCoworking_StartedInCoworkingSpace&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingCustomerTests.Test_RemoveBookingFromCustomer_StartedInCustomer&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingCustomerTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CouponCustomerTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingNotificationTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ceb3c95b_002Da0ea_002D48d2_002D8b09_002D02c090f1734b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BookingNotificationTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingNotificationTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BookingPaymentTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.PortfolioPageBeautyProfessionalTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CustomerCustomerTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.PostPortfolioPageTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests.Test_DeleteCoworkingSpace_WorkstationsRemainButCoworkingsNotAssigned&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	
+	
+	</wpf:ResourceDictionary>

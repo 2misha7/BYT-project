@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing;
+
 namespace BookingApp.Models;
 
 public class Service: ModelBase<Service>
@@ -78,5 +80,73 @@ public class Service: ModelBase<Service>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    //Service - Review one-to-many, composition
+    private readonly List<Review> _reviews = new();
+    public IReadOnlyList<Review> Reviews => _reviews.AsReadOnly();
+    private bool _isUpdating = false;
 
+    public void AddReviewToService(Review review)
+    {
+        if (review == null)
+            throw new ArgumentNullException(nameof(review));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_reviews.Contains(review))
+            throw new InvalidOperationException("This Service already has this Review.");
+        _isUpdating = true;
+        _reviews.Add(review);
+        review.AssignServiceToReview(this);
+        _isUpdating = false;
+    }
+    public void RemoveReviewFromService(Review review)
+    {
+        if (review == null)
+            throw new ArgumentNullException(nameof(review));
+
+        if (_isUpdating) return; 
+        if (!_reviews.Contains(review)) throw new InvalidOperationException("This Service does not have this Review."); 
+
+        _isUpdating = true;
+        _reviews.Remove(review);
+        review.RemoveServiceFromReview();
+        _isUpdating = false;
+    }
+    public void SubstituteReview(Review oldReview, Review newReview)
+    {
+        if (oldReview == null)
+            throw new ArgumentNullException(nameof(oldReview));
+        if (newReview == null)
+            throw new ArgumentNullException(nameof(newReview));
+        if (!_reviews.Contains(oldReview))
+        {
+            throw new Exception("This Service does not have this Review");
+        }
+
+        if (_reviews.Contains(newReview))
+        {
+            throw new Exception("This Service already has this Review");
+        }
+        
+        if (newReview.Service != null)
+        {
+            throw new Exception("It is not possible to add this Review to a Service, as it is already assigned to a Service in the system");
+        }
+        
+        RemoveReviewFromService(oldReview); 
+        AddReviewToService(newReview);
+    }
+    //After deletion of the service,reviews will be deleted
+    public void DeleteService()
+    {
+        if(_reviews.Count > 0)
+        {
+            foreach(var r in _reviews.ToList()){
+                r.DeleteReview(); 
+            }
+        }
+        Delete(this);
+    }
 }
