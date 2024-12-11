@@ -149,4 +149,57 @@ public class Service: ModelBase<Service>
         }
         Delete(this);
     }
+    
+    //Service - Promotion (many-to-many)
+    private readonly List<Promotion> _promotions = new();
+    public IReadOnlyList<Promotion> Promotions => _promotions.AsReadOnly();
+    public void AddPromotionToService(Promotion promotion)
+    {
+        if (promotion == null)
+            throw new ArgumentNullException(nameof(promotion));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_promotions.Contains(promotion))
+            throw new InvalidOperationException("This Service already has this Promotion.");
+        _isUpdating = true;
+        _promotions.Add(promotion);
+        promotion.AddServiceToPromotion(this);
+        _isUpdating = false;
+    }
+    
+    public void RemovePromotionFromService(Promotion promotion)
+    {
+        if (promotion == null)
+            throw new ArgumentNullException(nameof(promotion));
+
+        if (_isUpdating) return; 
+        if (!_promotions.Contains(promotion)) throw new InvalidOperationException("This Service does not have this Promotion."); 
+
+        _isUpdating = true;
+        _promotions.Remove(promotion);
+        promotion.RemoveServiceFromPromotion(this);
+        _isUpdating = false;
+    }
+    
+    public void SubstitutePromotion(Promotion oldP, Promotion newP)
+    {
+        if (oldP == null)
+            throw new ArgumentNullException(nameof(oldP));
+        if (newP == null)
+            throw new ArgumentNullException(nameof(newP));
+        if (!_promotions.Contains(oldP))
+        {
+            throw new Exception("This Service does not have this Promotion");
+        }
+
+        if (_promotions.Contains(newP))
+        {
+            throw new Exception("This Service already has this Promotion");
+        }
+        
+        RemovePromotionFromService(oldP); 
+        AddPromotionToService(newP);
+    }
 }
