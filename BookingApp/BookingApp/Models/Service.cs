@@ -202,4 +202,68 @@ public class Service: ModelBase<Service>
         RemovePromotionFromService(oldP); 
         AddPromotionToService(newP);
     }
+    //Service - Workstation 
+    private WorkStation? _assignedWorkStation;
+    public WorkStation? AssignedWorkStation => _assignedWorkStation;
+
+    //check from the itinerary
+    //private DateTime? _assignedDateTime;
+    //public DateTime? AssignedDateTime => _assignedDateTime;
+    public void AssignWorkStationAndTime(WorkStation workStation, DateTime dateTime)
+    {
+        if (workStation == null)
+            throw new ArgumentNullException(nameof(workStation));
+        if (_isUpdating)
+            return;
+        if (ServiceCategory != workStation.Category)
+        {
+            throw new InvalidOperationException("Category of workstation and service must be the same");
+        }
+        if (_assignedWorkStation != null)
+            throw new InvalidOperationException("This Service is already assigned to a WorkStation.");
+
+        _isUpdating = true;
+        _assignedWorkStation = workStation;
+        
+        //_assignedDateTime = dateTime;
+        workStation.AddServiceAtTime(this, dateTime);
+        _isUpdating = false;
+    }
+
+   public void RemoveWorkStationAndTime()
+   {
+       //Console.WriteLine(_assignedWorkStation.Price);
+       if (_isUpdating)
+           return;
+       if (AssignedWorkStation == null)
+           throw new InvalidOperationException("This Service is not assigned to a WorkStation.");
+      
+       _isUpdating = true;
+       var previousWorkStation = _assignedWorkStation;
+       //var previousDateTime = _assignedDateTime;
+       _assignedWorkStation = null;
+       //_assignedDateTime = null;
+       previousWorkStation.RemoveServiceAtTime(this);
+       _isUpdating = false;
+   }
+   
+   public void ChangeWorkStation(WorkStation newWorkStation)
+   {
+       if (newWorkStation == null)
+           throw new ArgumentNullException(nameof(newWorkStation));
+       if (newWorkStation == _assignedWorkStation)
+           throw new InvalidOperationException("This Service is already assigned to the specified WorkStation.");
+       if (ServiceCategory != newWorkStation.Category)
+           throw new InvalidOperationException("The WorkStation's category does not match the Service's category.");
+       if (_assignedWorkStation == null)
+       {
+           throw new InvalidOperationException("It is impossible to assign new Workstation to this Service, as there is no Workstation assigned before");
+       }
+
+       var dateTime =  _assignedWorkStation.ServicesByTime.FirstOrDefault(x => x.Value == this).Key;
+       RemoveWorkStationAndTime();
+       AssignWorkStationAndTime(newWorkStation, dateTime);
+       
+   }
+    
 }
