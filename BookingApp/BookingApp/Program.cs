@@ -17,12 +17,12 @@ using BookingApp.Models;
 //customer.RemoveInviter();
 //Console.WriteLine(customer.Inviter.FirstName);
 //Console.WriteLine(customer2.InvitedCustomers.First().FirstName);
-var service = new Service("asfas", StationCategory.Body, "sadas", 21);
-var promotion = new Promotion("asdasdsa", "adassd", 15);
-service.AddPromotion(promotion, DateTime.Now, DateTime.Now.AddDays(4), null);
+//var service = new Service("asfas", StationCategory.Body, "sadas", 21);
+//var promotion = new Promotion("asdasdsa", "adassd", 15);
+//service.AddPromotion(promotion, DateTime.Now, DateTime.Now.AddDays(4), null);
 //service.AddPromotion(promotion, DateTime.Now, DateTime.Now.AddDays(4), null);
 
-service.RemovePromotion(promotion);
+//service.RemovePromotion(promotion);
 
 
 //Console.WriteLine(promotion.ServicePromotions.First().Promotion.Name);
@@ -35,4 +35,15 @@ service.RemovePromotion(promotion);
 //Console.WriteLine(ServicePromoted.GetAll().First().Promotion.Name);
 //Console.WriteLine(ServicePromoted.GetAll().First().Service.Name);
 //Console.WriteLine(ServicePromoted.GetAll().Count);
+var service = new Service("NewService", StationCategory.Body, "New Description", 15);
+var workstation = new WorkStation(StationCategory.Body, 45);
+workstation.AddServiceAtTime(service, new DateTime(2024,12,01));
+//In any case will pe printed to Console
+Console.WriteLine(service.AssignedWorkStation.Price);
+workstation.RemoveServiceAtTime(service);
+//If incorrect method used: KeyNotFoundException will be thrown 
+if (service.AssignedWorkStation == null)
+{
+    Console.WriteLine("Workstation removed succesfully");
+}
 

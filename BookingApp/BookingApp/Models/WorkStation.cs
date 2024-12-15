@@ -125,8 +125,7 @@ public class WorkStation : ModelBase<WorkStation>
 
     private Dictionary<DateTime, Service> _servicesByTime = new();
     public IReadOnlyDictionary<DateTime, Service> ServicesByTime => _servicesByTime;
-
-    //add only if same types 
+    
     //Service - Workstation 
     public void AddServiceAtTime(Service service, DateTime dateTime)
     {
@@ -148,6 +147,7 @@ public class WorkStation : ModelBase<WorkStation>
         _isUpdating = false;
     }
 
+    //Correct (Searching by value)
      public void RemoveServiceAtTime(Service service)
      {
          DateTime key;
@@ -168,8 +168,6 @@ public class WorkStation : ModelBase<WorkStation>
              if (kvp.Value == service)
              {
                  key = kvp.Key;
-                 //Console.WriteLine(key + "   Key in loop was found");
-                 
                  if (_isUpdating)
                      return;
 
@@ -181,36 +179,88 @@ public class WorkStation : ModelBase<WorkStation>
              }
          }
      }
+     //Incorrect (Searching by value)
+     //public void RemoveServiceAtTime(Service service)
+     //{
+     //    var key = GetTimeByService(_servicesByTime, service);
+     //    if (!_servicesByTime.ContainsKey(key))
+     //        throw new InvalidOperationException($"No Service is scheduled at {key} for this WorkStation.");
+     //    if (_isUpdating)
+     //        return;
+     //    _isUpdating = true;
+     //    var serviceToRemove = _servicesByTime[key];
+     //    _servicesByTime.Remove(key);
+     //    serviceToRemove.RemoveWorkStationAndTime();
+     //    _isUpdating = false;
+     //}
+     //
+     //private DateTime GetTimeByService(Dictionary<DateTime, Service> dictionary, Service value)
+     //{
+     //    
+     //    foreach (var kvp in dictionary)
+     //    {
+     //        Console.WriteLine(kvp.Value.Description);
+     //        if (kvp.Value == value)
+     //        {
+     //            Console.WriteLine(kvp.Key + "   Key in loop was found");
+     //    
+     //            return kvp.Key;
+     //        }
+     //    }
+     //    throw new KeyNotFoundException("The value does not exist in the dictionary.");
+     //}
+     
+     
+     
+    //Correct(Searching by Key)
     //public void RemoveServiceAtTime(Service service)
     //{
-    //    var key = GetTimeByService(_servicesByTime, service);
-    //    if (!_servicesByTime.ContainsKey(key))
-    //        throw new InvalidOperationException($"No Service is scheduled at {key} for this WorkStation.");
-    //    if (_isUpdating)
-    //        return;
-   //
-    //    _isUpdating = true;
-    //    var serviceToRemove = _servicesByTime[key];
-    //    _servicesByTime.Remove(key);
-    //    serviceToRemove.RemoveWorkStationAndTime();
-    //    _isUpdating = false;
-    //}
-   //
-    //private DateTime GetTimeByService(Dictionary<DateTime, Service> dictionary, Service value)
-    //{
-    //    
-    //    foreach (var kvp in dictionary)
+    //    DateTime key;
+    //    foreach (var kvp in _servicesByTime)
     //    {
-    //        Console.WriteLine(kvp.Value.Description);
-    //        if (kvp.Value == value)
+    //        var i = 0;
+    //        if (kvp.Value == service)
+    //            i++;
+    //        if (i == 0)
     //        {
-    //            Console.WriteLine(kvp.Key + "   Key in loop was found");
-    //     
-    //            return kvp.Key;
+    //            if (!_servicesByTime.ContainsKey(service.AssignedDateTime.Value))
+    //                throw new InvalidOperationException($"No Service is scheduled for this WorkStation.");
     //        }
     //    }
-    //    throw new KeyNotFoundException("The value does not exist in the dictionary.");
+    //  
+    //    foreach (var kvp in _servicesByTime)
+    //    {
+    //        if (kvp.Key == service.AssignedDateTime)
+    //        {
+    //            key = kvp.Key;
+    //            //Console.WriteLine(key + "   Key in loop was found");
+    //           
+    //            if (_isUpdating)
+    //                return;
+
+    //            _isUpdating = true;
+    //            var serviceToRemove = _servicesByTime[key];
+    //            _servicesByTime.Remove(key);
+    //            serviceToRemove.RemoveWorkStationAndTime();
+    //            _isUpdating = false;
+    //        }
+    //    }
     //}
+    //Incorrect(Searching by key)
+   //public void RemoveServiceAtTime(Service service)
+   //{
+   //    var key = service.AssignedDateTime;
+   //    if (!_servicesByTime.ContainsKey(key.Value))
+   //        throw new InvalidOperationException($"No Service is scheduled at {key} for this WorkStation.");
+   //    if (_isUpdating)
+   //        return;
+   
+   //    _isUpdating = true;
+   //    var serviceToRemove = _servicesByTime[key.Value];
+   //    _servicesByTime.Remove(key.Value);
+   //    serviceToRemove.RemoveWorkStationAndTime();
+   //    _isUpdating = false;
+   //}
 
     public void ChangeServiceAtTime(DateTime dateTime, Service newService)
     {
