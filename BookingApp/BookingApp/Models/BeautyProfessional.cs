@@ -263,4 +263,61 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
         RemovePortfolioPageFromBeautyPro(); 
         AddPortfolioPageToBeautyPro(newPortfolioPage); 
     }
+    
+    //BeautyProfessional-Service (many-to-one)
+    private readonly List<Service> _services = new();
+    public IReadOnlyList<Service> Services => _services.AsReadOnly(); 
+    public void AddServiceToBeautyProfessional(Service service)
+    {
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_services.Contains(service))
+            throw new InvalidOperationException("This BeautyPro already has this Service.");
+        _isUpdating = true;
+        _services.Add(service);
+        service.AddBeautyProToService(this);
+        _isUpdating = false;
+    }
+    public void RemoveServiceFromBeautyPro(Service service)
+    {
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+
+        if (_isUpdating) return; 
+        if (!_services.Contains(service)) throw new InvalidOperationException("This BeautyPro does not have this Service."); 
+
+        _isUpdating = true;
+        _services.Remove(service);
+        service.RemoveBeautyFromService();
+        _isUpdating = false;
+    }
+    public void SubstituteService(Service oldS, Service newS)
+    {
+        if (oldS == null)
+            throw new ArgumentNullException(nameof(oldS));
+        if (newS == null)
+            throw new ArgumentNullException(nameof(newS));
+        if (!_services.Contains(oldS))
+        {
+            throw new Exception("This BeautyPro does not have this old Service");
+        }
+
+        if (_services.Contains(newS))
+        {
+            throw new Exception("This BeautyPro already had this new Service");
+        }
+        
+        if (newS.BeautyProfessional != null)
+        {
+            throw new Exception("It is not possible to add this new Service to a BeautyPro, as it is already assigned to a BeautyPro in the system");
+        }
+        
+        RemoveServiceFromBeautyPro(oldS); 
+        AddServiceToBeautyProfessional(newS);
+    }
 }
+

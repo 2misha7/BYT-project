@@ -287,4 +287,59 @@ public class Service: ModelBase<Service>
        RemovePromotion(oldP); 
        AddPromotion(newP, spToDelete.StartDate, spToDelete.EndDate, null);
    }
+   
+   //Service-BeautyProfessional (one-to-many)
+   private BeautyProfessional? _beautyProfessional;
+   public BeautyProfessional? BeautyProfessional => _beautyProfessional;
+   
+   public void AddBeautyProToService(BeautyProfessional beautyProfessional)
+   {
+       if (beautyProfessional == null)
+           throw new ArgumentNullException(nameof(beautyProfessional));
+
+       if (_isUpdating)
+       {
+           return;
+       }
+
+       if (_beautyProfessional != null)
+       {
+           throw new InvalidOperationException("This Service already has a Beauty Professional.");
+       }
+
+       _isUpdating = true;
+       _beautyProfessional = beautyProfessional;
+       beautyProfessional.AddServiceToBeautyProfessional(this);
+       _isUpdating = false;
+   }
+   
+   public void RemoveBeautyFromService()
+   {
+       if (_isUpdating) return;
+       if (_beautyProfessional == null) 
+           throw new InvalidOperationException("This Service does not have a BeautyPro");
+       _isUpdating = true;
+       var previousBP = _beautyProfessional;
+       _beautyProfessional = null;
+       previousBP.RemoveServiceFromBeautyPro(this); 
+       _isUpdating = false;
+        
+   }
+   public void ChangeBeautyPro(BeautyProfessional newBP)
+   {
+       if (newBP == null)
+           throw new ArgumentNullException(nameof(newBP));
+       if (_beautyProfessional == newBP)
+       {
+           throw new InvalidOperationException("This Service is already assigned to this BeautyPro");
+       }
+
+       if (_beautyProfessional == null)
+       {
+           throw new InvalidOperationException(
+               "It is not possible to assign a new BeautyPro to this Service, because it does not have any");
+       }
+       RemoveBeautyFromService(); 
+       AddBeautyProToService(newBP); 
+   }
 }
