@@ -816,23 +816,6 @@ public class AttributeCorrectnessTests
         var ex = Assert.Throws<ArgumentException>(() => new Service("Massage", StationCategory.Body, "A relaxing massage.", negativePrice));
         Assert.AreEqual("Price cannot be negative", ex.Message);
     }
-    //ServiceBooked
-
-    [Test]
-    public void ServiceBooked_AttributesAssignedCorrectly()
-    {
-        var serviceTime = DateTime.Now.AddHours(1); 
-        var serviceBooked = new ServiceBooked(serviceTime);
-        Assert.AreEqual(serviceTime, serviceBooked.ServiceTime);
-    }
-
-    [Test]
-    public void ServiceBooked_ThrowsExceptionWithPastServiceTime()
-    {
-        var pastServiceTime = DateTime.Now.AddHours(-1); // Past time
-        var ex = Assert.Throws<ArgumentException>(() => new ServiceBooked(pastServiceTime));
-        Assert.AreEqual("Service time cannot be in the past", ex.Message);
-    }
     
     [OneTimeTearDown]
     public void TearDown()

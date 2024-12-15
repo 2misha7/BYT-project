@@ -211,20 +211,7 @@ public class IdInitializationTests
         Assert.AreEqual(1, service1.Id);
         Assert.AreEqual(2, service2.Id);
     }
-    [Test]
-    public void ServiceBooked_IdIsAssignedCorrectly()
-    {
-        // Arrange
-        var serviceTime1 = DateTime.Now.AddHours(1); // Future time
-        var serviceTime2 = DateTime.Now.AddHours(2); // Future time
-
-        var serviceBooked1 = new ServiceBooked(serviceTime1);
-        var serviceBooked2 = new ServiceBooked(serviceTime2);
-
-        // Act & Assert
-        Assert.AreEqual(1, serviceBooked1.Id);
-        Assert.AreEqual(2, serviceBooked2.Id);
-    }
+    
     
     [OneTimeTearDown]
     public void TearDown()

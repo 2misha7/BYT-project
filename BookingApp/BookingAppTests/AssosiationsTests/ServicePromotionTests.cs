@@ -5,123 +5,217 @@ namespace BookingAppTests.AssosiationsTests;
 public class ServicePromotionTests
 {
     [Test]
-        public void Test_AddPromotionToService_StartedInService()
+        public void Test_AddPromotion_Successful()
         {
-            var service = new Service("Haircut", StationCategory.Hair, "Classic haircut service", 25m);
-            var promotion = new Promotion("Holiday Discount", "10% off for the holidays", 10);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024,12,24,12,00,00);
+            var endDate = new DateTime(2024,12,28,12,00,00);
 
-            service.AddPromotionToService(promotion);
+            service.AddPromotion(promotion, startDate, endDate, null);
 
-            Assert.AreEqual(1, service.Promotions.Count);
-            Assert.AreEqual(1, promotion.Services.Count);
-            Assert.AreEqual(promotion, service.Promotions[0]);
-            Assert.AreEqual(service, promotion.Services[0]);
+            Assert.AreEqual(1, service.ServicePromotions.Count);
+            Assert.AreEqual(1, promotion.ServicePromotions.Count);
+            Assert.AreEqual(promotion, service.ServicePromotions[0].Promotion);
+            Assert.AreEqual(service, promotion.ServicePromotions[0].Service);
+            Assert.AreEqual(startDate, service.ServicePromotions[0].StartDate);
+            Assert.AreEqual(endDate, service.ServicePromotions[0].EndDate);
         }
 
-        // Test exception handling when adding a promotion to a service (started in Service)
         [Test]
-        public void Test_AddPromotionToService_ExceptionHandling()
+        public void Test_AddPromotion_ExceptionHandling()
         {
-            var service = new Service("Manicure", StationCategory.Nail, "Deluxe manicure service", 30m);
-            var promotion = new Promotion("Summer Sale", "20% off all services", 20);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024,12,24,12,00,00);
+            var endDate = new DateTime(2024,12,28,12,00,00);
 
-            // Null promotion
-            var ex1 = Assert.Throws<ArgumentNullException>(() => service.AddPromotionToService(null));
+            service.AddPromotion(promotion, startDate, endDate, null);
+
+            // Adding a null promotion
+            var ex1 = Assert.Throws<ArgumentNullException>(() => service.AddPromotion(null, startDate, endDate, null));
             Assert.AreEqual("Value cannot be null. (Parameter 'promotion')", ex1.Message);
 
-            // Adding the same promotion twice
-            service.AddPromotionToService(promotion);
-            var ex2 = Assert.Throws<InvalidOperationException>(() => service.AddPromotionToService(promotion));
-            Assert.AreEqual("This Service already has this Promotion.", ex2.Message);
+            // Adding an existing promotion
+            var ex2 = Assert.Throws<InvalidOperationException>(() => service.AddPromotion(promotion, startDate, endDate, null));
+            Assert.AreEqual("This Service is already promoted by this Promotion.", ex2.Message);
         }
 
-        // Test adding a service to a promotion (started in Promotion)
         [Test]
-        public void Test_AddServiceToPromotion_StartedInPromotion()
+        public void Test_RemovePromotion_Successful()
         {
-            var service = new Service("Massage", StationCategory.Body, "Relaxing full-body massage", 50m);
-            var promotion = new Promotion("Weekend Special", "15% off on weekends", 15);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024,12,24,12,00,00);
+            var endDate = new DateTime(2024,12,28,12,00,00);
 
-            promotion.AddServiceToPromotion(service);
+            service.AddPromotion(promotion, startDate, endDate, null);
+            service.RemovePromotion(promotion);
 
-            Assert.AreEqual(1, service.Promotions.Count);
-            Assert.AreEqual(1, promotion.Services.Count);
-            Assert.AreEqual(service, promotion.Services[0]);
-            Assert.AreEqual(promotion, service.Promotions[0]);
+            Assert.AreEqual(0, service.ServicePromotions.Count);
+            Assert.AreEqual(0, promotion.ServicePromotions.Count);
+            Assert.IsNull(ServicePromoted.GetAll().FirstOrDefault(sp => sp.Service == service && sp.Promotion == promotion));
         }
 
-        // Test exception handling when adding a service to a promotion (started in Promotion)
         [Test]
-        public void Test_AddServiceToPromotion_ExceptionHandling()
+        public void Test_RemovePromotion_ExceptionHandling()
         {
-            var service = new Service("Facial", StationCategory.Body, "Rejuvenating facial treatment", 40m);
-            var promotion = new Promotion("Winter Sale", "25% off on all skincare", 25);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
 
-            // Null service
-            var ex1 = Assert.Throws<ArgumentNullException>(() => promotion.AddServiceToPromotion(null));
-            Assert.AreEqual("Value cannot be null. (Parameter 'service')", ex1.Message);
+            // Removing from an empty service
+            var ex1 = Assert.Throws<InvalidOperationException>(() => service.RemovePromotion(promotion));
+            Assert.AreEqual("No matching ServicePromotion found.", ex1.Message);
 
-            // Adding the same service twice
-            promotion.AddServiceToPromotion(service);
-            var ex2 = Assert.Throws<InvalidOperationException>(() => promotion.AddServiceToPromotion(service));
-            Assert.AreEqual("This Promotion is already assigned to this Service.", ex2.Message);
+            // Removing a null promotion
+            var ex2 = Assert.Throws<ArgumentNullException>(() => service.RemovePromotion(null));
+            Assert.AreEqual("Value cannot be null. (Parameter 'promotion')", ex2.Message);
+        }
+
+        [Test]
+        public void Test_SubstitutePromotion_Successful()
+        {
+            var oldPromotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var newPromotion = new Promotion("Spring Sale", "25% Off", 25);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024,12,24,12,00,00);
+            var endDate = new DateTime(2024,12,28,12,00,00);
+
+            service.AddPromotion(oldPromotion, startDate, endDate, null);
+            service.SubstitutePromotion(oldPromotion, newPromotion);
+
+            Assert.AreEqual(1, service.ServicePromotions.Count);
+            Assert.AreEqual(1, newPromotion.ServicePromotions.Count);
+            Assert.AreEqual(newPromotion, service.ServicePromotions[0].Promotion);
+            Assert.AreEqual(startDate, service.ServicePromotions[0].StartDate);
+            Assert.AreEqual(endDate, service.ServicePromotions[0].EndDate);
+            Assert.AreEqual(0, oldPromotion.ServicePromotions.Count);
+        }
+
+        [Test]
+        public void Test_SubstitutePromotion_ExceptionHandling()
+        {
+            var oldPromotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var newPromotion = new Promotion("Spring Sale", "25% Off", 25);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024,12,24,12,00,00);
+            var endDate = new DateTime(2024,12,28,12,00,00);
+
+            // Substitute with no existing promotion
+            var ex1 = Assert.Throws<Exception>(() => service.SubstitutePromotion(oldPromotion, newPromotion));
+            Assert.AreEqual("This old Promotion has not been assigned to this Service", ex1.Message);
+
+            service.AddPromotion(oldPromotion, startDate, endDate, null);
+
+            // Substitute with an already existing promotion
+            service.AddPromotion(newPromotion, startDate, endDate, null);
+            var ex2 = Assert.Throws<Exception>(() => service.SubstitutePromotion(oldPromotion, newPromotion));
+            Assert.AreEqual("This new Promotion is already assigned to this Service", ex2.Message);
+
+            // Substitute with null promotions
+            var ex3 = Assert.Throws<ArgumentNullException>(() => service.SubstitutePromotion(null, newPromotion));
+            Assert.AreEqual("Value cannot be null. (Parameter 'oldP')", ex3.Message);
+
+            var ex4 = Assert.Throws<ArgumentNullException>(() => service.SubstitutePromotion(oldPromotion, null));
+            Assert.AreEqual("Value cannot be null. (Parameter 'newP')", ex4.Message);
         }
         
         [Test]
-        public void Test_RemoveServiceFromPromotion_Successful()
+        public void Test_AddService_Successful()
         {
-            var service = new Service("Massage", StationCategory.Body, "Relaxing massage", 50m);
-            var promotion = new Promotion("Weekend Special", "20% off", 20);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024, 12, 24, 12, 0, 0);
+            var endDate = new DateTime(2024, 12, 28, 12, 0, 0);
 
-            promotion.AddServiceToPromotion(service);
-            promotion.RemoveServiceFromPromotion(service);
+            promotion.AddService(service, startDate, endDate, null);
 
-            Assert.AreEqual(0, promotion.Services.Count);
-            Assert.AreEqual(0, service.Promotions.Count);
+            Assert.AreEqual(1, promotion.ServicePromotions.Count);
+            Assert.AreEqual(1, service.ServicePromotions.Count);
+            Assert.AreEqual(promotion, promotion.ServicePromotions[0].Promotion);
+            Assert.AreEqual(service, promotion.ServicePromotions[0].Service);
+            Assert.AreEqual(startDate, promotion.ServicePromotions[0].StartDate);
+            Assert.AreEqual(endDate, promotion.ServicePromotions[0].EndDate);
         }
 
         [Test]
-        public void Test_RemoveServiceFromPromotion_ExceptionHandling()
+        public void Test_AddService_ExceptionHandling()
         {
-            var service = new Service("Facial", StationCategory.Hair, "Rejuvenating facial", 40m);
-            var promotion = new Promotion("Holiday Discount", "15% off", 15);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024, 12, 24, 12, 0, 0);
+            var endDate = new DateTime(2024, 12, 28, 12, 0, 0);
 
-            // Null argument
-            var ex1 = Assert.Throws<ArgumentNullException>(() => promotion.RemoveServiceFromPromotion(null));
+            // Null service
+            var ex1 = Assert.Throws<ArgumentNullException>(() => promotion.AddService(null, startDate, endDate, null));
             Assert.AreEqual("Value cannot be null. (Parameter 'service')", ex1.Message);
 
-            // Service not in promotion
-            var ex2 = Assert.Throws<InvalidOperationException>(() => promotion.RemoveServiceFromPromotion(service));
-            Assert.AreEqual("This Promotion is not assigned to this Promotion.", ex2.Message);
+            // Duplicate service promotion
+            promotion.AddService(service, startDate, endDate, null);
+            var ex2 = Assert.Throws<InvalidOperationException>(() =>
+                promotion.AddService(service, startDate, endDate, null));
+            Assert.AreEqual("This Service is already promoted by this Promotion.", ex2.Message);
+        }
+
+        [Test]
+        public void Test_RemoveService_Successful()
+        {
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var startDate = new DateTime(2024, 12, 24, 12, 0, 0);
+            var endDate = new DateTime(2024, 12, 28, 12, 0, 0);
+
+            promotion.AddService(service, startDate, endDate, null);
+            promotion.RemoveService(service);
+
+            Assert.AreEqual(0, promotion.ServicePromotions.Count);
+            Assert.AreEqual(0, service.ServicePromotions.Count);
+            Assert.IsFalse(ServicePromoted.GetAll().Any(sp => sp.Service == service && sp.Promotion == promotion));
+        }
+
+        [Test]
+        public void Test_RemoveService_ExceptionHandling()
+        {
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var service = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+
+            // Null service
+            var ex1 = Assert.Throws<ArgumentNullException>(() => promotion.RemoveService(null));
+            Assert.AreEqual("Value cannot be null. (Parameter 'service')", ex1.Message);
+
+            // Non-existent service promotion
+            var ex2 = Assert.Throws<InvalidOperationException>(() => promotion.RemoveService(service));
+            Assert.AreEqual("No matching ServicePromotion found.", ex2.Message);
         }
 
         [Test]
         public void Test_SubstituteService_Successful()
         {
-            var oldService = new Service("Haircut", StationCategory.Hair, "Classic haircut", 25m);
-            var newService = new Service("Manicure", StationCategory.Nail, "Spa manicure", 30m);
-            var promotion = new Promotion("Summer Sale", "10% off", 10);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var oldService = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var newService = new Service("Hair Wash", StationCategory.Hair, "Hair washing service", 20);
+            var startDate = new DateTime(2024, 12, 24, 12, 0, 0);
+            var endDate = new DateTime(2024, 12, 28, 12, 0, 0);
 
-            promotion.AddServiceToPromotion(oldService);
+            promotion.AddService(oldService, startDate, endDate, null);
             promotion.SubstituteService(oldService, newService);
 
-            Assert.AreEqual(1, promotion.Services.Count);
-            Assert.AreEqual(newService, promotion.Services[0]);
-            Assert.AreEqual(0, oldService.Promotions.Count);
-            Assert.AreEqual(1, newService.Promotions.Count);
+            Assert.AreEqual(1, promotion.ServicePromotions.Count);
+            Assert.AreEqual(newService, promotion.ServicePromotions[0].Service);
+            Assert.AreEqual(startDate, promotion.ServicePromotions[0].StartDate);
+            Assert.AreEqual(endDate, promotion.ServicePromotions[0].EndDate);
+            Assert.AreEqual(0, oldService.ServicePromotions.Count);
+            Assert.AreEqual(1, newService.ServicePromotions.Count);
         }
 
         [Test]
         public void Test_SubstituteService_ExceptionHandling()
         {
-            var oldService = new Service("Haircut", StationCategory.Hair, "Classic haircut", 25m);
-            var newService = new Service("Manicure", StationCategory.Nail, "Spa manicure", 30m);
-            var externalService = new Service("Pedicure", StationCategory.Nail, "Deluxe pedicure", 35m);
-            var promotion = new Promotion("Holiday Sale", "20% off", 20);
+            var promotion = new Promotion("Holiday Sale", "20% Off", 20);
+            var oldService = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+            var newService = new Service("Hair Wash", StationCategory.Hair, "Hair washing service", 20);
 
-            promotion.AddServiceToPromotion(oldService);
-
-            // Null arguments
+            // Null old or new service
             var ex1 = Assert.Throws<ArgumentNullException>(() => promotion.SubstituteService(null, newService));
             Assert.AreEqual("Value cannot be null. (Parameter 'oldS')", ex1.Message);
 
@@ -129,84 +223,17 @@ public class ServicePromotionTests
             Assert.AreEqual("Value cannot be null. (Parameter 'newS')", ex2.Message);
 
             // Old service not in promotion
-            var ex3 = Assert.Throws<Exception>(() => promotion.SubstituteService(externalService, newService));
-            Assert.AreEqual("This Promotion does not have this Service", ex3.Message);
+            var ex3 = Assert.Throws<Exception>(() => promotion.SubstituteService(oldService, newService));
+            Assert.AreEqual("This old Service has not been assigned to this Promotion", ex3.Message);
 
             // New service already in promotion
-            promotion.AddServiceToPromotion(newService);
+            promotion.AddService(oldService, new DateTime(2024, 12, 24, 12, 0, 0),
+                new DateTime(2024, 12, 28, 12, 0, 0), null);
+            promotion.AddService(newService, new DateTime(2024, 12, 30, 12, 0, 0),
+                new DateTime(2025, 1, 5, 12, 0, 0), null);
+
             var ex4 = Assert.Throws<Exception>(() => promotion.SubstituteService(oldService, newService));
-            Assert.AreEqual("This Promotion already has this Service", ex4.Message);
+            Assert.AreEqual("This new Service is already assigned to this Promotion", ex4.Message);
         }
-
-        [Test]
-        public void Test_RemovePromotionFromService_Successful()
-        {
-            var service = new Service("Pedicure", StationCategory.Nail, "Deluxe pedicure", 35m);
-            var promotion = new Promotion("Winter Sale", "25% off", 25);
-
-            service.AddPromotionToService(promotion);
-            service.RemovePromotionFromService(promotion);
-
-            Assert.AreEqual(0, service.Promotions.Count);
-            Assert.AreEqual(0, promotion.Services.Count);
-        }
-
-        [Test]
-        public void Test_RemovePromotionFromService_ExceptionHandling()
-        {
-            var service = new Service("Massage", StationCategory.Body, "Relaxing massage", 50m);
-            var promotion = new Promotion("Spring Sale", "15% off", 15);
-
-            // Null argument
-            var ex1 = Assert.Throws<ArgumentNullException>(() => service.RemovePromotionFromService(null));
-            Assert.AreEqual("Value cannot be null. (Parameter 'promotion')", ex1.Message);
-
-            // Promotion not in service
-            var ex2 = Assert.Throws<InvalidOperationException>(() => service.RemovePromotionFromService(promotion));
-            Assert.AreEqual("This Service does not have this Promotion.", ex2.Message);
-        }
-
-        [Test]
-        public void Test_SubstitutePromotion_Successful()
-        {
-            var oldPromotion = new Promotion("Black Friday", "50% off", 20);
-            var newPromotion = new Promotion("Cyber Monday", "40% off", 20);
-            var service = new Service("Facial", StationCategory.Hair, "Rejuvenating facial", 40m);
-
-            service.AddPromotionToService(oldPromotion);
-            service.SubstitutePromotion(oldPromotion, newPromotion);
-
-            Assert.AreEqual(1, service.Promotions.Count);
-            Assert.AreEqual(newPromotion, service.Promotions[0]);
-            Assert.AreEqual(0, oldPromotion.Services.Count);
-            Assert.AreEqual(1, newPromotion.Services.Count);
-        }
-
-        [Test]
-        public void Test_SubstitutePromotion_ExceptionHandling()
-        {
-            var oldPromotion = new Promotion("Black Friday", "50% off", 20);
-            var newPromotion = new Promotion("Cyber Monday", "40% off", 20);
-            var externalPromotion = new Promotion("Holiday Sale", "25% off", 25);
-            var service = new Service("Haircut", StationCategory.Hair, "Classic haircut", 25m);
-
-            service.AddPromotionToService(oldPromotion);
-
-            // Null arguments
-            var ex1 = Assert.Throws<ArgumentNullException>(() => service.SubstitutePromotion(null, newPromotion));
-            Assert.AreEqual("Value cannot be null. (Parameter 'oldP')", ex1.Message);
-
-            var ex2 = Assert.Throws<ArgumentNullException>(() => service.SubstitutePromotion(oldPromotion, null));
-            Assert.AreEqual("Value cannot be null. (Parameter 'newP')", ex2.Message);
-
-            // Old promotion not in service
-            var ex3 = Assert.Throws<Exception>(() => service.SubstitutePromotion(externalPromotion, newPromotion));
-            Assert.AreEqual("This Service does not have this Promotion", ex3.Message);
-
-            // New promotion already in service
-            service.AddPromotionToService(newPromotion);
-            var ex4 = Assert.Throws<Exception>(() => service.SubstitutePromotion(oldPromotion, newPromotion));
-            Assert.AreEqual("This Service already has this Promotion", ex4.Message);
-        }
-        
+    
 }

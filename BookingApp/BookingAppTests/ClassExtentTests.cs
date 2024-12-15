@@ -23,14 +23,6 @@ public class ClassExtentTests
         Assert.IsTrue(WorkStation.GetAll().Contains(workStation));
     }
     
-    //ServiceBooked
-    [Test]
-    public void ServiceBookedExtent_StoresCorrectClass()
-    {
-        var serviceBooked = new ServiceBooked(DateTime.Now.AddDays(1));
-        Assert.AreEqual(1, ServiceBooked.GetAll().Count);
-        Assert.IsTrue(ServiceBooked.GetAll().Contains(serviceBooked));
-    }
     
     //Service
     [Test]

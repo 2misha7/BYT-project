@@ -12,7 +12,7 @@ public class ModificationsTests
         FileOperations.FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\testData.json");
         File.WriteAllText(FileOperations.FilePath, string.Empty);
         var workstation = new WorkStation(StationCategory.Body, 10m);
-        var serviceBooked = new ServiceBooked(new DateTime(2025, 1, 1, 14, 30, 0));
+        //var serviceBooked = new ServicePromoted(new DateTime(2025, 1, 1, 14, 30, 0));
         var service = new Service("Name", StationCategory.Body, "Description", 10m);
         var review = new Review(ReviewRating.Awful, "Comment", DateTime.Now);
         var promotion = new Promotion("Name", "Description", 10);
@@ -59,31 +59,6 @@ public class ModificationsTests
     }
 
     
-    //ServiceBooked
-    [Test]
-    public void ServiceBooked_ObjectModified_ClassExtentModified()
-    {
-        var serviceBooked = ServiceBooked.GetAll().FirstOrDefault();
-        serviceBooked.ServiceTime = new DateTime(2026, 1, 1, 14, 30, 0);
-
-
-        var sameServiceBookedInExtent = ServiceBooked.GetAll().FirstOrDefault(s => s.Id == serviceBooked.Id);
-        Assert.AreEqual(serviceBooked.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-    }
-
-    [Test]
-    public void ServiceBooked_NewObjectModified_ClassExtentModified()
-    {
-        var newServiceBooked =  new ServiceBooked(new DateTime(2025, 1, 1, 14, 30, 0));
-
-        newServiceBooked.ServiceTime = new DateTime(2026, 1, 1, 14, 30, 0);
-        var sameServiceBookedInExtent = ServiceBooked.GetAll().FirstOrDefault(w => w.Id == newServiceBooked.Id);
-        
-        
-        Assert.AreEqual(newServiceBooked.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-        Assert.AreEqual(sameServiceBookedInExtent.ServiceTime, new DateTime(2026, 1, 1, 14, 30, 0));
-    }
     
     //Review 
     [Test]
