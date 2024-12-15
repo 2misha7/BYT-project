@@ -342,4 +342,53 @@ public class Service: ModelBase<Service>
        RemoveBeautyFromService(); 
        AddBeautyProToService(newBP); 
    }
+   //Service-Booking (many-to-one)
+   private Booking? _booking; 
+   public Booking? Booking => _booking;
+   public void AssignToBooking(Booking booking)
+   {
+       if (booking == null)
+           throw new ArgumentNullException(nameof(booking));
+       if (_isUpdating)
+       {
+           return;
+       }
+       if (_booking != null)
+       {
+           throw new InvalidOperationException("This Service is already in the Booking.");
+       }
+       _isUpdating = true;
+       _booking = booking;
+       booking.AddService(this);
+       _isUpdating = false;
+   }
+   public void RemoveFromBooking()
+   {
+       if (_isUpdating) return;
+       if (_booking == null) 
+           throw new InvalidOperationException("This service is not assigned to a Booking");
+       _isUpdating = true;
+       var previuosBooking = _booking;
+       _booking = null;
+       previuosBooking.RemoveService(this); 
+       _isUpdating = false;
+        
+   }
+   public void ChangeBookingAssignedToACoupon(Booking newB)
+   {
+       if (newB == null)
+           throw new ArgumentNullException(nameof(newB));
+       if (_booking == newB)
+       {
+           throw new InvalidOperationException("This Booking is already assigned to exactly this Service");
+       }
+
+       if (_booking == null)
+       {
+           throw new InvalidOperationException(
+               "It is not possible to assign this Service to a new Booking, because it is not assigned to any");
+       }
+       RemoveFromBooking(); 
+       AssignToBooking(newB); 
+   }
 }

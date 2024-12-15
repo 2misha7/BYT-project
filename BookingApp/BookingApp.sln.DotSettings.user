@@ -1,12 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\MY PC\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_BookingApp.1453353181\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=06d975eb_002Dade2_002D484c_002Db00c_002D2a9162a877e6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_AddPromotion_Successful" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=80c52716_002D87a1_002D4895_002D94c4_002D68a6e37e69cb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ServicePromotionTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ServicePromotionTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BeautyProfessionalServiceTests.Test_AddServiceToBeautyProfessional_Successful&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.BeautyProfessionalServiceTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b09c9f4c_002Decad_002D4c36_002Daabb_002Dbe1c814502fb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ReviewServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ReviewServiceTests&lt;/TestId&gt;&#xD;
@@ -17,6 +16,13 @@
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests.Test_AddWorkStationToCoworking_StartedInWorkstation&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CoworkingWorkstationTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.CustomerCustomerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ServiceBookingTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f62b6d58_002D3b0c_002D4242_002Db1e4_002Daabe84757c84/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ServicePromotionTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ServicePromotionTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50179CA5-27CB-44B5-B6A2-5F4A10B9FF49::net8.0::BookingAppTests.AssosiationsTests.ServiceBookingTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

@@ -195,4 +195,59 @@ public class Booking : ModelBase<Booking>
         RemovePaymentFromBooking(); 
         AddPaymentToBooking(newPayment); 
     }
+    //Booking-Service (one-to-many)
+    private readonly List<Service> _services = new();
+    public IReadOnlyList<Service> Services => _services.AsReadOnly();
+    public void AddService(Service service)
+    {
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_services.Contains(service))
+            throw new InvalidOperationException("This Booking already has this Service.");
+        _isUpdating = true;
+        _services.Add(service);
+        service.AssignToBooking(this);
+        _isUpdating = false;
+    }
+    public void RemoveService(Service service)
+    {
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+
+        if (_isUpdating) return; 
+        if (!_services.Contains(service)) throw new InvalidOperationException("This Booking does not have this Service."); 
+
+        _isUpdating = true;
+        _services.Remove(service);
+        service.RemoveFromBooking();
+        _isUpdating = false;
+    }
+    public void SubstituteService(Service oldS, Service newS)
+    {
+        if (oldS == null)
+            throw new ArgumentNullException(nameof(oldS));
+        if (newS == null)
+            throw new ArgumentNullException(nameof(newS));
+        if (!_services.Contains(oldS))
+        {
+            throw new Exception("This Booking does not have this old Service");
+        }
+
+        if (_services.Contains(newS))
+        {
+            throw new Exception("This Booking already had this new Service");
+        }
+        
+        if (newS.Booking != null)
+        {
+            throw new Exception("It is not possible to add this Service to a Booking, as it is already assigned to a Booking in the system");
+        }
+        
+        RemoveService(oldS); 
+        AddService(newS);
+    }
 }
