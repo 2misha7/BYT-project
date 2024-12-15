@@ -20,7 +20,7 @@ public class Repository
             {nameof(Promotion), Promotion.GetAll()}, 
             {nameof(Review), Review.GetAll()}, 
             {nameof(Service), Service.GetAll()},
-            {nameof(ServiceBooked), ServiceBooked.GetAll()}, 
+            {nameof(ServicePromoted), ServicePromoted.GetAll()}, 
             {nameof(WorkStation), WorkStation.GetAll()}, 
         };
         FileOperations.WriteToFile(data);
@@ -42,7 +42,7 @@ public class Repository
             Promotion.LoadClassExtentFromFile();
             Review.LoadClassExtentFromFile();
             Service.LoadClassExtentFromFile();
-            ServiceBooked.LoadClassExtentFromFile();
+            ServicePromoted.LoadClassExtentFromFile();
             WorkStation.LoadClassExtentFromFile();
         }
         catch (Exception ex)

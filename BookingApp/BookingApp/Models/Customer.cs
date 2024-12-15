@@ -293,5 +293,129 @@ public class Customer : ModelBase<Customer>, IPerson
         AddBooking(newBooking);
     }
     
+    //Customer-Customer Association 
+    private readonly List<Customer> _invitedCustomers = new();
+    public IReadOnlyList<Customer> InvitedCustomers => _invitedCustomers.AsReadOnly();
+ 
+    private Customer? _inviter; 
+    public Customer? Inviter => _inviter;
+    public void AddInvitedCustomer(Customer customer)
+    {
+        if (customer == null)
+            throw new ArgumentNullException(nameof(customer));
+        if (customer == this)
+        {
+            throw new InvalidOperationException("It is not possible for customers to invite themselves.");
+        }
+
+        if (customer._invitedCustomers.Contains(this))
+        {
+            throw new InvalidOperationException("It is not possible to invite a customer who has invited you.");
+        }
+        if (_isUpdating)
+        {
+            return; 
+        }
+        if (_invitedCustomers.Contains(customer))
+            throw new InvalidOperationException("This Customer has already invited this new Customer.");
+        _isUpdating = true;
+        _invitedCustomers.Add(customer);
+        customer.AddInviter(this);
+        _isUpdating = false;
+    }
+
+    public void AddInviter(Customer customer)
+    {
+        if (customer == null)
+            throw new ArgumentNullException(nameof(customer));
+        if (customer == this)
+        {
+            throw new InvalidOperationException("It is not possible for customers to invite themselves.");
+        }
+        if (this._invitedCustomers.Contains(customer))
+        {
+            throw new InvalidOperationException("It is not possible to be invited by a Customer who has invited you.");
+        }
+
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (_inviter != null)
+        {
+            throw new InvalidOperationException("This Customer alread has an inviter.");
+        }
+        _isUpdating = true;
+        _inviter = customer;
+        customer.AddInvitedCustomer(this);
+        _isUpdating = false;
+    }
+    public void RemoveInvitedCustomer(Customer customer)
+    {
+        if (customer == null)
+            throw new ArgumentNullException(nameof(customer));
+
+        if (_isUpdating) return; 
+        if (!_invitedCustomers.Contains(customer)) throw new InvalidOperationException("This Customer hasn't invited this new Customer."); 
+
+        _isUpdating = true;
+        _invitedCustomers.Remove(customer);
+        customer.RemoveInviter();
+        _isUpdating = false;
+    }
+
+    public void RemoveInviter()
+    {
+        if (_isUpdating) return;
+        if (_inviter == null) 
+            throw new InvalidOperationException("This Customer does not have an inviter");
+        _isUpdating = true;
+        var previousCustomer = _inviter;
+        _inviter = null;
+        previousCustomer.RemoveInvitedCustomer(this); 
+        _isUpdating = false;
+    }
     
+    public void SubstituteInvitedCustomer(Customer oldC, Customer newC)
+    {
+        if (oldC == null)
+            throw new ArgumentNullException(nameof(oldC));
+        if (newC == null)
+            throw new ArgumentNullException(nameof(newC));
+        if (!_invitedCustomers.Contains(oldC))
+        {
+            throw new Exception("This Customer has not invited this old Customer");
+        }
+
+        if (_invitedCustomers.Contains(newC))
+        {
+            throw new Exception("This Customer has already invited this new Customer");
+        }
+        
+        if (newC.Inviter != null)
+        {
+            throw new Exception("It is not possible to invite this new Customer, as this Customer has already been invited to the system");
+        }
+        
+        RemoveInvitedCustomer(oldC); 
+        AddInvitedCustomer(newC);
+    }
+    
+    public void ChangeInviter(Customer newInviter)
+    {
+        if (newInviter == null)
+            throw new ArgumentNullException(nameof(newInviter));
+        if (_inviter == newInviter)
+        {
+            throw new InvalidOperationException("This Customer has already been invited by exactly this inviter");
+        }
+
+        if (_inviter == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign new inviter to this Customer, because it has not been invited to the system, by any");
+        }
+        RemoveInviter(); 
+        AddInviter(newInviter); 
+    }
 }

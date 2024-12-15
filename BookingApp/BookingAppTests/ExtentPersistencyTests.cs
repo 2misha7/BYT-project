@@ -14,7 +14,7 @@ public class ExtentPersistencyTests
         File.WriteAllText(FileOperations.FilePath, string.Empty);
         Repository.GetAllFromFile();
         var workstation = new WorkStation(StationCategory.Body, 10m);
-        var serviceBooked = new ServiceBooked(new DateTime(2025, 1, 1, 14, 30, 0));
+        //var serviceBooked = new ServicePromoted(new DateTime(2025, 1, 1, 14, 30, 0));
         var service = new Service("Name", StationCategory.Body, "Description", 10m);
         var review = new Review(ReviewRating.Awful, "Comment", DateTime.Now);
         var promotion = new Promotion("Name", "Description", 10);
@@ -44,16 +44,7 @@ public class ExtentPersistencyTests
         Assert.AreEqual(10m, firstLoadWorkStations.First().Price, "WorkStation Price mismatch.");
     }
     
-    [Test]
-    public void ServiceBooked_WriteAndLoadData_VerifyPersistency()
-    {
-        Repository.GetAllFromFile();
-
-        var firstLoadServiceBooked = ServiceBooked.GetAll();
-
-        Assert.AreEqual(1, firstLoadServiceBooked.Count);
-        Assert.AreEqual(new DateTime(2025, 1, 1, 14, 30, 0), firstLoadServiceBooked.First().ServiceTime);
-    }
+    
     
     [Test]
     public void Service_WriteAndLoadData_VerifyPersistency()

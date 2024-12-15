@@ -83,4 +83,80 @@ public class Promotion : ModelBase<Promotion>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    private bool _isUpdating = false;
+    
+    //Promotion-ServicePromoted-Service
+    private readonly List<ServicePromoted> _servicePromotions = new();
+    public IReadOnlyList<ServicePromoted> ServicePromotions => _servicePromotions.AsReadOnly(); 
+    public void AddService(Service service, DateTime startDate, DateTime endDate, ServicePromoted? servicePromoted)
+    {
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+        if (_servicePromotions.Any(sp => sp.Service == service && sp.Promotion == this))
+        {
+            throw new InvalidOperationException("This Service is already promoted by this Promotion.");
+        }
+        if (servicePromoted == null)
+        {
+            servicePromoted = new ServicePromoted(startDate, endDate, this, service);
+        }
+        
+
+        _isUpdating = true;
+        _servicePromotions.Add(servicePromoted);
+        service.AddPromotion(this, startDate, endDate, servicePromoted);
+        _isUpdating = false;
+    }
+    public void RemoveService(Service service)
+    {
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+        var servicePromoted = _servicePromotions.FirstOrDefault(sp => sp.Service == service && sp.Promotion == this);
+        if (servicePromoted == null)
+        {
+            throw new InvalidOperationException("No matching ServicePromotion found.");
+            
+        }
+        _isUpdating = true;
+        _servicePromotions.Remove(servicePromoted);
+        service.RemovePromotion(this);
+        var spToDelete = ServicePromoted.GetAll().FirstOrDefault(sp => sp.Service == service && sp.Promotion == this);
+        if (spToDelete != null)
+        {
+            ServicePromoted.Delete(servicePromoted);
+        }
+        _isUpdating = false;
+    }
+    
+    public void SubstituteService(Service oldS, Service newS)
+    {
+        if (oldS == null)
+            throw new ArgumentNullException(nameof(oldS));
+        if (newS == null)
+            throw new ArgumentNullException(nameof(newS));
+        if (!_servicePromotions.Any(sp => sp.Service == oldS && sp.Promotion == this))
+        {
+            throw new Exception("This old Service has not been assigned to this Promotion");
+        }
+
+        if (_servicePromotions.Any(sp => sp.Service == newS && sp.Promotion == this))
+        {
+            throw new Exception("This new Service is already assigned to this Promotion");
+        }
+
+        var spToDelete = _servicePromotions.First(sp => sp.Service == oldS && sp.Promotion == this);
+        RemoveService(oldS); 
+        AddService(newS, spToDelete.StartDate, spToDelete.EndDate, null);
+    }
+    
+    
 }

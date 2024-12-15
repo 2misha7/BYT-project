@@ -59,6 +59,67 @@ public class Review: ModelBase<Review>
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
+    
+    //Review - Service many-to-one, composition
+    private Service? _service; 
+    public Service? Service => _service;
+    private bool _isUpdating = false;
+    
+    public void AssignServiceToReview(Service service)
+    {
+        if (service == null)
+            throw new ArgumentNullException(nameof(service));
+        if (_isUpdating)
+        {
+            return;
+        }
+        if (_service != null)
+        {
+            throw new InvalidOperationException("This Review is already assigned to a Service in the system.");
+        }
+        _isUpdating = true;
+        _service = service;
+        service.AddReviewToService(this);
+        _isUpdating = false;
+    }
+    
+    public void RemoveServiceFromReview()
+    {
+        if (_isUpdating) return;
+        if (_service == null) 
+            throw new InvalidOperationException("This Review is not assigned to a Service");
+        _isUpdating = true;
+        var previousS = _service;
+        _service = null;
+        previousS.RemoveReviewFromService(this); 
+        _isUpdating = false;
+        
+    }
+    public void ChangeServiceAssigned(Service newService)
+    {
+        if (newService == null)
+            throw new ArgumentNullException(nameof(newService));
+        if (_service == newService)
+        {
+            throw new InvalidOperationException("This Service is already assigned to exactly this Review");
+        }
+
+        if (_service == null)
+        {
+            throw new InvalidOperationException(
+                "It is not possible to assign the review to another service, because it is not assigned to any");
+        }
+        RemoveServiceFromReview(); 
+        AssignServiceToReview(newService); 
+    }
+    public void DeleteReview()
+    {
+        if (_service != null)
+        {
+            RemoveServiceFromReview();    
+        }
+        Delete(this);
+    }
 }
 
 public enum ReviewRating
