@@ -152,11 +152,18 @@ public class ServiceBookingTests
     {
         var booking = new Booking();
         var oldService = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
-        var newService = new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+        var newService = new Service("Brades", StationCategory.Hair, "Basic haircut service", 15);
 
         booking.AddService(oldService);
+        foreach (var VARIABLE in booking.Services)
+        {
+            Console.WriteLine(VARIABLE.Name);
+        }
+       
         booking.SubstituteService(oldService, newService);
-
+       
+        
+        
         Assert.AreEqual(1, booking.Services.Count);
         Assert.AreEqual(newService, booking.Services[0]);
         Assert.AreEqual(booking, newService.Booking);
@@ -168,17 +175,57 @@ public class ServiceBookingTests
     {
         var booking = new Booking();
         var oldService =  new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
-        var newService =  new Service("Haircut", StationCategory.Hair, "Basic haircut service", 15);
+        var newService =  new Service("Brades", StationCategory.Hair, "Basic haircut service", 15);
 
         // Substitute a service not in the booking
         var ex1 = Assert.Throws<Exception>(() => booking.SubstituteService(oldService, newService));
         Assert.AreEqual("This Booking does not have this old Service", ex1.Message);
 
         booking.AddService(oldService);
-        
+        foreach(var s in booking.Services)
+        {
+            Console.WriteLine(s.Name);
+        }
         // Substitute with a service already in the booking
         booking.AddService(newService);
+        foreach(var s in booking.Services)
+        {
+            Console.WriteLine(s.Name);
+        }
         var ex2 = Assert.Throws<Exception>(() => booking.SubstituteService(oldService, newService));
         Assert.AreEqual("This Booking already had this new Service", ex2.Message);
+    }
+    
+   
+    [Test]
+    public void Test_DeleteService_WillBeDeletedFromBooking()
+    {
+        var booking = new Booking();
+        var service = new Service("name", StationCategory.Body, "desc", 1);
+        var service1 = new Service("name", StationCategory.Body, "desc", 1);
+        booking.AddService(service);
+        booking.AddService(service1);
+        
+        service.DeleteService();
+        Assert.AreEqual(1, booking.Services.Count);
+        Assert.AreEqual(service1, booking.Services[0]);
+        
+        
+    }
+    
+    
+    [Test]
+    public void Test_DeleteBooking_ServiceRemainsInTheSystem()
+    {
+        var booking = new Booking();
+        var service = new Service("name", StationCategory.Body, "desc", 1);
+        var service1 = new Service("name", StationCategory.Body, "desc", 1);
+        booking.AddService(service);
+        booking.AddService(service1);
+       
+        
+        booking.DeleteBooking();
+        Assert.IsNull(service.Booking);
+        Assert.IsNull(service1.Booking);
     }
 }

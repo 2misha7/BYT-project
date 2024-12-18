@@ -158,7 +158,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
         }
     }
     private ICollection<string> _specializations = null!;
-    //todo empty string
+    
     public ICollection<string> Specializations
     {
         get => _specializations;
@@ -194,6 +194,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
             Experience = experience;
             Specializations = specializations;
             AccountType = accountType;
+            _portfolioPage = new PortfolioPage("Fake");
             Add(this);
         }
         catch (ArgumentException e)
@@ -208,21 +209,26 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     }
     
     // One-to-One Relationship BeautyPro - PortfolioPage
-    private PortfolioPage? _portfolioPage;
-    public PortfolioPage? PortfolioPage => _portfolioPage;
+    private PortfolioPage _portfolioPage;
+
+    public PortfolioPage PortfolioPage
+    {
+        get => _portfolioPage;
+        set => _portfolioPage = value;
+    }
     private bool _isUpdating = false;
     
     public void AddPortfolioPageToBeautyPro(PortfolioPage portfolioPage)
     {
-        if (portfolioPage == null)
-            throw new ArgumentNullException(nameof(portfolioPage));
-
         if (_isUpdating)
         {
             return;
         }
 
-        if (_portfolioPage != null)
+        if (portfolioPage == null)
+            throw new ArgumentNullException(nameof(portfolioPage));
+        
+        if (_portfolioPage.Description != "Fake")
         {
             throw new InvalidOperationException("This Beauty Pro already has a PortfolioPage.");
         }
@@ -236,7 +242,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     public void RemovePortfolioPageFromBeautyPro()
     {
         if (_isUpdating) return;
-        if (_portfolioPage == null) 
+        if (_portfolioPage.Description == "Fake") 
             throw new InvalidOperationException("This BeautyPro does not have a PortfolioPage");
         _isUpdating = true;
         var previousPortfolioPage = _portfolioPage;
@@ -245,6 +251,8 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
         _isUpdating = false;
         
     }
+    
+    
     
     public void ChangePortfolioPageForBeautyPro(PortfolioPage newPortfolioPage)
     {
@@ -311,7 +319,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
             throw new Exception("This BeautyPro already had this new Service");
         }
         
-        if (newS.BeautyProfessional != null)
+        if (newS.BeautyProfessional._firstName != "fake")
         {
             throw new Exception("It is not possible to add this new Service to a BeautyPro, as it is already assigned to a BeautyPro in the system");
         }

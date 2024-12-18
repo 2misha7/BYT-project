@@ -45,6 +45,7 @@ public class Post : ModelBase<Post>
     {
         try
         {
+            _portfolioPage = new PortfolioPage("FakePageDescription");
             ImageLink = imageLink;
             Text = text;
             Add(this);
@@ -59,9 +60,13 @@ public class Post : ModelBase<Post>
     }
     
     //Association Post - PortfolioPage many-to-one (composition)
-    private PortfolioPage? _portfolioPage; 
+    private PortfolioPage _portfolioPage;
 
-    public PortfolioPage? PortfolioPage => _portfolioPage;
+    public PortfolioPage PortfolioPage
+    {
+        get => _portfolioPage;
+        set => _portfolioPage = value;
+    }
     private bool _isUpdating = false;
     public void AddPortfolioPageToPost(PortfolioPage portfolioPage)
     {
@@ -71,7 +76,8 @@ public class Post : ModelBase<Post>
         {
             return;
         }
-        if (_portfolioPage != null)
+
+        if (_portfolioPage.Description != "FakePageDescription")
         {
             throw new InvalidOperationException("This Post is already assigned to a PortfolioPage in the system.");
         }
@@ -81,10 +87,11 @@ public class Post : ModelBase<Post>
         _isUpdating = false;
     }
     
+    //does not make sense
     public void RemovePortfolioPageFromPost()
     {
         if (_isUpdating) return;
-        if (_portfolioPage == null) 
+        if (_portfolioPage.Description == "FakePageDescription") 
             throw new InvalidOperationException("This Post is not assigned to a PortfolioPage");
         _isUpdating = true;
         var previousPP = _portfolioPage;
@@ -94,30 +101,27 @@ public class Post : ModelBase<Post>
         
     }
 
-    public void ChangePortfolioPagePostIn(PortfolioPage newPortfolioPage)
-    {
-        if (newPortfolioPage == null)
-            throw new ArgumentNullException(nameof(newPortfolioPage));
-        if (_portfolioPage == newPortfolioPage)
-        {
-            throw new InvalidOperationException("This Post is already assigned to exactly this PortfolioPage");
-        }
-
-        if (_portfolioPage == null)
-        {
-            throw new InvalidOperationException(
-                "It is not possible to assign the post to another portfolioPage, because it is not assigned to any");
-        }
-        RemovePortfolioPageFromPost(); 
-        AddPortfolioPageToPost(newPortfolioPage); 
-    }
+    //public void ChangePortfolioPagePostIn(PortfolioPage newPortfolioPage)
+    //{
+    //    if (newPortfolioPage == null)
+    //        throw new ArgumentNullException(nameof(newPortfolioPage));
+    //    if (_portfolioPage == newPortfolioPage)
+    //    {
+    //        throw new InvalidOperationException("This Post is already assigned to exactly this PortfolioPage");
+    //    }
+//
+    //    if (_portfolioPage == null)
+    //    {
+    //        throw new InvalidOperationException(
+    //            "It is not possible to assign the post to another portfolioPage, because it is not assigned to any");
+    //    }
+    //    RemovePortfolioPageFromPost(); 
+    //    AddPortfolioPageToPost(newPortfolioPage); 
+    //}
     
     public void DeletePost()
     {
-        if (_portfolioPage != null)
-        {
-            RemovePortfolioPageFromPost();    
-        }
+        RemovePortfolioPageFromPost();
         Delete(this);
     }
     

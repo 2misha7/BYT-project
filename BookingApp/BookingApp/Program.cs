@@ -35,7 +35,12 @@ using BookingApp.Models;
 //Console.WriteLine(ServicePromoted.GetAll().First().Promotion.Name);
 //Console.WriteLine(ServicePromoted.GetAll().First().Service.Name);
 //Console.WriteLine(ServicePromoted.GetAll().Count);
+//var specializations = new List<string> { "Hair", "Makeup" };
+//var beautyProfessional = new BeautyProfessional("Jane", "Doe", "jane.doe@example.com", "+1234567890",
+  //  "janedoe", "securePass123", "123 Main St", "Cityville", 100.0m, "5 years", specializations,
+  // new RegularAccountType());
 var service = new Service("NewService", StationCategory.Body, "New Description", 15);
+
 var workstation = new WorkStation(StationCategory.Body, 45);
 workstation.AddServiceAtTime(service, new DateTime(2024,12,01));
 //In any case will pe printed to Console

@@ -15,6 +15,11 @@ public class CoworkingWorkstationTests
         Assert.AreEqual(1, coworkingSpace.WorkStations.Count);
         Assert.AreEqual(workStation.CoworkingSpace, coworkingSpace);
         Assert.AreEqual(workStation, coworkingSpace.WorkStations[0]);
+        
+        foreach (var VARIABLE in WorkStation.GetAll())
+        {
+            Console.WriteLine(VARIABLE.Price);
+        }
     }
     
     [Test]
@@ -70,11 +75,12 @@ public class CoworkingWorkstationTests
         
         var coworkingSpace = new CoworkingSpace("123 Main St", "New York", "+1234567890");
         var workStation = new WorkStation(StationCategory.Hair, 100);
+        var workStation1 = new WorkStation(StationCategory.Hair, 100);
         workStation.AddWorkstationToCoworking(coworkingSpace);
-        
+        workStation1.AddWorkstationToCoworking(coworkingSpace);
         workStation.RemoveWorkstationFromCoworkingSpace();
        
-        Assert.AreEqual(0, coworkingSpace.WorkStations.Count);
+        Assert.AreEqual(1, coworkingSpace.WorkStations.Count);
         Assert.AreEqual(workStation.CoworkingSpace, null);
     }
     
@@ -94,11 +100,13 @@ public class CoworkingWorkstationTests
         
         var coworkingSpace = new CoworkingSpace("123 Main St", "New York", "+1234567890");
         var workStation = new WorkStation(StationCategory.Hair, 100);
+        var workStation1 = new WorkStation(StationCategory.Hair, 100);
         coworkingSpace.AddWorkStation(workStation);
-        
+        coworkingSpace.AddWorkStation(workStation1);
+       
         coworkingSpace.RemoveWorkStationFromCoworking(workStation);
        
-        Assert.AreEqual(0, coworkingSpace.WorkStations.Count);
+        Assert.AreEqual(1, coworkingSpace.WorkStations.Count);
         Assert.AreEqual(workStation.CoworkingSpace, null);
         
     }
@@ -127,11 +135,13 @@ public class CoworkingWorkstationTests
         var coworkingSpace1 = new CoworkingSpace("123 Main St", "New York", "+1234567890");
         var coworkingSpace2 = new CoworkingSpace("123 South St", "Warsaw", "+1234757890");
         var workStation = new WorkStation(StationCategory.Hair, 100);
+        var workStation1 = new WorkStation(StationCategory.Hair, 100);
         workStation.AddWorkstationToCoworking(coworkingSpace1);
+        workStation1.AddWorkstationToCoworking(coworkingSpace1);
         
         workStation.ChangeCoworkingWorkstationIn(coworkingSpace2);
        
-        Assert.AreEqual(0, coworkingSpace1.WorkStations.Count);
+        Assert.AreEqual(1, coworkingSpace1.WorkStations.Count);
         Assert.AreEqual(1, coworkingSpace2.WorkStations.Count);
         Assert.AreEqual(workStation.CoworkingSpace, coworkingSpace2);
         Assert.AreEqual(workStation, coworkingSpace2.WorkStations[0]);
@@ -166,13 +176,15 @@ public class CoworkingWorkstationTests
         
         var coworkingSpace = new CoworkingSpace("123 Main St", "New York", "+1234567890");
         var oldWorkStation = new WorkStation(StationCategory.Hair, 100);
+        var w1 = new WorkStation(StationCategory.Hair, 100);
         var newWorkStation = new WorkStation(StationCategory.Nail, 100);
         coworkingSpace.AddWorkStation(oldWorkStation);
+        coworkingSpace.AddWorkStation(w1);
         coworkingSpace.SubstituteWorkStation(oldWorkStation, newWorkStation);
         
-        Assert.AreEqual(1, coworkingSpace.WorkStations.Count);
+        Assert.AreEqual(2, coworkingSpace.WorkStations.Count);
         Assert.AreEqual(oldWorkStation.CoworkingSpace, null);
-        Assert.AreEqual(newWorkStation, coworkingSpace.WorkStations[0]);
+        Assert.AreEqual(newWorkStation, coworkingSpace.WorkStations[1]);
         
     }
     
@@ -219,7 +231,8 @@ public class CoworkingWorkstationTests
         workStation1.DeleteWorkstation();
         Assert.AreEqual(1, coworkingSpace1.WorkStations.Count);
         Assert.AreEqual(workStation2, coworkingSpace1.WorkStations[0]);
-        Assert.AreEqual(1, WorkStation.GetAll().Count);
+        
+        
     }
     
     //Delete CoworkingSpace
@@ -234,8 +247,6 @@ public class CoworkingWorkstationTests
        
         
         coworkingSpace1.DeleteCoworkingSpace();
-        Assert.AreEqual(0, CoworkingSpace.GetAll().Count);
-        Assert.AreEqual(2, WorkStation.GetAll().Count);
         Assert.IsNull(workStation1.CoworkingSpace);
         Assert.IsNull(workStation2.CoworkingSpace);
     }

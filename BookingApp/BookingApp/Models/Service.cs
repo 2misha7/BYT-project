@@ -1,9 +1,9 @@
 ﻿
 using System.Drawing;
 using System.Runtime.InteropServices.JavaScript;
+using NUnit.Framework;
 
 namespace BookingApp.Models;
-
 public class Service: ModelBase<Service>
 {
     private int _id;
@@ -56,19 +56,41 @@ public class Service: ModelBase<Service>
         }
     }
     
-   
-    private ICollection<DateTime> _availableTimeSlots = new HashSet<DateTime>();
-
-    public IReadOnlyCollection<DateTime> AvailableTimeSlots => (IReadOnlyCollection<DateTime>)_availableTimeSlots; 
     
     public Service(string name, StationCategory serviceCategory, string description, decimal price)
     {
         try
         {
+            var spec = new List<string>();
+            spec.Add("Hair");
+            _beautyProfessional = new BeautyProfessional("fake", "fake", "fake@gmail.com", "+1111111", "fake",
+                "QWwersdf1234$$", "fake", "fake", 0, "no", spec, new RegularAccountType());
+            _assignedDateTime = new DateTime();
+            _assignedWorkStation = new WorkStation(StationCategory.Hair, 0);
             Name = name;
             ServiceCategory = serviceCategory;
             Description = description;
             Price = price;
+            Add(this);
+        }
+        catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
+    
+    public Service(string name, StationCategory serviceCategory, string description, decimal price, BeautyProfessional beautyProfessional)
+    {
+        try
+        {
+            _beautyProfessional = beautyProfessional;
+            _assignedDateTime = new DateTime();
+            _assignedWorkStation = new WorkStation(StationCategory.Hair, 0);
+            Name = name;
+            ServiceCategory = serviceCategory;
+            Description = description;
+            Price = price;
+            AddBeautyProToService(beautyProfessional);
             Add(this);
         }
         catch (ArgumentException e)
@@ -131,7 +153,7 @@ public class Service: ModelBase<Service>
             throw new Exception("This Service already has this Review");
         }
         
-        if (newReview.Service != null)
+        if (newReview.Service._name != "Fake")
         {
             throw new Exception("It is not possible to add this Review to a Service, as it is already assigned to a Service in the system");
         }
@@ -148,15 +170,29 @@ public class Service: ModelBase<Service>
                 r.DeleteReview(); 
             }
         }
+        if (_booking != null)
+        {
+            RemoveFromBooking();
+        }
         Delete(this);
     }
     
     //Service - Workstation 
-    private WorkStation? _assignedWorkStation;
-    public WorkStation? AssignedWorkStation => _assignedWorkStation;
+    private WorkStation _assignedWorkStation;
 
-    private DateTime? _assignedDateTime;
-    public DateTime? AssignedDateTime => _assignedDateTime;
+    public WorkStation AssignedWorkStation
+    {
+        get => _assignedWorkStation;
+        set => _assignedWorkStation = value;
+    }
+
+    private DateTime _assignedDateTime;
+
+    public DateTime AssignedDateTime
+    {
+        get => _assignedDateTime;
+        set => _assignedDateTime = value;
+    }
     public void AssignWorkStationAndTime(WorkStation workStation, DateTime dateTime)
     {
         if (workStation == null)
@@ -167,7 +203,7 @@ public class Service: ModelBase<Service>
         {
             throw new InvalidOperationException("Category of workstation and service must be the same");
         }
-        if (_assignedWorkStation != null)
+        if (_assignedWorkStation.Price != 0)
             throw new InvalidOperationException("This Service is already assigned to a WorkStation.");
 
         _isUpdating = true;
@@ -181,13 +217,13 @@ public class Service: ModelBase<Service>
    {
        if (_isUpdating)
            return;
-       if (AssignedWorkStation == null)
+       if (AssignedWorkStation.Price == 0)
            throw new InvalidOperationException("This Service is not assigned to a WorkStation.");
       
        _isUpdating = true;
        var previousWorkStation = _assignedWorkStation;
-       _assignedWorkStation = null;
-       _assignedDateTime = null;
+       _assignedWorkStation = new WorkStation(StationCategory.Hair, 0);
+       _assignedDateTime = new DateTime();
        previousWorkStation.RemoveServiceAtTime(this);
        _isUpdating = false;
    }
@@ -200,7 +236,7 @@ public class Service: ModelBase<Service>
            throw new InvalidOperationException("This Service is already assigned to the specified WorkStation.");
        if (ServiceCategory != newWorkStation.Category)
            throw new InvalidOperationException("The WorkStation's category does not match the Service's category.");
-       if (_assignedWorkStation == null)
+       if (_assignedWorkStation.Price == 0)
        {
            throw new InvalidOperationException("It is impossible to assign new Workstation to this Service, as there is no Workstation assigned before");
        }
@@ -289,8 +325,13 @@ public class Service: ModelBase<Service>
    }
    
    //Service-BeautyProfessional (one-to-many)
-   private BeautyProfessional? _beautyProfessional;
-   public BeautyProfessional? BeautyProfessional => _beautyProfessional;
+   private BeautyProfessional _beautyProfessional;
+
+   public BeautyProfessional BeautyProfessional
+   {
+       get => _beautyProfessional;
+       set => _beautyProfessional = value;
+   }
    
    public void AddBeautyProToService(BeautyProfessional beautyProfessional)
    {
@@ -302,7 +343,7 @@ public class Service: ModelBase<Service>
            return;
        }
 
-       if (_beautyProfessional != null)
+       if (_beautyProfessional != null && _beautyProfessional.FirstName != "fake")
        {
            throw new InvalidOperationException("This Service already has a Beauty Professional.");
        }
@@ -316,7 +357,7 @@ public class Service: ModelBase<Service>
    public void RemoveBeautyFromService()
    {
        if (_isUpdating) return;
-       if (_beautyProfessional == null) 
+       if (_beautyProfessional.FirstName == "fake") 
            throw new InvalidOperationException("This Service does not have a BeautyPro");
        _isUpdating = true;
        var previousBP = _beautyProfessional;
@@ -333,12 +374,7 @@ public class Service: ModelBase<Service>
        {
            throw new InvalidOperationException("This Service is already assigned to this BeautyPro");
        }
-
-       if (_beautyProfessional == null)
-       {
-           throw new InvalidOperationException(
-               "It is not possible to assign a new BeautyPro to this Service, because it does not have any");
-       }
+       
        RemoveBeautyFromService(); 
        AddBeautyProToService(newBP); 
    }
@@ -391,4 +427,10 @@ public class Service: ModelBase<Service>
        RemoveFromBooking(); 
        AssignToBooking(newB); 
    }
+   
+   public void RemoveConnectionWhileDeletingBooking()
+   {
+       _booking = null;
+   }
+   
 }

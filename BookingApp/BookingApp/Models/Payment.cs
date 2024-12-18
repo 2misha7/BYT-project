@@ -72,6 +72,22 @@ public class Payment : ModelBase<Payment>
             throw new ArgumentException(e.Message);
         }
     }
+    public Payment(decimal finalAmount, string? couponCode, Booking booking)
+    {
+        try
+        {
+            _booking = Booking;
+            FinalAmount = finalAmount;
+            CouponCode = couponCode;
+            AmountPaid = 0; 
+            Status = PaymentStatus.Pending; 
+            _booking.AddPaymentToBooking(this);
+            Add(this);
+        }catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
 
     
 
@@ -82,8 +98,13 @@ public class Payment : ModelBase<Payment>
     
     
     // One-to-One Relationship with Booking
-    private Booking? _booking;
-    public Booking? Booking => _booking;
+    private Booking _booking;
+
+    public Booking Booking
+    {
+        get => _booking;
+        set => _booking = value;
+    }
     private bool _isUpdating = false;
     public void AddBookingToPayment(Booking booking)
     {

@@ -227,10 +227,10 @@ public class Customer : ModelBase<Customer>, IPerson
             throw new Exception("This Customer already had this new Coupon");
         }
         
-        if (newCoupon.Customer != null)
-        {
-            throw new Exception("It is not possible to add this Coupon to a Customer, as it is already assigned to a Customer in the system");
-        }
+        //if (newCoupon.Customer != null)
+        //{
+        //    throw new Exception("It is not possible to add this Coupon to a Customer, as it is already assigned to a Customer in the system");
+        //}
         
         RemoveCoupon(oldCoupon); 
         AddCoupon(newCoupon);

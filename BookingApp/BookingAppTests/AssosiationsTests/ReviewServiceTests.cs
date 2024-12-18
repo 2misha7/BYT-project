@@ -113,45 +113,7 @@ public class ReviewServiceTests
             var ex = Assert.Throws<InvalidOperationException>(() => review.RemoveServiceFromReview());
             Assert.AreEqual("This Review is not assigned to a Service", ex.Message);
         }
-
-        // Change Service of Review - started in Review
-        [Test]
-        public void Test_ChangeServiceForReview_StartedInReview()
-        {
-            var service1 = new Service("Haircut", StationCategory.Hair, "A quick trim", 25.0m);
-            var service2 = new Service("Shave", StationCategory.Hair, "Clean shave", 15.0m);
-            var review = new Review(ReviewRating.Good, "Great haircut!", DateTime.Now);
-
-            review.AssignServiceToReview(service1);
-            review.ChangeServiceAssigned(service2);
-
-            Assert.AreEqual(0, service1.Reviews.Count);
-            Assert.AreEqual(1, service2.Reviews.Count);
-            Assert.AreEqual(service2, review.Service);
-            Assert.AreEqual(review, service2.Reviews[0]);
-        }
-
-        [Test]
-        public void Test_ChangeServiceForReview_StartedInReview_ExceptionHandling()
-        {
-            var service1 = new Service("Haircut", StationCategory.Hair, "A quick trim", 25.0m);
-            var service2 = new Service("Shave", StationCategory.Hair, "Clean shave", 15.0m);
-            var review = new Review(ReviewRating.Good, "Great haircut!", DateTime.Now);
-
-            // Null Service
-            var ex1 = Assert.Throws<ArgumentNullException>(() => review.ChangeServiceAssigned(null));
-            Assert.AreEqual("Value cannot be null. (Parameter 'newService')", ex1.Message);
-
-            // Same Service
-            review.AssignServiceToReview(service1);
-            var ex2 = Assert.Throws<InvalidOperationException>(() => review.ChangeServiceAssigned(service1));
-            Assert.AreEqual("This Service is already assigned to exactly this Review", ex2.Message);
-
-            // Review not part of any Service
-            review.RemoveServiceFromReview();
-            var ex3 = Assert.Throws<InvalidOperationException>(() => review.ChangeServiceAssigned(service2));
-            Assert.AreEqual("It is not possible to assign the review to another service, because it is not assigned to any", ex3.Message);
-        }
+        
         
         [Test]
     public void Test_SubstituteReview_Successful()

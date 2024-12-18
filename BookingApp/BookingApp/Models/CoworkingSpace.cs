@@ -56,7 +56,7 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
     public CoworkingSpace(string address, string city, string contactNumber)
     {
         try
-        {
+        {   _workStations.Add(new WorkStation(StationCategory.Body, 0));
             Address = address;
             City = city;
             ContactNumber = contactNumber;
@@ -86,6 +86,11 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
         }
         if (_workStations.Contains(workStation))
             throw new InvalidOperationException("This WorkStation is already part of this Coworking Space.");
+        if (_workStations.Count == 1 && _workStations[0].Price == 0)
+        {
+            WorkStation.Delete(_workStations[0]);
+            _workStations.Clear();
+        }
         _isUpdating = true;
         _workStations.Add(workStation);
         workStation.AddWorkstationToCoworking(this);
@@ -100,6 +105,10 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
         if (!_workStations.Contains(workStation)) throw new InvalidOperationException("This WorkStation is not part of this CoworkingSpace."); 
 
         _isUpdating = true;
+        if (_workStations.Count == 1)
+        {
+            throw new InvalidOperationException("Coworking must have at least 1 Workstation");
+        }
         _workStations.Remove(workStation);
         workStation.RemoveWorkstationFromCoworkingSpace();
         _isUpdating = false;
@@ -136,7 +145,7 @@ public class CoworkingSpace : ModelBase<CoworkingSpace>
         if(_workStations.Count > 0)
         {
             foreach(var ws in _workStations.ToList()){
-                ws.RemoveWorkstationFromCoworkingSpace(); 
+                 ws.RemoveConnectionWhileDeletingCoworking();
             }
         }
         Delete(this);
