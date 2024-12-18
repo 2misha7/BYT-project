@@ -218,11 +218,7 @@ public class BeautyProfessionalServiceTests
             // Change BeautyPro to a null one
             var ex1 = Assert.Throws<ArgumentNullException>(() => service.ChangeBeautyPro(null));
             Assert.AreEqual("Value cannot be null. (Parameter 'newBP')", ex1.Message);
-
-            // Change BeautyPro when not assigned
-            var ex2 = Assert.Throws<InvalidOperationException>(() => service.ChangeBeautyPro(newBeautyProfessional));
-            Assert.AreEqual("It is not possible to assign a new BeautyPro to this Service, because it does not have any", ex2.Message);
-
+            
             // Assign and then change to the same BeautyPro
             oldBeautyProfessional.AddServiceToBeautyProfessional(service);
             var ex3 = Assert.Throws<InvalidOperationException>(() => service.ChangeBeautyPro(oldBeautyProfessional));

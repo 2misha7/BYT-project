@@ -19,19 +19,18 @@ public class BookingNotificationTests
     [Test]
     public void Test_AddNotificationToBooking_ExceptionHandling()
     {
-        var booking1 = new Booking();
-        var booking2 = new Booking();
-        var notification1 = new Notification("Booking confirmed!");
-        var notification2 = new Notification("Booking updated!");
+        var booking = new Booking();
+        var n = new Notification("qw");
+        var n1 = new Notification("qw");
 
-        booking1.AddNotificationToBooking(notification1);
-
-        var ex1 = Assert.Throws<ArgumentNullException>(() => booking2.AddNotificationToBooking(null));
+        var ex1 = Assert.Throws<ArgumentNullException>(() => booking.AddNotificationToBooking(null));
         Assert.AreEqual("Value cannot be null. (Parameter 'notification')", ex1.Message);
-        
-        // Adding a notification to a booking that already has one should throw an exception
-        var ex = Assert.Throws<InvalidOperationException>(() => booking1.AddNotificationToBooking(notification2));
-        Assert.AreEqual("This Booking already has a Notification.", ex.Message);
+
+        Console.WriteLine(booking.Notification.Text);
+        booking.AddNotificationToBooking(n);
+
+        var ex2 = Assert.Throws<InvalidOperationException>(() => booking.AddNotificationToBooking(n1));
+        Assert.AreEqual("This Booking already has a Notification.", ex2.Message);
         
     }
 

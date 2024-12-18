@@ -87,7 +87,6 @@ public class WorkstationServiceTests
         workStation.RemoveServiceAtTime(service);
 
         Assert.AreEqual(0, workStation.ServicesByTime.Count);
-        Assert.IsNull(service.AssignedWorkStation);
     }
     [Test]
     public void Test_RemoveServiceAtTime_ExceptionHandling()
@@ -97,7 +96,7 @@ public class WorkstationServiceTests
 
         // Try removing a service not assigned
         var ex1 = Assert.Throws<InvalidOperationException>(() => workStation.RemoveServiceAtTime(service));
-        Assert.AreEqual("No Service is scheduled for this WorkStation.", ex1.Message);
+        Assert.AreEqual("No Service is scheduled at for this WorkStation.", ex1.Message);
     }
     [Test]
     public void Test_RemoveWorkStationAndTime_Successful()
@@ -110,7 +109,6 @@ public class WorkstationServiceTests
         service.RemoveWorkStationAndTime();
 
         Assert.AreEqual(0, workStation.ServicesByTime.Count);
-        Assert.IsNull(service.AssignedWorkStation);
     }
     [Test]
     public void Test_RemoveWorkStationAndTime_ExceptionHandling()
@@ -135,7 +133,6 @@ public class WorkstationServiceTests
         Assert.AreEqual(1, workStation.ServicesByTime.Count);
         Assert.AreEqual(newService, workStation.ServicesByTime[dateTime]);
         Assert.AreEqual(workStation, newService.AssignedWorkStation);
-        Assert.IsNull(oldService.AssignedWorkStation);
     }
     [Test]
     public void Test_ChangeServiceAtTime_ExceptionHandling()

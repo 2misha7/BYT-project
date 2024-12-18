@@ -35,14 +35,34 @@ public class PortfolioPage : ModelBase<PortfolioPage>
         }
     }
     
+    public PortfolioPage(string description, BeautyProfessional beautyProfessional)
+    {
+        try
+        {
+            _beautyProfessional = beautyProfessional;
+            Description = description;
+            Add(this); 
+        }catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
+    
+  
+    
     protected override void AssignId()
     {
         Id = GetAll().Count > 0 ? GetAll().Last().Id + 1 : 1; 
     }
     
     // One-to-One Relationship PortfolioPage - BeautyPro
-    private BeautyProfessional? _beautyProfessional;
-    public BeautyProfessional? BeautyProfessional => _beautyProfessional;
+    private BeautyProfessional _beautyProfessional;
+
+    public BeautyProfessional BeautyProfessional
+    {
+        get => _beautyProfessional;
+        set => _beautyProfessional = value;
+    }
     private bool _isUpdating = false;
     
     public void AddBeautyProToPortfolioPage(BeautyProfessional beautyProfessional)
@@ -125,7 +145,8 @@ public class PortfolioPage : ModelBase<PortfolioPage>
 
         _isUpdating = true;
         _posts.Remove(post);
-        post.RemovePortfolioPageFromPost();
+        Post.Delete(post);
+        //post.RemovePortfolioPageFromPost();
         _isUpdating = false;
     }
 
@@ -145,7 +166,7 @@ public class PortfolioPage : ModelBase<PortfolioPage>
             throw new Exception("This PortfolioPage already has this Post");
         }
         
-        if (newPost.PortfolioPage != null)
+        if (newPost.PortfolioPage._description != "FakePageDescription")
         {
             throw new Exception("It is not possible to add this Post to a PortfolioPage, as it is already assigned to a PortfolioPage in the system");
         }

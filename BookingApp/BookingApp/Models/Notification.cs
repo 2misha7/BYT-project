@@ -36,6 +36,20 @@ public class Notification: ModelBase<Notification>
             throw new ArgumentException(e.Message);
         }
     }
+    public Notification(string text, Booking booking)
+    {
+        try
+        {
+            _booking = Booking;
+            _booking.AddNotificationToBooking(this);
+            Text = text;
+            Add(this);
+        }
+        catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
 
     protected override void AssignId()
     {
@@ -43,8 +57,13 @@ public class Notification: ModelBase<Notification>
     }
     
     // One-to-One Relationship with Booking
-    private Booking? _booking;
-    public Booking? Booking => _booking;
+    private Booking _booking;
+
+    public Booking Booking
+    {
+        get => _booking;
+        set => _booking = value;
+    }
 
     private bool _isUpdating = false;
     public void AddBookingToNotification(Booking booking)

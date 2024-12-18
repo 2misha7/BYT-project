@@ -61,6 +61,7 @@ public class BookingPaymentTests
         var payment1 = new Payment(100m, null);
         var payment2 = new Payment(200m, null);
 
+        
         booking.AddPaymentToBooking(payment1);
         booking.ChangePaymentForBooking(payment2);
 

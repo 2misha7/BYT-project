@@ -1,5 +1,4 @@
 ﻿namespace BookingApp.Models;
-
 public class Review: ModelBase<Review>
 {
     
@@ -45,10 +44,25 @@ public class Review: ModelBase<Review>
     {
         try
         {
-           
+            _service = new Service("Fake", StationCategory.Body, "Fake", 1);
             Rating = rating; 
             Comment = comment;
             Date = date;
+            Add(this); 
+        }catch (ArgumentException e)
+        {
+            throw new ArgumentException(e.Message);
+        }
+    }
+    public Review(ReviewRating rating, string comment, DateTime date, Service service)
+    {
+        try
+        {
+            _service = Service;
+            Rating = rating; 
+            Comment = comment;
+            Date = date;
+            AssignServiceToReview(service);
             Add(this); 
         }catch (ArgumentException e)
         {
@@ -61,8 +75,13 @@ public class Review: ModelBase<Review>
     }
     
     //Review - Service many-to-one, composition
-    private Service? _service; 
-    public Service? Service => _service;
+    private Service _service;
+
+    public Service Service
+    {
+        get => _service;
+        set => _service = value;
+    }
     private bool _isUpdating = false;
     
     public void AssignServiceToReview(Service service)
@@ -73,7 +92,7 @@ public class Review: ModelBase<Review>
         {
             return;
         }
-        if (_service != null)
+        if (_service.Name != "Fake")
         {
             throw new InvalidOperationException("This Review is already assigned to a Service in the system.");
         }
@@ -86,7 +105,7 @@ public class Review: ModelBase<Review>
     public void RemoveServiceFromReview()
     {
         if (_isUpdating) return;
-        if (_service == null) 
+        if (_service.Name == "Fake") 
             throw new InvalidOperationException("This Review is not assigned to a Service");
         _isUpdating = true;
         var previousS = _service;
