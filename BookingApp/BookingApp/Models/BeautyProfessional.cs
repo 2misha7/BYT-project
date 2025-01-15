@@ -175,7 +175,7 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
     public IAccountType AccountType
     {
         get => _accountType;
-        set => _accountType = value ?? throw new ArgumentException("Account type cannot be null");
+        private set => _accountType = value ?? throw new ArgumentException("Account type cannot be null");
     }
     
     public BeautyProfessional(string firstName, string lastName, string email, string phoneNumber, string login, string password, string address, string city, decimal walletBalance, string experience, ICollection<string> specializations, IAccountType accountType)
@@ -202,6 +202,33 @@ public class BeautyProfessional :  ModelBase<BeautyProfessional>, IPerson
             throw new ArgumentException(e.Message);
         }
         
+    }
+    
+    public DateTime? GetSubscriptionStartDate()
+    {
+        if (AccountType is PremiumAccountType premium)
+        {
+            return premium.StartOfSubscription;
+        }
+        return null;
+    }
+
+    public DateTime? GetSubscriptionEndDate()
+    {
+        if (AccountType is PremiumAccountType premium)
+        {
+            return premium.EndOfSubscription;
+        }
+        return null;
+    }
+
+    public void SetAccountType(IAccountType newAccountType)
+    {
+        if (newAccountType is RegularAccountType && AccountType is PremiumAccountType premium && premium.IsSubscriptionActive())
+        {
+            throw new InvalidOperationException("Cannot switch to a regular account while the subscription is active.");
+        }
+        AccountType = newAccountType;
     }
     protected override void AssignId()
     {
