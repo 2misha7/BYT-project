@@ -1,7 +1,7 @@
 ﻿using BookingApp.Models;
 
 namespace BookingAppTests;
-
+//inheritance
 public class InheritanceTests
 {
     [Test]
